@@ -65,7 +65,7 @@ func (r *SolicitationRepository) Upsert(ctx context.Context, sol scraper.Solicit
 // List retrieves all solicitations from the database
 func (r *SolicitationRepository) List(ctx context.Context) ([]scraper.Solicitation, error) {
 	query := `
-		SELECT source_id, title, description, agency, due_date, url, raw_data, documents
+		SELECT id, source_id, title, description, agency, due_date, url, raw_data, documents
 		FROM solicitations
 		ORDER BY created_at DESC
 	`
@@ -84,6 +84,7 @@ func (r *SolicitationRepository) List(ctx context.Context) ([]scraper.Solicitati
 		var dueDate sql.NullTime
 
 		if err := rows.Scan(
+			&sol.ID,
 			&sol.SourceID,
 			&sol.Title,
 			&sol.Description,

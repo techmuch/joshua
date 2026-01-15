@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS matches (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    solicitation_id INTEGER REFERENCES solicitations(id) ON DELETE CASCADE,
+    score INTEGER NOT NULL DEFAULT 0,
+    explanation TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, solicitation_id)
+);

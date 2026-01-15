@@ -38,9 +38,10 @@ var serveCmd = &cobra.Command{
 
 		solRepo := repository.NewSolicitationRepository(database)
 		userRepo := repository.NewUserRepository(database)
+		matchRepo := repository.NewMatchRepository(database)
 
 		// 2. Router
-		mux := api.NewRouter(solRepo, userRepo)
+		mux := api.NewRouter(solRepo, userRepo, matchRepo)
 
 		// 3. Frontend
 		dist, err := fs.Sub(web.DistFS, "dist")

@@ -7,6 +7,7 @@ import (
 
 // Solicitation represents a scraped business opportunity
 type Solicitation struct {
+	ID          int                    `json:"id"` // Database ID
 	SourceID    string                 `json:"source_id"`
 	Title       string                 `json:"title"`
 	Description string                 `json:"description"`

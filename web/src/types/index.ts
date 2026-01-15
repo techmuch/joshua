@@ -14,3 +14,10 @@ export interface Document {
     url: string;
     type: string;
 }
+
+export interface Match {
+    match_id: number;
+    score: number;
+    explanation: string;
+    solicitation: Solicitation;
+}
