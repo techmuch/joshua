@@ -1,0 +1,18 @@
+# Binaries
+/bd_bot
+bd_bot.exe
+
+# Config
+config.yaml
+
+# Go
+vendor/
+*.out
+*.test
+
+# Node
+web/node_modules/
+web/dist/
+
+# OS
+.DS_Store

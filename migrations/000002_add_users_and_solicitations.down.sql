@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS claims;
+DROP TABLE IF EXISTS solicitations;
+DROP TABLE IF EXISTS users;
