@@ -12,6 +12,8 @@ import (
 	"net/url"
 	"strings"
 	"time"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 // GPRScraper handles the Georgia Procurement Registry
@@ -90,7 +92,6 @@ func (s *GPRScraper) Scrape(ctx context.Context) ([]scraper.Solicitation, error)
 	data.Set("refreshSearchData", "false")
 
 	// Precisely matching DataTables expected format for columns
-	// Columns: Icon(0), ID(1), Title(2), Agency(3), Start(4), End(5), EndsIn(6), Status(7)
 	fieldNames := []string{"0", "1", "title", "agencyName", "4", "5", "6", "status"}
 	for i, name := range fieldNames {
 		data.Set(fmt.Sprintf("columns[%d][data]", i), name)
@@ -143,10 +144,82 @@ func (s *GPRScraper) Scrape(ctx context.Context) ([]scraper.Solicitation, error)
 			sol.URL = fmt.Sprintf("%s?eSourceNumber=%s&sourceSystemType=%s", s.DetailsURL, eSourceNumberKey, sourceId)
 		}
 
+		// Fetch details for each item
+		if sol.URL != "" {
+			// Add a small delay to be polite
+			time.Sleep(200 * time.Millisecond)
+			if err := s.ScrapeDetails(ctx, &sol); err != nil {
+				slog.Warn("Failed to scrape details", "source_id", sol.SourceID, "error", err)
+			}
+		}
+
 		solicitations = append(solicitations, sol)
 	}
 
 	return solicitations, nil
+}
+
+func (s *GPRScraper) ScrapeDetails(ctx context.Context, sol *scraper.Solicitation) error {
+	req, err := http.NewRequestWithContext(ctx, "GET", sol.URL, nil)
+	if err != nil {
+		return err
+	}
+	s.setHeaders(req)
+
+	resp, err := s.client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		return fmt.Errorf("details returned status: %s", resp.Status)
+	}
+
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	// Find documents in the page
+	// GPR usually lists documents in a table or list of links
+	doc.Find("a[href]").Each(func(i int, sel *goquery.Selection) {
+		href, exists := sel.Attr("href")
+		if !exists {
+			return
+		}
+
+		lowerHref := strings.ToLower(href)
+		if strings.HasSuffix(lowerHref, ".pdf") || 
+		   strings.HasSuffix(lowerHref, ".docx") || 
+		   strings.HasSuffix(lowerHref, ".doc") || 
+		   strings.Contains(lowerHref, "download") {
+			
+			title := strings.TrimSpace(sel.Text())
+			if title == "" {
+				title = "Document"
+			}
+
+			// Resolve relative URLs
+			if !strings.HasPrefix(href, "http") {
+				u, err := url.Parse(s.DetailsURL) // Use base URL for resolving
+				if err == nil {
+					ref, err := url.Parse(href)
+					if err == nil {
+						href = u.ResolveReference(ref).String()
+					}
+				}
+			}
+
+			sol.Documents = append(sol.Documents, scraper.Document{
+				Title: title,
+				URL:   href,
+				Type:  "file",
+			})
+		}
+	})
+
+	return nil
 }
 
 func (s *GPRScraper) setHeaders(req *http.Request) {

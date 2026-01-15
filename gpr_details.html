@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+<style type="text/css">
+#loadingDiv {
+	z-index: 9998;
+}
+
+#appModel {
+	z-index: 9997;
+}
+</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0" />
+
+<title>Georgia Procurement Registry</title>
+
+<!-- Custom fonts for this template-->
+<link href="./css/font-awesome.css" rel="stylesheet" type="text/css">
+
+<!-- Custom styles for this template-->
+<link href="./css/style.css?v=1.1" rel="stylesheet">
+
+<!-- Custom styles for this template-->
+
+<link href="./css/font.css" rel="stylesheet">
+<link href="./datatable/datatables.css" rel="stylesheet">
+<link href="./datatable/Responsive-2.2.2/css/responsive.dataTables.css"
+	rel="stylesheet">
+<link href="./datatable/buttons.dataTables.min.css" rel="stylesheet">
+<link href="./css/gijgo.min.css" rel="stylesheet">
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.bundle.js"></script>
+
+<script src="./js/common.js"></script>
+
+<script type="text/javascript">
+	var defaultShowAnnouncement = "";
+	function updateAnnouncementStatus(showAnnouncement) {
+		var requestTime = new Date().getTime();
+		$.post("./updateAnnouncementStatus?" + requestTime, {
+			showAnnouncement : showAnnouncement
+		}, function(data) {
+			//don't do anything
+		});
+
+	}
+	$(document).ready(function() {
+		//Ajax loading modal
+		$(document).ajaxStart(function() {
+			$('#loadingDiv').modal('show');
+		}).ajaxStop(function() {
+			$('#loadingDiv').modal('hide');
+		});
+		window.history.forward(1);
+
+		window.history.pushState(null, "", window.location.href);
+		window.onpopstate = function() {
+			window.history.pushState(null, "", window.location.href);
+		};
+	});
+</script>
+<script src="./datatable/datatables.min.js"></script>
+<script
+	src="./datatable/Responsive-2.2.2/js/dataTables.responsive.min.js"></script>
+<script src="./datatable/dataTables.buttons.min.js"></script>
+<script src="./js/gijgo.min.js"></script>
+
+</head>
+
+<body id="page-top">
+	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+		<div
+			class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+			<button
+				class="btn btn-link btn-sm order-1 order-sm-0 toggle_btn mt-2"
+				style="background: transparent" "
+				id="sidebarToggle2" href="#">
+				<i class="fa fa-bars main_header"></i>
+			</button>
+
+			<a class="navbar-brand mr-1" href="./index"> <img
+				src="images/georgia_logo.png" class="img-fluid"> <span
+				class="mainlogo">GEORGIA PROCUREMENT REGISTRY</span>
+			</a>
+			<!---logo-img-right class added 26-June-2019--->
+
+			<a href="./index" class="logo-img-right"> <img
+				src="images/logo2.jpg" class="ml-5 display_xs">
+			</a>
+			<ul
+				class="navbar-nav ml-auto ml-md-0 hide-show-bell-icon float-right">
+
+				<li class="nav-item dropdown d-sm-block no-arrow mt-4"><a
+					class="openclose notification_icon" href="#er" id="alertsDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <i class="fa fa-bell"></i> <span
+						class="badge badge-danger"></span>
+				</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+
+
+		<div id="content-wrapper" style="width: 100%; background-color: #fff">
+			<div class="container-fluid">
+				<div
+					class="col-sm-12 col-lg-10 col-md-12 col-xs-12 col12 offset-md-0 offset-lg-1 mt-md-4">
+
+					<p>
+						<br>
+						<br>
+					<div
+						class="col-sm-12 col-lg-10 col-md-12 col-xs-12 col12 offset-md-0 offset-lg-1 mt-md-4">
+						<p>
+							<span style="color: rgb(255, 0, 0);"><strong>You
+									are accessing from an unsupported browser. You can download the
+									latest version of these free supported browsers:</strong></span>
+						</p>
+						<ul>
+							<li>Google Chrome�</li>
+							<li>Firefox�</li>
+							<li>Microsoft Edge�</li>
+							<li>Safari�</li> 
+						</ul>
+					</div>
+					<p></p>
+
+				</div>
+			</div>
+			<!-- Sticky Footer -->
+			<footer class="sticky-footer">
+				<div class="row my-auto copyright text-center my-auto ">
+
+					<div class="col-sm-6 text-left col-12" style="line-height: 2em;">
+						Procurement Help Desk:404-657-6000 &nbsp; <a
+							href="mailto:procurementhelp@doas.ga.gov" target="_top">procurementhelp@doas.ga.gov
+						</a>
+					</div>
+					<div class="col-sm-6 text-right col-12">
+						<a href="https://service.doas.ga.gov/app/ask" target="blank">Contact
+							Us</a>
+					</div>
+
+				</div>
+			</footer>
+
+			<!-- /.content-wrapper -->
+
+
+			<!-- /#wrapper -->
+
+			<!-- Scroll to Top Button-->
+			<a class="scroll-to-top rounded" href="#page-top"> <i
+				class="fa fa-angle-up"></i>
+			</a>
+
+
+
+			<!-- Custom scripts for all pages-->
+			<script src="./js/index.js"></script>
+
+
+
+
+
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async
+				src="https://www.googletagmanager.com/gtag/js?id=UA-33235297-19"></script>
+			<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-33235297-19');
+</script>
+</body>
+
+</html>
