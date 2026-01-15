@@ -52,14 +52,26 @@ var initCmd = &cobra.Command{
 							Title("LLM API Key").
 							Description("API Key for the LLM").
 							Value(&cfg.LLMKey),
-					huh.NewInput().
-							Title("LLM Model").
-							Description("Model name (e.g., gemma3:4b)").
-							Value(&cfg.LLMModel),
-				),
-			)
-
-			err := form.Run()
+										huh.NewInput().
+											Title("LLM Model").
+											Description("Model name (e.g., gemma3:4b)").
+											Value(&cfg.LLMModel),
+										huh.NewInput().
+											Title("Log Path").
+											Description("Path to log file").
+											Value(&cfg.LogPath),
+										huh.NewSelect[string]().
+											Title("Log Level").
+											Options(
+												huh.NewOption("DEBUG", "DEBUG"),
+												huh.NewOption("INFO", "INFO"),
+												huh.NewOption("WARN", "WARN"),
+												huh.NewOption("ERROR", "ERROR"),
+											).
+											Value(&cfg.LogLevel),
+									),
+								)
+								err := form.Run()
 			if err != nil {
 				fmt.Println("Error running form:", err)
 				os.Exit(1)

@@ -73,6 +73,10 @@ The CLI leverages the Charmbracelet ecosystem for a premium administrative exper
 *   **Matching Engine (LLM):**
     *   Internal AI: OpenAI-compatible API connection.
     *   Matching Logic: The LLM processes the free-form user narrative (and any custom instructions/if-then logic therein) to decide on solicitation matches.
+*   **Logging System:**
+    *   Centralized logging for all application components.
+    *   Support for timestamped entries and configurable log levels (DEBUG, INFO, WARN, ERROR).
+    *   Output to both standard output and a configurable log file with rotation.
 
 ## 5. Feature Specifications
 
@@ -92,6 +96,7 @@ Extensive inline documentation for:
 *   SSO metadata URLs and client credentials.
 *   LLM API endpoints and model settings.
 *   Slack Bot tokens and DM triggers.
+*   Log file path and level configuration.
 *   Scraper targets with specific CSS/API rules.
 *   Organizational levels (Division > Department > Team).
 

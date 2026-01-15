@@ -12,15 +12,19 @@ type Config struct {
 	LLMURL      string `yaml:"llm_url"`
 	LLMKey      string `yaml:"llm_key"`
 	LLMModel    string `yaml:"llm_model"`
+	LogPath     string `yaml:"log_path"`
+	LogLevel    string `yaml:"log_level"`
 }
 
 // DefaultConfig returns the default configuration
 func DefaultConfig() Config {
 	return Config{
-		DatabaseURL: "postgres://user:password@localhost:5432/bd_bot?sslmode=disable",
-		LLMURL:      "http://localhost:8000/v1",
+		DatabaseURL: "postgres://user:password@192.168.64.2:5432/bd_bot?sslmode=disable",
+		LLMURL:      "http://127.0.0.1:11434/v1",
 		LLMKey:      "sk-...",
 		LLMModel:    "gemma3:4b",
+		LogPath:     "bd_bot.log",
+		LogLevel:    "INFO",
 	}
 }
 
