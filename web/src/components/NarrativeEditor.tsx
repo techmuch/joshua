@@ -48,7 +48,7 @@ const NarrativeEditor: React.FC = () => {
         <div className="solicitation-list narrative-container">
             <h2>Business Capability Narrative</h2>
             <p className="text-muted" style={{marginBottom: '1rem'}}>
-                Describe your company's core competencies, past performance, and value proposition. 
+                Describe your organization's core competencies, past performance, and value proposition. 
                 The AI will use this narrative to find the best matching opportunities for you.
             </p>
             

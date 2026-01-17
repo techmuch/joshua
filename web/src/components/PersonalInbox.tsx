@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import type { Match } from '../types';
+import React, { useEffect, useState, useMemo } from 'react';
+import type { Match, Solicitation } from '../types';
 import { useAuth } from '../context/AuthContext';
-import { ChevronDown, ChevronRight, ExternalLink, FileText, Sparkles } from 'lucide-react';
+import { ChevronDown, ChevronRight, ExternalLink, FileText, Sparkles, ArrowUpDown } from 'lucide-react';
+import { useAnalytics, getDaysRemaining, getDateBucket } from '../hooks/useAnalytics';
+import DashboardCharts from './DashboardCharts';
+import FilterControls from './FilterControls';
 
 const PersonalInbox: React.FC = () => {
     const { user } = useAuth();
     const [matches, setMatches] = useState<Match[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [expandedRow, setExpandedRow] = useState<string | null>(null);
+
+    // Filtering & Sorting State
+    const [filterText, setFilterText] = useState("");
+    const [dateFilter, setDateFilter] = useState<string | null>(null);
+    const [agencyFilter, setAgencyFilter] = useState<string | null>(null);
+    const [sortConfig, setSortConfig] = useState<{ key: keyof Match | keyof Solicitation; direction: 'asc' | 'desc' } | null>({ key: 'score', direction: 'desc' });
 
     useEffect(() => {
         if (!user) return;
@@ -27,6 +36,60 @@ const PersonalInbox: React.FC = () => {
         fetchMatches();
     }, [user]);
 
+    // 1. Text Filtered (Base)
+    const textFilteredMatches = useMemo(() => {
+        if (!filterText) return matches;
+        const lower = filterText.toLowerCase();
+        return matches.filter(m => 
+            m.solicitation.title.toLowerCase().includes(lower) ||
+            m.solicitation.agency.toLowerCase().includes(lower)
+        );
+    }, [matches, filterText]);
+
+    // 2. Analytics Hook (Mapping Match -> Solicitation fields)
+    const { timeData, agencyData } = useAnalytics(
+        textFilteredMatches,
+        (m) => m.solicitation.due_date,
+        (m) => m.solicitation.agency,
+        dateFilter,
+        agencyFilter
+    );
+
+    // 3. Main Table Logic
+    const processedMatches = useMemo(() => {
+        let items = [...textFilteredMatches];
+
+        if (dateFilter) {
+            items = items.filter(m => getDateBucket(getDaysRemaining(m.solicitation.due_date)) === dateFilter);
+        }
+        if (agencyFilter) {
+            items = items.filter(m => m.solicitation.agency === agencyFilter);
+        }
+
+        if (sortConfig) {
+            items.sort((a, b) => {
+                let valA: any = a[sortConfig.key as keyof Match];
+                let valB: any = b[sortConfig.key as keyof Match];
+
+                // Check if key is on solicitation
+                if (valA === undefined) valA = a.solicitation[sortConfig.key as keyof Solicitation];
+                if (valB === undefined) valB = b.solicitation[sortConfig.key as keyof Solicitation];
+
+                if (valA < valB) return sortConfig.direction === 'asc' ? -1 : 1;
+                if (valA > valB) return sortConfig.direction === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+
+        return items;
+    }, [textFilteredMatches, dateFilter, agencyFilter, sortConfig]);
+
+    const requestSort = (key: keyof Match | keyof Solicitation) => {
+        let direction: 'asc' | 'desc' = 'asc';
+        if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') direction = 'desc';
+        setSortConfig({ key, direction });
+    };
+
     if (!user) return <div>Please login to view your inbox.</div>;
     if (loading) return <div className="loading">Loading AI matches...</div>;
 
@@ -42,23 +105,48 @@ const PersonalInbox: React.FC = () => {
 
     return (
         <div className="solicitation-list">
-            <h2>Personalized Opportunities</h2>
+            <DashboardCharts 
+                timeData={timeData} 
+                agencyData={agencyData}
+                dateFilter={dateFilter}
+                agencyFilter={agencyFilter}
+                setDateFilter={setDateFilter}
+                setAgencyFilter={setAgencyFilter}
+            />
+
+            <FilterControls 
+                filterText={filterText}
+                setFilterText={setFilterText}
+                dateFilter={dateFilter}
+                setDateFilter={setDateFilter}
+                agencyFilter={agencyFilter}
+                setAgencyFilter={setAgencyFilter}
+                count={processedMatches.length}
+                total={matches.length}
+            />
+
             <div className="table-responsive">
                 <table>
                     <thead>
                         <tr>
                             <th style={{width: 40}}></th>
-                            <th style={{width: 80}}>Score</th>
-                            <th>Agency</th>
-                            <th>Title</th>
+                            <th onClick={() => requestSort('score')} className="sortable" style={{width: 80}}>
+                                Score <ArrowUpDown size={14} />
+                            </th>
+                            <th onClick={() => requestSort('agency')} className="sortable">
+                                Agency <ArrowUpDown size={14} />
+                            </th>
+                            <th onClick={() => requestSort('title')} className="sortable">
+                                Title <ArrowUpDown size={14} />
+                            </th>
                             <th>Reasoning</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {matches.map((match) => (
+                        {processedMatches.map((match) => (
                             <React.Fragment key={match.match_id}>
-                                <tr onClick={() => setExpandedRow(expandedRow === match.solicitation.source_id ? null : match.solicitation.source_id)}>
+                                <tr onClick={() => setExpandedRow(expandedRow === match.solicitation.source_id ? null : match.solicitation.source_id)} className={expandedRow === match.solicitation.source_id ? "row-active" : ""}>
                                     <td className="chevron-cell">
                                         {expandedRow === match.solicitation.source_id ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
                                     </td>

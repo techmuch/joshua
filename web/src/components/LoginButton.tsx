@@ -14,24 +14,14 @@ export const LoginButton: React.FC = () => {
 
     if (user) {
         return (
-            <div className="user-menu" style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
-                <span className="user-name" style={{display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 500}}>
+            <div className="user-menu">
+                <span className="user-name">
                     <User size={18} />
                     {user.full_name}
                 </span>
                 <button 
                     onClick={logout} 
                     className="btn-outline"
-                    style={{
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        gap: '0.5rem',
-                        padding: '0.4rem 0.8rem',
-                        background: 'transparent',
-                        border: '1px solid #ddd',
-                        borderRadius: '6px',
-                        cursor: 'pointer'
-                    }}
                 >
                     <LogOut size={16} /> Logout
                 </button>
@@ -43,18 +33,6 @@ export const LoginButton: React.FC = () => {
         <button 
             onClick={handleLogin} 
             className="btn-primary"
-            style={{
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '0.5rem',
-                padding: '0.5rem 1rem',
-                background: '#3498db',
-                color: 'white',
-                border: 'none',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: 500
-            }}
         >
             <LogIn size={16} /> Login (Mock)
         </button>

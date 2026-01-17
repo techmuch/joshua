@@ -16,7 +16,7 @@ The BD_Bot is a high-performance, cross-platform portal designed to automate the
 
 ### 3.1 Web Portal Structure
 
-The web interface focuses on an inbox-style workflow to minimize cognitive load.
+The web interface focuses on an inbox-style workflow to minimize cognitive load. Each major view (Library, Inbox, Narrative) must have a unique, bookmarkable URL.
 
 #### A. Public View (Unauthenticated)
 
@@ -29,6 +29,7 @@ The web interface focuses on an inbox-style workflow to minimize cognitive load.
 
 *   **Personal Inbox (Primary View):**
     *   Features: AI-matched leads, items shared by colleagues, and a "Urgency" indicator based on due dates.
+    *   Analytics: Duplicate the "Timeline" and "Top Agencies" interactive charts from the Global Library to allow visual filtering of matched opportunities.
     *   Onboarding Banner: Persistent message until the Narrative is populated.
     *   Workflow: User reviews match -> Marks as "Interested", "Archive", or "Share". Matching skips users with empty narratives, though shared items still appear.
 *   **Collaborative Workspace (Opportunities in Pursuit):**

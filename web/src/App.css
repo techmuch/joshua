@@ -298,7 +298,7 @@ tr:hover {
 }
 
 .text-muted {
-  color: #bdc3c7;
+  color: #555; /* Darker gray for better visibility */
 }
 
 .expanded-row {
