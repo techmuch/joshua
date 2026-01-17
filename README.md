@@ -31,8 +31,17 @@ go build -o bd_bot ./cmd/bd_bot
 
 ### 3. Initialize & Run
 ```bash
+# Setup Config
 ./bd_bot config init
+
+# Run Migrations
 ./bd_bot migrate up
+
+# Create Admin User (Standalone Auth)
+./bd_bot user create -e admin@example.com -n "Admin User"
+./bd_bot user passwd -e admin@example.com -p secret123
+
+# Start Server
 ./bd_bot serve
 ```
 
@@ -41,4 +50,5 @@ go build -o bd_bot ./cmd/bd_bot
 - **Backend:** Go 1.25.5+
 - **Frontend:** React (TypeScript) embedded in the Go binary.
 - **Database:** PostgreSQL
+- **Authentication:** Dual-mode (Standalone/SSO)
 - **CLI/TUI:** Cobra & Charmbracelet (Huh?, Bubble Tea, Lip Gloss)

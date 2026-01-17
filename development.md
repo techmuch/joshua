@@ -105,8 +105,26 @@ The scraper uses a Strategy Pattern. Each source (like `georgia-gpr`) implements
 *   `GET /api/solicitations`: Returns a JSON list of all solicitations.
 *   `GET /api/matches`: Returns personalized AI matches for the current user.
 *   `PUT /api/user/narrative`: Updates the current user's business capability narrative.
-*   `POST /api/auth/login`: Mock SSO endpoint for development.
+*   `POST /api/auth/login`: Authenticates user. Supports local email/password or Mock SSO auto-provisioning.
 *   `GET /api/auth/me`: Returns the currently authenticated user.
+
+## 4. Authentication Guide
+
+The system supports two authentication modes:
+
+### 1. Standalone (Local)
+*   Users authenticate via Email and Password.
+*   **Setup:** Use the CLI to set a password for a user.
+    ```bash
+    ./bd_bot user create -e user@example.com -n "Local User"
+    ./bd_bot user passwd -e user@example.com -p mysecurepassword
+    ```
+*   **Login:** Click "Login" in the web UI and enter credentials.
+
+### 2. SSO (Enterprise)
+*   Architecture supports SAML/OIDC via the `auth_provider` and `external_id` columns.
+*   **Current State:** The `Login` endpoint currently supports "Mock SSO" auto-provisioning if no password is provided in the request (useful for dev/test without setting up an IdP).
+*   **Future:** Integrate a library like `crewjam/saml` or `coreos/go-oidc`.
 
 ### Git Workflow
 *   **Commits:** Use descriptive, multi-line commit messages.
