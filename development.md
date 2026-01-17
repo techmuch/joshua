@@ -44,6 +44,7 @@ This document provides a guide for developers working on the BD_Bot project.
 *   **Full Stack:** `make run` (Builds web, builds go, and starts the server on `:8080`).
 *   **Scraper Only:** `make scrape` (Triggers a manual run of the midnight bot).
 *   **AI Matching:** `./bd_bot match [user_id]` (Runs the LLM matching engine for a specific user).
+*   **User Management:** `./bd_bot user list` or `./bd_bot user create` (Manage identities via CLI).
 
 ### Live Frontend Development (HMR)
 To edit CSS or React components with instant updates (Hot Module Replacement):

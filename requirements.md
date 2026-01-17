@@ -54,7 +54,9 @@ The CLI leverages the Charmbracelet ecosystem for a premium administrative exper
     *   UX Pattern: Dual-view interface with a State-Based status table and a toggleable raw Log tab.
     *   Context: Can be used to manually trigger a run or monitor an already active background process.
 *   **`bd_bot user` (Identity Management):**
-    *   UX Pattern: A List View with "search-as-you-type" for managing identities and roles.
+    *   **`list`**: View all users with ID, email, name, role, and last activity date.
+    *   **`create`**: Manually provision a new user (useful for admin/testing).
+    *   UX Pattern: Tabular output for lists; flag-based input for creation.
 
 ### 3.3 Visual & Terminal Design
 
