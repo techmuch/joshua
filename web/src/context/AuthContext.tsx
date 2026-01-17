@@ -12,7 +12,7 @@ interface User {
 interface AuthContextType {
     user: User | null;
     isLoading: boolean;
-    login: (email: string, fullName: string) => Promise<void>;
+    login: (email: string, password?: string) => Promise<void>;
     logout: () => Promise<void>;
 }
 
@@ -40,16 +40,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         checkAuth();
     }, []);
 
-    const login = async (email: string, fullName: string) => {
+    const login = async (email: string, password?: string) => {
         setIsLoading(true);
         try {
             const res = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, full_name: fullName }),
+                body: JSON.stringify({ email, password }),
             });
             
-            if (!res.ok) throw new Error("Login failed");
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(text || "Login failed");
+            }
             
             const userData = await res.json();
             setUser(userData);
