@@ -36,9 +36,11 @@ The web interface focuses on an inbox-style workflow to minimize cognitive load.
     *   Features: List of all "Interested" items organization-wide.
     *   Visibility: Displays "Primary Claimer" and "Coalition Members."
     *   Detail View: Discussion thread, history/audit log, and the Draft URL (SharePoint/Google Docs link).
-*   **User Profile & AI Narrative:**
-    *   Narrative Editor: A free-form text box pre-populated with a best-practice template. Users have full authority to modify or replace this text with custom logic, instructions, or expertise descriptions for the LLM.
-    *   Org Settings: Dropdowns to select/add Division, Department, and Team.
+*   **User Profile & Settings:**
+    *   **Unified View:** Consolidates identity management and AI configuration into a single view.
+    *   **Public Profile:** Edit Full Name, Email Address, and Upload Avatar.
+    *   **Security:** Change Password (with current password verification).
+    *   **AI Narrative:** The "Business Capability Narrative" editor is embedded here to keep user configuration centralized.
 *   **Organizational Analytics (Manager View):**
     *   Aggregated Stats: Reporting is focused on the Organizational Level (e.g., "Engineering Department") rather than individuals, showing activity and capture rates per unit.
 
@@ -144,7 +146,7 @@ To ensure a structured and manageable implementation, development will follow th
     *   [x] Build Scraper engine foundation and implement one primary data source (GPR).
     *   [x] Implement Detail Page Scraping and Document Storage.
     *   [x] Develop "Global Library" API and Frontend view (read-only) with Analytics Dashboard.
-    *   [ ] Implement Basic Authentication (or Mock SSO) for development.
+    *   [x] Implement Basic Authentication (Standalone with bcrypt) and Mock SSO.
 
 ### Phase 3: Intelligence & Personalization
 *   **Goal:** Connect the "Brain" (LLM) and enable user-specific features.
