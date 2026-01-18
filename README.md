@@ -1,54 +1,115 @@
-# BD_Bot
+# BD_Bot: Business Development Intelligence Portal
 
-Business Development Intelligence Portal - Automating government solicitation discovery and pursuit.
+BD_Bot is an automated intelligence platform designed to revolutionize how organizations discover and pursue government business opportunities. It combines high-performance web scraping with local Large Language Models (LLM) to deliver personalized, actionable leads directly to your inbox.
 
-## Overview
+## Key Features
 
-BD_Bot is a high-performance portal designed to scrape government solicitation sites, use an internal LLM to match opportunities to user expertise, and provide a collaborative dashboard for teams.
+*   ** automated Discovery:** A background bot scrapes government solicitation portals (e.g., Georgia Procurement Registry) daily.
+*   **Intelligent Matching:** An internal AI analyzes your organizational "Narrative" against thousands of opportunities to score relevance.
+*   **Collaborative Dashboard:** A centralized portal for teams to review, claim, and track pursuits.
+*   **Dual-Mode Authentication:** Supports both standalone (local password) and Enterprise SSO integration.
 
-## Documentation
+---
 
-- [Requirements](requirements.md) - Detailed project requirements and architecture.
-- [Development Guide](development.md) - Onboarding and development instructions.
-- [Gemini Context](GEMINI.md) - High-level overview for AI assistants.
+## 1. Installation & Setup
 
-## Quick Start
+### Prerequisites
+*   **Docker** (for PostgreSQL database)
+*   **Go 1.25+** (for backend)
+*   **Node.js 20+** (for frontend build)
 
-### 1. Infrastructure
-Ensure you have Docker installed and run:
+### Step 1: Clone and Build
 ```bash
-docker-compose up -d
+git clone https://github.com/techmuch/bd_bot.git
+cd bd_bot
+
+# Install Go dependencies
+make deps
+
+# Build the unified binary (Frontend + Backend)
+make build
 ```
 
-### 2. Build
-Build the unified binary:
+### Step 2: Infrastructure
+Start the database container:
 ```bash
-# Build frontend
-cd web && npm install && npm run build && cd ..
-# Build backend
-go build -o bd_bot ./cmd/bd_bot
+make db-up
 ```
 
-### 3. Initialize & Run
+### Step 3: Configuration
+Run the interactive setup wizard to generate `config.yaml`:
 ```bash
-# Setup Config
 ./bd_bot config init
+```
+*   *Tip:* If running on macOS/Container, use `container ls` to find the DB IP address.
 
-# Run Migrations
+### Step 4: Database Schema
+Apply the latest migrations:
+```bash
 ./bd_bot migrate up
-
-# Create Admin User (Standalone Auth)
-./bd_bot user create -e admin@example.com -n "Admin User"
-./bd_bot user passwd -e admin@example.com -p secret123
-
-# Start Server
-./bd_bot serve
 ```
 
-## Architecture
+---
 
-- **Backend:** Go 1.25.5+
-- **Frontend:** React (TypeScript) embedded in the Go binary.
-- **Database:** PostgreSQL
-- **Authentication:** Dual-mode (Standalone/SSO)
-- **CLI/TUI:** Cobra & Charmbracelet (Huh?, Bubble Tea, Lip Gloss)
+## 2. Administration
+
+### User Management
+BD_Bot includes a CLI for managing users, useful for initial setup or admin tasks.
+
+**Create a new user:**
+```bash
+./bd_bot user create -e admin@example.com -n "System Admin"
+```
+
+**Set a password (Standalone Auth):**
+```bash
+./bd_bot user passwd -e admin@example.com -p StrongPassword123!
+```
+
+**List all users:**
+```bash
+./bd_bot user list
+```
+
+### Scraper Management
+Trigger the scraper manually or check its status:
+```bash
+./bd_bot scraper run-now
+```
+
+---
+
+## 3. Usage Guide
+
+### Log In
+1.  Start the server: `./bd_bot serve`
+2.  Navigate to `http://localhost:8080`.
+3.  Click **Login** and enter your credentials (or use SSO if configured).
+
+### Set Your Narrative (Crucial!)
+The AI needs to know who you are to find matches.
+1.  Click on your **User Profile** (top right).
+2.  Scroll down to **Business Capability Narrative**.
+3.  Paste your capabilities statement, past performance, or core competencies.
+4.  Click **Save Narrative**.
+
+### View Matches
+1.  Navigate to the **Inbox**.
+2.  Review opportunities scored by the AI.
+3.  Use the **Analytics Dashboard** to filter by urgency or agency.
+
+---
+
+## 4. Deployment
+
+BD_Bot is designed as a **Single Binary Deployment**. The React frontend is embedded into the Go binary.
+
+1.  **Build:** Run `make build` to generate the `bd_bot` binary.
+2.  **Deploy:** Copy `bd_bot` and `config.yaml` to your server.
+3.  **Run:** Execute `./bd_bot serve`.
+    *   *Production Tip:* Use a systemd service or Docker container to keep it running.
+    *   *Env Vars:* Configuration can be overridden with environment variables (see `config.go`).
+
+## Documentation Links
+- [Requirements & Architecture](requirements.md)
+- [Developer Guide (Internals)](development.md)
