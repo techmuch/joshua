@@ -159,11 +159,14 @@ To ensure a structured and manageable implementation, development will follow th
 
 ### Phase 4: Collaboration & Workflow
 *   **Goal:** Transform the tool from a reader to a workspace.
+*   **Status:** In Progress.
 *   **Tasks:**
-    *   Implement "Claim," "Share," and "Archive" workflows.
-    *   Build "Collaborative Workspace" view for teams.
-    *   Add Audit Logging for user actions.
-    *   Develop TUI Monitoring command (`bd_bot scraper run-now`).
+    *   [x] Implement "Claim" (Take Lead/Interested) workflow.
+    *   [ ] Implement "Share" and "Archive" workflows.
+    *   [ ] Build dedicated "Collaborative Workspace" view for teams.
+    *   [x] Add Organization Management (CLI & Profile Sync).
+    *   [ ] Add Audit Logging for user actions.
+    *   [ ] Develop TUI Monitoring command (`bd_bot scraper run-now`).
 
 ### Phase 5: Polish & Scale
 *   **Goal:** Prepare for production deployment and organizational rollout.
