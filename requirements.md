@@ -163,7 +163,7 @@ To ensure a structured and manageable implementation, development will follow th
 *   **Tasks:**
     *   [x] Implement "Claim" (Take Lead/Interested) workflow.
     *   [ ] Implement "Share" and "Archive" workflows.
-    *   [ ] Build dedicated "Collaborative Workspace" view for teams.
+    *   [x] Build "Collaborative Workspace" functionality (integrated into Library/Inbox/Details).
     *   [x] Add Organization Management (CLI & Profile Sync).
     *   [ ] Add Audit Logging for user actions.
     *   [ ] Develop TUI Monitoring command (`bd_bot scraper run-now`).
