@@ -8,6 +8,7 @@ export interface Solicitation {
     documents: Document[];
     raw_data: any;
     lead_name?: string;
+    interested_count?: number;
 }
 
 export interface Document {

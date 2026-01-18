@@ -17,6 +17,7 @@ type Solicitation struct {
 	Documents   []Document             `json:"documents"`
 	RawData     map[string]interface{} `json:"raw_data"`
 	LeadName    *string                `json:"lead_name,omitempty"` // Populated by repo
+	InterestedCount int                `json:"interested_count"`    // Populated by repo
 }
 
 // Document represents a file attached to a solicitation

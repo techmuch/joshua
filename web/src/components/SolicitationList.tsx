@@ -7,7 +7,8 @@ import {
     ExternalLink, 
     FileText, 
     ArrowUpDown,
-    User
+    User,
+    Users
 } from 'lucide-react';
 import { useAnalytics, getDaysRemaining, getDateBucket } from '../hooks/useAnalytics';
 import DashboardCharts from './DashboardCharts';
@@ -148,11 +149,18 @@ const SolicitationList: React.FC = () => {
                                         <Link to={`/solicitation/${sol.source_id}`} style={{fontWeight: 500, color: '#2c3e50', textDecoration: 'none'}}>
                                             {sol.title}
                                         </Link>
-                                        {sol.lead_name && (
-                                            <div style={{fontSize: '0.8rem', color: '#e67e22', display: 'flex', alignItems: 'center', gap: '4px', marginTop: '4px'}}>
-                                                <User size={12} /> Lead: {sol.lead_name}
-                                            </div>
-                                        )}
+                                        <div style={{display: 'flex', gap: '1rem', marginTop: '4px'}}>
+                                            {sol.lead_name && (
+                                                <div style={{fontSize: '0.8rem', color: '#e67e22', display: 'flex', alignItems: 'center', gap: '4px'}}>
+                                                    <User size={12} /> Lead: {sol.lead_name}
+                                                </div>
+                                            )}
+                                            {sol.interested_count ? (
+                                                <div style={{fontSize: '0.8rem', color: '#3498db', display: 'flex', alignItems: 'center', gap: '4px'}}>
+                                                    <Users size={12} /> {sol.interested_count} Interested
+                                                </div>
+                                            ) : null}
+                                        </div>
                                     </td>
                                     <td>{sol.due_date === "0001-01-01T00:00:00Z" ? "N/A" : new Date(sol.due_date).toLocaleDateString()}</td>
                                     <td>

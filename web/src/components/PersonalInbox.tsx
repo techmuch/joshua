@@ -9,7 +9,8 @@ import {
     FileText, 
     Sparkles, 
     ArrowUpDown,
-    User 
+    User,
+    Users
 } from 'lucide-react';
 import { useAnalytics, getDaysRemaining, getDateBucket } from '../hooks/useAnalytics';
 import DashboardCharts from './DashboardCharts';
@@ -171,11 +172,18 @@ const PersonalInbox: React.FC = () => {
                                         <Link to={`/solicitation/${match.solicitation.source_id}`} style={{fontWeight: 500, color: '#2c3e50', textDecoration: 'none'}}>
                                             {match.solicitation.title}
                                         </Link>
-                                        {match.solicitation.lead_name && (
-                                            <div style={{fontSize: '0.8rem', color: '#e67e22', display: 'flex', alignItems: 'center', gap: '4px', marginTop: '4px'}}>
-                                                <User size={12} /> Lead: {match.solicitation.lead_name}
-                                            </div>
-                                        )}
+                                        <div style={{display: 'flex', gap: '1rem', marginTop: '4px'}}>
+                                            {match.solicitation.lead_name && (
+                                                <div style={{fontSize: '0.8rem', color: '#e67e22', display: 'flex', alignItems: 'center', gap: '4px'}}>
+                                                    <User size={12} /> Lead: {match.solicitation.lead_name}
+                                                </div>
+                                            )}
+                                            {match.solicitation.interested_count ? (
+                                                <div style={{fontSize: '0.8rem', color: '#3498db', display: 'flex', alignItems: 'center', gap: '4px'}}>
+                                                    <Users size={12} /> {match.solicitation.interested_count} Interested
+                                                </div>
+                                            ) : null}
+                                        </div>
                                     </td>
                                     <td>
                                         <div style={{

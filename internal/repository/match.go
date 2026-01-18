@@ -35,7 +35,8 @@ func (r *MatchRepository) GetUserInbox(ctx context.Context, userID int) ([]Match
 		SELECT 
 			m.id, m.score, m.explanation,
 			s.id, s.source_id, s.title, s.description, s.agency, s.due_date, s.url, s.raw_data, s.documents,
-			(SELECT u.full_name FROM claims c JOIN users u ON c.user_id = u.id WHERE c.solicitation_id = s.id AND c.claim_type = 'lead' LIMIT 1)
+			(SELECT u.full_name FROM claims c JOIN users u ON c.user_id = u.id WHERE c.solicitation_id = s.id AND c.claim_type = 'lead' LIMIT 1),
+			(SELECT COUNT(*) FROM claims c WHERE c.solicitation_id = s.id AND c.claim_type = 'interested')
 		FROM matches m
 		JOIN solicitations s ON m.solicitation_id = s.id
 		WHERE m.user_id = $1 AND m.score > 0
@@ -54,12 +55,13 @@ func (r *MatchRepository) GetUserInbox(ctx context.Context, userID int) ([]Match
 		var docsData []byte
 		var dueDate sql.NullTime
 		var leadName sql.NullString
+		var interestedCount int
 
 		if err := rows.Scan(
 			&ms.MatchID, &ms.Score, &ms.Explanation,
 			&ms.Solicitation.ID, &ms.Solicitation.SourceID, &ms.Solicitation.Title, 
 			&ms.Solicitation.Description, &ms.Solicitation.Agency, &dueDate, 
-			&ms.Solicitation.URL, &rawData, &docsData, &leadName,
+			&ms.Solicitation.URL, &rawData, &docsData, &leadName, &interestedCount,
 		); err != nil {
 			return nil, err
 		}
@@ -71,6 +73,8 @@ func (r *MatchRepository) GetUserInbox(ctx context.Context, userID int) ([]Match
 			name := leadName.String
 			ms.Solicitation.LeadName = &name
 		}
+		ms.Solicitation.InterestedCount = interestedCount
+		
 		json.Unmarshal(rawData, &ms.Solicitation.RawData)
 		if len(docsData) > 0 {
 			json.Unmarshal(docsData, &ms.Solicitation.Documents)
