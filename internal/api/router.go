@@ -18,7 +18,14 @@ func NewRouter(solRepo *repository.SolicitationRepository, userRepo *repository.
 	mux.HandleFunc("/api/auth/login", authHandler.Login)
 	mux.HandleFunc("/api/auth/logout", authHandler.Logout)
 	mux.HandleFunc("/api/auth/me", authHandler.Me)
-	mux.HandleFunc("/api/user/narrative", userHandler.UpdateNarrative)
+	mux.HandleFunc("/api/auth/password", AuthMiddleware(authHandler.ChangePassword))
+	mux.HandleFunc("/api/user/narrative", AuthMiddleware(userHandler.UpdateNarrative))
+	mux.HandleFunc("/api/user/profile", AuthMiddleware(userHandler.UpdateProfile))
+	mux.HandleFunc("/api/user/avatar", AuthMiddleware(userHandler.UploadAvatar))
+
+	// Serve uploaded files
+	fs := http.FileServer(http.Dir("uploads"))
+	mux.Handle("/uploads/", http.StripPrefix("/uploads/", fs))
 
 	return mux
 }

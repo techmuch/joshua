@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { LogIn, LogOut, User, X } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
 export const LoginButton: React.FC = () => {
     const { user, login, logout, isLoading } = useAuth();
@@ -29,10 +30,22 @@ export const LoginButton: React.FC = () => {
     if (user) {
         return (
             <div className="user-menu">
-                <span className="user-name">
-                    <User size={18} />
+                <NavLink 
+                    to="/profile" 
+                    className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
+                    style={{color: '#34495e', marginRight: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px'}}
+                >
+                    {user.avatar_url ? (
+                        <img 
+                            src={user.avatar_url} 
+                            alt="Avatar" 
+                            style={{width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover'}} 
+                        />
+                    ) : (
+                        <User size={18} />
+                    )}
                     {user.full_name || user.email}
-                </span>
+                </NavLink>
                 <button onClick={logout} className="btn-outline">
                     <LogOut size={16} /> Logout
                 </button>

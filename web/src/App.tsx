@@ -2,6 +2,7 @@ import './App.css'
 import SolicitationList from './components/SolicitationList'
 import NarrativeEditor from './components/NarrativeEditor'
 import PersonalInbox from './components/PersonalInbox'
+import UserProfile from './components/UserProfile'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { LoginButton } from './components/LoginButton'
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
@@ -53,12 +54,12 @@ function AppContent() {
         </div>
         </div>
       </header>
-                <main>
+      <main>
         <Routes>
           <Route path="/" element={<SolicitationList />} />
           <Route path="/inbox" element={user ? <PersonalInbox /> : <Navigate to="/" />} />
           <Route path="/narrative" element={user ? <NarrativeEditor /> : <Navigate to="/" />} />
-          {/* Catch-all for undefined routes */}
+          <Route path="/profile" element={user ? <UserProfile /> : <Navigate to="/" />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
