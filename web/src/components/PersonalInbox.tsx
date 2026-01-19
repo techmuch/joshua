@@ -149,7 +149,6 @@ const PersonalInbox: React.FC = () => {
                             <th onClick={() => requestSort('title')} className="sortable">
                                 Title <ArrowUpDown size={14} />
                             </th>
-                            <th>Reasoning</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -191,17 +190,6 @@ const PersonalInbox: React.FC = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <div style={{
-                                            maxWidth: '400px',
-                                            whiteSpace: 'nowrap',
-                                            overflow: 'hidden',
-                                            textOverflow: 'ellipsis',
-                                            color: 'var(--text-secondary)'
-                                        }}>
-                                            {match.explanation}
-                                        </div>
-                                    </td>
-                                    <td>
                                         <a
                                             href={match.solicitation.url}
                                             target="_blank"
@@ -215,7 +203,7 @@ const PersonalInbox: React.FC = () => {
                                 </tr>
                                 {expandedRow === match.solicitation.source_id && (
                                     <tr className="expanded-row">
-                                        <td colSpan={6}>
+                                        <td colSpan={5}>
                                             <div className="details-panel">
                                                 <div style={{ marginBottom: '1.5rem', padding: '1rem', backgroundColor: 'var(--bg-card)', borderLeft: '4px solid #3498db' }}>
                                                     <strong>AI Analysis:</strong>
