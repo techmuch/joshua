@@ -36,7 +36,9 @@ const LandingPage: React.FC = () => {
     return (
         <div style={{maxWidth: '1000px', margin: '0 auto', padding: '2rem'}}>
             <div style={{textAlign: 'center', marginBottom: '3rem'}}>
-                <h1 style={{fontSize: '2.5rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Welcome, {user?.full_name || 'User'}</h1>
+                <h1 style={{fontSize: '2.5rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>
+                    GREETINGS, {(user?.full_name || 'USER').toUpperCase()}. SHALL WE WORK?
+                </h1>
                 <p style={{fontSize: '1.2rem', color: 'var(--text-secondary)'}}>Select an application to launch</p>
             </div>
 
