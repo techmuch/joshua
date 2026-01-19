@@ -50,17 +50,17 @@ const DeveloperApp: React.FC = () => {
     };
 
     if (!user || (user.role !== 'admin' && user.role !== 'developer')) {
-        return <div style={{padding: '2rem', textAlign: 'center'}}>Access Denied. Developer role required.</div>;
+        return <div style={{padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)'}}>Access Denied. Developer role required.</div>;
     }
 
     return (
         <div style={{maxWidth: '1200px', margin: '0 auto', padding: '2rem'}}>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem'}}>
-                <Link to="/" style={{display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#7f8c8d', textDecoration: 'none'}}>
+                <Link to="/" style={{display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none'}}>
                     <ArrowLeft size={16} /> Back to Hub
                 </Link>
                 <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
-                    {versionId && <span style={{color: '#7f8c8d', fontSize: '0.9rem'}}>Current Version: v{versionId}</span>}
+                    {versionId && <span style={{color: 'var(--text-secondary)', fontSize: '0.9rem'}}>Current Version: v{versionId}</span>}
                     <button onClick={handleRevert} className="btn-outline">
                         <History size={16} /> Revert
                     </button>
@@ -73,17 +73,17 @@ const DeveloperApp: React.FC = () => {
             {status && (
                 <div style={{
                     padding: '0.75rem', borderRadius: '4px', marginBottom: '1rem',
-                    backgroundColor: status.type === 'success' ? '#d4edda' : '#f8d7da',
-                    color: status.type === 'success' ? '#155724' : '#721c24'
+                    backgroundColor: status.type === 'success' ? 'var(--success-color)' : 'var(--error-color)',
+                    color: 'white'
                 }}>
                     {status.msg}
                 </div>
             )}
 
             <div className="chart-card" style={{padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '70vh'}}>
-                <div style={{padding: '1rem', background: '#f8f9fa', borderBottom: '1px solid #eee', display: 'flex', gap: '0.5rem', alignItems: 'center'}}>
-                    <FileCode size={16} color="#34495e" />
-                    <span style={{fontWeight: 600, color: '#2c3e50'}}>requirements.md</span>
+                <div style={{padding: '1rem', background: 'var(--bg-body)', borderBottom: '1px solid var(--border-color)', display: 'flex', gap: '0.5rem', alignItems: 'center'}}>
+                    <FileCode size={16} color="var(--text-primary)" />
+                    <span style={{fontWeight: 600, color: 'var(--text-primary)'}}>requirements.md</span>
                 </div>
                 <textarea
                     value={content}
@@ -92,7 +92,7 @@ const DeveloperApp: React.FC = () => {
                         flex: 1, width: '100%', padding: '1.5rem', 
                         border: 'none', resize: 'none', 
                         fontFamily: 'monospace', fontSize: '1rem', lineHeight: '1.6',
-                        background: '#fff', color: '#333', outline: 'none'
+                        background: 'var(--bg-input)', color: 'var(--text-body)', outline: 'none'
                     }}
                     spellCheck={false}
                 />

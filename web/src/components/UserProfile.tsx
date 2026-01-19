@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { User, Lock, Save, Camera, FileText } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+import { User, Lock, Save, Camera, FileText, Palette } from 'lucide-react';
 
 const UserProfile: React.FC = () => {
     const { user, refreshUser } = useAuth();
+    const { theme, setTheme } = useTheme();
     
     // Profile State
     const [fullName, setFullName] = useState(user?.full_name || "");
@@ -156,7 +158,7 @@ const UserProfile: React.FC = () => {
 
     return (
         <div className="solicitation-list" style={{maxWidth: '900px', margin: '0 auto'}}>
-            <div style={{borderBottom: '1px solid #eee', paddingBottom: '1rem', marginBottom: '2rem'}}>
+            <div style={{borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem', marginBottom: '2rem'}}>
                 <h2>User Profile & Settings</h2>
             </div>
 
@@ -165,8 +167,8 @@ const UserProfile: React.FC = () => {
                 {/* --- Profile Info & Avatar --- */}
                 <div className="chart-card">
                     <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem'}}>
-                        <User size={20} color="#34495e" />
-                        <h3 style={{margin: 0, color: '#34495e'}}>Public Profile</h3>
+                        <User size={20} color="var(--text-primary)" />
+                        <h3 style={{margin: 0, color: 'var(--text-primary)'}}>Public Profile</h3>
                     </div>
 
                     <form onSubmit={handleProfileUpdate}>
@@ -175,9 +177,9 @@ const UserProfile: React.FC = () => {
                             <div 
                                 style={{
                                     width: '100px', height: '100px', borderRadius: '50%', 
-                                    background: '#e1f5fe', color: '#3498db', 
+                                    background: 'var(--primary-light)', color: 'var(--primary-color)', 
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    margin: '0 auto', overflow: 'hidden', border: '3px solid #fff',
+                                    margin: '0 auto', overflow: 'hidden', border: '3px solid var(--bg-card)',
                                     boxShadow: '0 2px 8px rgba(0,0,0,0.1)', cursor: 'pointer',
                                     position: 'relative'
                                 }}
@@ -205,16 +207,16 @@ const UserProfile: React.FC = () => {
                                 style={{display: 'none'}} 
                                 accept="image/*"
                             />
-                            <p style={{fontSize: '0.8rem', color: '#7f8c8d', marginTop: '0.5rem'}}>Click to upload</p>
+                            <p style={{fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.5rem'}}>Click to upload</p>
                         </div>
 
                         {/* Fields */}
                         <div style={{marginBottom: '1rem'}}>
-                            <label style={{display: 'block', marginBottom: '0.5rem'}}>Organization</label>
+                            <label style={{display: 'block', marginBottom: '0.5rem', color: 'var(--text-body)'}}>Organization</label>
                             <input 
                                 type="text" 
                                 className="search-input"
-                                style={{border: '1px solid #ddd', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
+                                style={{border: '1px solid var(--border-input)', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
                                 value={orgName}
                                 onChange={(e) => setOrgName(e.target.value)}
                                 list="org-suggestions"
@@ -226,33 +228,50 @@ const UserProfile: React.FC = () => {
                         </div>
 
                         <div style={{marginBottom: '1rem'}}>
-                            <label style={{display: 'block', marginBottom: '0.5rem'}}>Full Name</label>
+                            <label style={{display: 'block', marginBottom: '0.5rem', color: 'var(--text-body)'}}>Full Name</label>
                             <input 
                                 type="text" 
                                 className="search-input"
-                                style={{border: '1px solid #ddd', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
+                                style={{border: '1px solid var(--border-input)', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
                                 value={fullName}
                                 onChange={(e) => setFullName(e.target.value)}
                                 required
                             />
                         </div>
                         <div style={{marginBottom: '1.5rem'}}>
-                            <label style={{display: 'block', marginBottom: '0.5rem'}}>Email Address</label>
+                            <label style={{display: 'block', marginBottom: '0.5rem', color: 'var(--text-body)'}}>Email Address</label>
                             <input 
                                 type="email" 
                                 className="search-input"
-                                style={{border: '1px solid #ddd', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
+                                style={{border: '1px solid var(--border-input)', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                         </div>
 
+                        {/* Theme Selector */}
+                        <div style={{marginBottom: '1.5rem'}}>
+                            <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--text-body)'}}>
+                                <Palette size={16} /> Theme
+                            </label>
+                            <select 
+                                className="search-input"
+                                style={{border: '1px solid var(--border-input)', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
+                                value={theme}
+                                onChange={(e) => setTheme(e.target.value as any)}
+                            >
+                                <option value="light">Light (Default)</option>
+                                <option value="dark">Dark Mode</option>
+                                <option value="forest">Forest</option>
+                            </select>
+                        </div>
+
                         {profileStatus && (
                             <div style={{
                                 padding: '0.75rem', borderRadius: '4px', marginBottom: '1rem',
-                                backgroundColor: profileStatus.type === 'success' ? '#d4edda' : '#f8d7da',
-                                color: profileStatus.type === 'success' ? '#155724' : '#721c24'
+                                backgroundColor: profileStatus.type === 'success' ? 'var(--success-color)' : 'var(--error-color)',
+                                color: 'white'
                             }}>
                                 {profileStatus.msg}
                             </div>
@@ -272,39 +291,39 @@ const UserProfile: React.FC = () => {
                 {/* --- Change Password --- */}
                 <div className="chart-card">
                     <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem'}}>
-                        <Lock size={20} color="#34495e" />
-                        <h3 style={{margin: 0, color: '#34495e'}}>Security</h3>
+                        <Lock size={20} color="var(--text-primary)" />
+                        <h3 style={{margin: 0, color: 'var(--text-primary)'}}>Security</h3>
                     </div>
 
                     <form onSubmit={handlePasswordChange}>
                         <div style={{marginBottom: '1rem'}}>
-                            <label style={{display: 'block', marginBottom: '0.5rem'}}>Current Password</label>
+                            <label style={{display: 'block', marginBottom: '0.5rem', color: 'var(--text-body)'}}>Current Password</label>
                             <input 
                                 type="password" 
                                 className="search-input"
-                                style={{border: '1px solid #ddd', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
+                                style={{border: '1px solid var(--border-input)', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
                                 value={oldPassword}
                                 onChange={(e) => setOldPassword(e.target.value)}
                                 required
                             />
                         </div>
                         <div style={{marginBottom: '1rem'}}>
-                            <label style={{display: 'block', marginBottom: '0.5rem'}}>New Password</label>
+                            <label style={{display: 'block', marginBottom: '0.5rem', color: 'var(--text-body)'}}>New Password</label>
                             <input 
                                 type="password" 
                                 className="search-input"
-                                style={{border: '1px solid #ddd', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
+                                style={{border: '1px solid var(--border-input)', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 required
                             />
                         </div>
                         <div style={{marginBottom: '1.5rem'}}>
-                            <label style={{display: 'block', marginBottom: '0.5rem'}}>Confirm New Password</label>
+                            <label style={{display: 'block', marginBottom: '0.5rem', color: 'var(--text-body)'}}>Confirm New Password</label>
                             <input 
                                 type="password" 
                                 className="search-input"
-                                style={{border: '1px solid #ddd', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
+                                style={{border: '1px solid var(--border-input)', padding: '0.75rem', borderRadius: '4px', width: '100%', boxSizing: 'border-box'}}
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
@@ -314,8 +333,8 @@ const UserProfile: React.FC = () => {
                         {passwordStatus && (
                             <div style={{
                                 padding: '0.75rem', borderRadius: '4px', marginBottom: '1rem',
-                                backgroundColor: passwordStatus.type === 'success' ? '#d4edda' : '#f8d7da',
-                                color: passwordStatus.type === 'success' ? '#155724' : '#721c24'
+                                backgroundColor: passwordStatus.type === 'success' ? 'var(--success-color)' : 'var(--error-color)',
+                                color: 'white'
                             }}>
                                 {passwordStatus.msg}
                             </div>
@@ -336,8 +355,8 @@ const UserProfile: React.FC = () => {
             {/* --- Narrative Editor --- */}
             <div className="chart-card" style={{padding: '2rem'}}>
                 <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem'}}>
-                    <FileText size={20} color="#34495e" />
-                    <h3 style={{margin: 0, color: '#34495e'}}>Business Capability Narrative</h3>
+                    <FileText size={20} color="var(--text-primary)" />
+                    <h3 style={{margin: 0, color: 'var(--text-primary)'}}>Business Capability Narrative</h3>
                 </div>
                 
                 <p className="text-muted" style={{marginBottom: '1.5rem', lineHeight: '1.5'}}>
@@ -365,7 +384,7 @@ const UserProfile: React.FC = () => {
                     
                     {narrativeMessage && (
                         <span style={{ 
-                            color: narrativeMessage.type === 'success' ? '#27ae60' : '#e74c3c',
+                            color: narrativeMessage.type === 'success' ? 'var(--success-color)' : 'var(--error-color)',
                             fontWeight: 500
                         }}>
                             {narrativeMessage.text}

@@ -7,6 +7,7 @@ import LandingPage from './components/LandingPage'
 import FeedbackApp from './components/FeedbackApp'
 import DeveloperApp from './components/DeveloperApp'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { ThemeProvider } from './context/ThemeContext'
 import { LoginButton } from './components/LoginButton'
 import { BrowserRouter, Routes, Route, NavLink, Navigate, useLocation } from 'react-router-dom'
 import { LayoutGrid, Inbox } from 'lucide-react'
@@ -75,9 +76,11 @@ function AppContent() {
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }

@@ -41,33 +41,33 @@ const FeedbackApp: React.FC = () => {
 
     return (
         <div style={{maxWidth: '600px', margin: '0 auto', padding: '2rem'}}>
-            <Link to="/" style={{display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#7f8c8d', textDecoration: 'none', marginBottom: '2rem'}}>
+            <Link to="/" style={{display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', marginBottom: '2rem'}}>
                 <ArrowLeft size={16} /> Back to Hub
             </Link>
 
             <div className="chart-card">
-                <h2 style={{marginTop: 0, borderBottom: '1px solid #eee', paddingBottom: '1rem', marginBottom: '1.5rem'}}>Provide Feedback</h2>
+                <h2 style={{marginTop: 0, borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem', marginBottom: '1.5rem', color: 'var(--text-primary)'}}>Provide Feedback</h2>
                 
                 <form onSubmit={handleSubmit}>
                     <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem'}}>
                         <div>
-                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 500}}>Application</label>
+                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: 'var(--text-body)'}}>Application</label>
                             <select 
                                 className="search-input"
                                 value={appName}
                                 onChange={(e) => setAppName(e.target.value)}
-                                style={{border: '1px solid #ddd', padding: '0.75rem', borderRadius: '4px', width: '100%'}}
+                                style={{border: '1px solid var(--border-input)', padding: '0.75rem', borderRadius: '4px', width: '100%', background: 'var(--bg-input)', color: 'var(--text-body)'}}
                             >
                                 {apps.map(a => <option key={a} value={a}>{a}</option>)}
                             </select>
                         </div>
                         <div>
-                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 500}}>View / Context</label>
+                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: 'var(--text-body)'}}>View / Context</label>
                             <select 
                                 className="search-input"
                                 value={viewName}
                                 onChange={(e) => setViewName(e.target.value)}
-                                style={{border: '1px solid #ddd', padding: '0.75rem', borderRadius: '4px', width: '100%'}}
+                                style={{border: '1px solid var(--border-input)', padding: '0.75rem', borderRadius: '4px', width: '100%', background: 'var(--bg-input)', color: 'var(--text-body)'}}
                             >
                                 {views.map(v => <option key={v} value={v}>{v}</option>)}
                             </select>
@@ -75,15 +75,16 @@ const FeedbackApp: React.FC = () => {
                     </div>
 
                     <div style={{marginBottom: '1.5rem'}}>
-                        <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 500}}>Feedback & Suggestions</label>
+                        <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 500, color: 'var(--text-body)'}}>Feedback & Suggestions</label>
                         <textarea
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                             placeholder="Describe your issue or idea..."
                             style={{
                                 width: '100%', height: '150px', padding: '1rem', 
-                                border: '1px solid #ddd', borderRadius: '4px', 
-                                fontFamily: 'inherit', fontSize: '1rem', boxSizing: 'border-box'
+                                border: '1px solid var(--border-input)', borderRadius: '4px', 
+                                fontFamily: 'inherit', fontSize: '1rem', boxSizing: 'border-box',
+                                background: 'var(--bg-input)', color: 'var(--text-body)'
                             }}
                             required
                         />
@@ -92,8 +93,8 @@ const FeedbackApp: React.FC = () => {
                     {status && (
                         <div style={{
                             padding: '0.75rem', borderRadius: '4px', marginBottom: '1rem',
-                            backgroundColor: status.type === 'success' ? '#d4edda' : '#f8d7da',
-                            color: status.type === 'success' ? '#155724' : '#721c24'
+                            backgroundColor: status.type === 'success' ? 'var(--success-color)' : 'var(--error-color)',
+                            color: 'white'
                         }}>
                             {status.msg}
                         </div>

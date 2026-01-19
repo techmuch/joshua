@@ -36,8 +36,8 @@ const LandingPage: React.FC = () => {
     return (
         <div style={{maxWidth: '1000px', margin: '0 auto', padding: '2rem'}}>
             <div style={{textAlign: 'center', marginBottom: '3rem'}}>
-                <h1 style={{fontSize: '2.5rem', color: '#2c3e50', marginBottom: '0.5rem'}}>Welcome, {user?.full_name || 'User'}</h1>
-                <p style={{fontSize: '1.2rem', color: '#7f8c8d'}}>Select an application to launch</p>
+                <h1 style={{fontSize: '2.5rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>Welcome, {user?.full_name || 'User'}</h1>
+                <p style={{fontSize: '1.2rem', color: 'var(--text-secondary)'}}>Select an application to launch</p>
             </div>
 
             <div style={{
@@ -70,8 +70,8 @@ const LandingPage: React.FC = () => {
                             }}>
                                 {app.icon}
                             </div>
-                            <h3 style={{margin: '0 0 0.5rem 0', color: '#2c3e50'}}>{app.name}</h3>
-                            <p style={{color: '#7f8c8d', lineHeight: '1.5'}}>{app.description}</p>
+                            <h3 style={{margin: '0 0 0.5rem 0', color: 'var(--text-primary)'}}>{app.name}</h3>
+                            <p style={{color: 'var(--text-secondary)', lineHeight: '1.5'}}>{app.description}</p>
                         </div>
                     </Link>
                 ))}

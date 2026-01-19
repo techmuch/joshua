@@ -71,7 +71,7 @@ export const LoginButton: React.FC = () => {
                         
                         <form onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
                             <div>
-                                <label style={{display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: '#2c3e50', fontWeight: '600'}}>Email Address</label>
+                                <label style={{display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: '600'}}>Email Address</label>
                                 <input 
                                     type="email" 
                                     value={email}
@@ -80,9 +80,9 @@ export const LoginButton: React.FC = () => {
                                         width: '100%',
                                         padding: '0.75rem', 
                                         borderRadius: '6px', 
-                                        border: '2px solid #ddd',
-                                        background: '#f9f9f9', 
-                                        color: '#000',
+                                        border: '2px solid var(--border-input)',
+                                        background: 'var(--bg-input)', 
+                                        color: 'var(--text-body)',
                                         fontSize: '1rem',
                                         boxSizing: 'border-box'
                                     }}
@@ -90,7 +90,7 @@ export const LoginButton: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <label style={{display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: '#2c3e50', fontWeight: '600'}}>Password</label>
+                                <label style={{display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: '600'}}>Password</label>
                                 <input 
                                     type="password" 
                                     value={password}
@@ -99,9 +99,9 @@ export const LoginButton: React.FC = () => {
                                         width: '100%',
                                         padding: '0.75rem', 
                                         borderRadius: '6px', 
-                                        border: '2px solid #ddd',
-                                        background: '#f9f9f9', 
-                                        color: '#000',
+                                        border: '2px solid var(--border-input)',
+                                        background: 'var(--bg-input)', 
+                                        color: 'var(--text-body)',
                                         fontSize: '1rem',
                                         boxSizing: 'border-box'
                                     }}
@@ -109,7 +109,7 @@ export const LoginButton: React.FC = () => {
                                 />
                             </div>
                             
-                            {error && <div style={{color: '#e74c3c', fontSize: '0.9rem', fontWeight: '500', padding: '0.5rem', background: '#fdeded', borderRadius: '4px'}}>{error}</div>}
+                            {error && <div style={{color: 'var(--error-color)', fontSize: '0.9rem', fontWeight: '500', padding: '0.5rem', background: '#fdeded', borderRadius: '4px'}}>{error}</div>}
                             
                             <div style={{display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '1rem'}}>
                                 <button 
@@ -151,11 +151,11 @@ const modalOverlayStyle: React.CSSProperties = {
 };
 
 const modalStyle: React.CSSProperties = {
-    backgroundColor: 'white',
+    backgroundColor: 'var(--bg-card)',
     padding: '2rem',
     borderRadius: '8px',
     width: '100%',
     maxWidth: '400px',
     boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-    color: '#333', // Ensure modal text is dark
+    color: 'var(--text-body)',
 };
