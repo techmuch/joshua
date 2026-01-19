@@ -169,7 +169,7 @@ const PersonalInbox: React.FC = () => {
                                     </td>
                                     <td>{match.solicitation.agency}</td>
                                     <td>
-                                        <Link to={`/solicitation/${match.solicitation.source_id}`} style={{fontWeight: 500, color: '#2c3e50', textDecoration: 'none'}}>
+                                        <Link to={`/solicitation/${match.solicitation.source_id}`} style={{fontWeight: 500, color: 'var(--text-primary)', textDecoration: 'none'}}>
                                             {match.solicitation.title}
                                         </Link>
                                         <div style={{display: 'flex', gap: '1rem', marginTop: '4px'}}>
@@ -191,7 +191,7 @@ const PersonalInbox: React.FC = () => {
                                             whiteSpace: 'nowrap', 
                                             overflow: 'hidden', 
                                             textOverflow: 'ellipsis',
-                                            color: '#555'
+                                            color: 'var(--text-secondary)'
                                         }}>
                                             {match.explanation}
                                         </div>

@@ -81,8 +81,8 @@
   --bg-header: #0D1117;
   --bg-input: #010409; /* Deep Black */
   
-  --text-primary: #00FF41; /* Command Line Green - Headers */
-  --text-secondary: #8B949E; /* Dimmed slate */
+  --text-primary: #6a95bf; /* Data Blue - Links/Headers */
+  --text-secondary: #c88a00; /* Amber - Reasoning/Muted */
   --text-body: #C9D1D9; /* Readable gray */
   
   --border-color: #30363D;
