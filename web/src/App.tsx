@@ -28,33 +28,33 @@ function AppContent() {
       <header className="app-header">
         <div className="header-container">
           <div className="header-main">
-            <NavLink to="/" style={{textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-               <h1 style={{fontSize: '1.5rem', margin: 0, color: 'var(--text-primary)', fontFamily: 'var(--font-family, inherit)'}}>JOSHUA</h1>
+            <NavLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <h1 style={{ fontSize: '1.5rem', margin: 0, color: 'var(--bg-logo-text)', fontFamily: 'var(--font-family, inherit)' }}>JOSHUA</h1>
             </NavLink>
-            
-            <nav className="nav-tabs" style={{marginLeft: '2rem'}}>
-            {user && isBDBot && (
-              <>
-                <NavLink 
-                  to="/library"
-                  className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
-                >
-                  <LayoutGrid size={16} /> Library
-                </NavLink>
-                <NavLink 
-                  to="/inbox"
-                  className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
-                >
-                  <Inbox size={16} /> Inbox
-                </NavLink>
-              </>
-            )}
-          </nav>
 
-          <div style={{marginLeft: 'auto'}}>
-            <LoginButton />
+            <nav className="nav-tabs" style={{ marginLeft: '2rem' }}>
+              {user && isBDBot && (
+                <>
+                  <NavLink
+                    to="/library"
+                    className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
+                  >
+                    <LayoutGrid size={16} /> Library
+                  </NavLink>
+                  <NavLink
+                    to="/inbox"
+                    className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
+                  >
+                    <Inbox size={16} /> Inbox
+                  </NavLink>
+                </>
+              )}
+            </nav>
+
+            <div style={{ marginLeft: 'auto' }}>
+              <LoginButton />
+            </div>
           </div>
-        </div>
         </div>
       </header>
       <main>

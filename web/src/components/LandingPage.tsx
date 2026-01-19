@@ -34,46 +34,46 @@ const LandingPage: React.FC = () => {
     }
 
     return (
-        <div style={{maxWidth: '1000px', margin: '0 auto', padding: '2rem'}}>
-            <div style={{textAlign: 'center', marginBottom: '3rem'}}>
-                <h1 style={{fontSize: '2.5rem', color: 'var(--text-primary)', marginBottom: '0.5rem'}}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '2rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                <h1 style={{ fontSize: '2.5rem', color: 'var(--bg-logo-text)', marginBottom: '0.5rem' }}>
                     GREETINGS, {(user?.full_name || 'USER').toUpperCase()}. SHALL WE WORK?
                 </h1>
-                <p style={{fontSize: '1.2rem', color: 'var(--text-secondary)'}}>Select an application to launch</p>
+                <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)' }}>Select an application to launch</p>
             </div>
 
             <div style={{
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', 
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
                 gap: '2rem'
             }}>
                 {apps.map((app) => (
-                    <Link to={app.link} key={app.name} style={{textDecoration: 'none'}}>
+                    <Link to={app.link} key={app.name} style={{ textDecoration: 'none' }}>
                         <div className="chart-card" style={{
-                            padding: '2rem', 
-                            textAlign: 'center', 
-                            height: '100%', 
-                            display: 'flex', 
-                            flexDirection: 'column', 
+                            padding: '2rem',
+                            textAlign: 'center',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
                             alignItems: 'center',
                             cursor: 'pointer',
                             transition: 'transform 0.2s',
                             borderTop: `4px solid ${app.color}`
                         }}
-                        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-                        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+                            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
                         >
                             <div style={{
-                                background: `${app.color}20`, 
-                                color: app.color, 
-                                padding: '1rem', 
-                                borderRadius: '50%', 
+                                background: `${app.color}20`,
+                                color: app.color,
+                                padding: '1rem',
+                                borderRadius: '50%',
                                 marginBottom: '1rem'
                             }}>
                                 {app.icon}
                             </div>
-                            <h3 style={{margin: '0 0 0.5rem 0', color: 'var(--text-primary)'}}>{app.name}</h3>
-                            <p style={{color: 'var(--text-secondary)', lineHeight: '1.5'}}>{app.description}</p>
+                            <h3 style={{ margin: '0 0 0.5rem 0', color: 'var(--text-primary)' }}>{app.name}</h3>
+                            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.5' }}>{app.description}</p>
                         </div>
                     </Link>
                 ))}

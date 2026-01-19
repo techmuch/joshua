@@ -56,6 +56,7 @@ The CLI leverages the Charmbracelet ecosystem for a premium administrative exper
 ### 3.3 Visual & Terminal Design
 
 *   **Styling:** Uses Lip Gloss with "Short Tide" color palettes (professional blues/teals).
+*   **Theming:** The Web Portal supports multiple color schemes (e.g., Default, Dark, High Contrast) via a user-selectable setting.
 *   **Terminal Awareness:** Graceful detection with fallback to ASCII; suggests upgrade if a basic terminal is detected.
 *   **Help System:** Dedicated help key (`?`) in all TUI views for context-sensitive documentation.
 

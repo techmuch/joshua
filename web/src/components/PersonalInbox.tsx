@@ -2,12 +2,12 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import type { Match, Solicitation } from '../types';
 import { useAuth } from '../context/AuthContext';
-import { 
-    ChevronDown, 
-    ChevronRight, 
-    ExternalLink, 
-    FileText, 
-    Sparkles, 
+import {
+    ChevronDown,
+    ChevronRight,
+    ExternalLink,
+    FileText,
+    Sparkles,
     ArrowUpDown,
     User,
     Users
@@ -50,7 +50,7 @@ const PersonalInbox: React.FC = () => {
     const textFilteredMatches = useMemo(() => {
         if (!filterText) return matches;
         const lower = filterText.toLowerCase();
-        return matches.filter(m => 
+        return matches.filter(m =>
             m.solicitation.title.toLowerCase().includes(lower) ||
             m.solicitation.agency.toLowerCase().includes(lower)
         );
@@ -105,8 +105,8 @@ const PersonalInbox: React.FC = () => {
 
     if (matches.length === 0) {
         return (
-            <div style={{textAlign: 'center', padding: '3rem', color: '#7f8c8d'}}>
-                <Sparkles size={48} style={{marginBottom: '1rem', opacity: 0.5}} />
+            <div style={{ textAlign: 'center', padding: '3rem', color: '#7f8c8d' }}>
+                <Sparkles size={48} style={{ marginBottom: '1rem', opacity: 0.5 }} />
                 <h3>No matches found yet.</h3>
                 <p>Ensure you have set your narrative and run the matching engine.</p>
             </div>
@@ -115,8 +115,8 @@ const PersonalInbox: React.FC = () => {
 
     return (
         <div className="solicitation-list">
-            <DashboardCharts 
-                timeData={timeData} 
+            <DashboardCharts
+                timeData={timeData}
                 agencyData={agencyData}
                 dateFilter={dateFilter}
                 agencyFilter={agencyFilter}
@@ -124,7 +124,7 @@ const PersonalInbox: React.FC = () => {
                 setAgencyFilter={setAgencyFilter}
             />
 
-            <FilterControls 
+            <FilterControls
                 filterText={filterText}
                 setFilterText={setFilterText}
                 dateFilter={dateFilter}
@@ -139,8 +139,8 @@ const PersonalInbox: React.FC = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th style={{width: 40}}></th>
-                            <th onClick={() => requestSort('score')} className="sortable" style={{width: 80}}>
+                            <th style={{ width: 40 }}></th>
+                            <th onClick={() => requestSort('score')} className="sortable" style={{ width: 80 }}>
                                 Score <ArrowUpDown size={14} />
                             </th>
                             <th onClick={() => requestSort('agency')} className="sortable">
@@ -169,17 +169,17 @@ const PersonalInbox: React.FC = () => {
                                     </td>
                                     <td>{match.solicitation.agency}</td>
                                     <td>
-                                        <Link to={`/solicitation/${match.solicitation.source_id}`} style={{fontWeight: 500, color: 'var(--text-primary)', textDecoration: 'none'}}>
+                                        <Link to={`/solicitation/${match.solicitation.source_id}`} style={{ fontWeight: 500, color: 'var(--text-primary)', textDecoration: 'none' }}>
                                             {match.solicitation.title}
                                         </Link>
-                                        <div style={{display: 'flex', gap: '1rem', marginTop: '4px'}}>
+                                        <div style={{ display: 'flex', gap: '1rem', marginTop: '4px' }}>
                                             {match.solicitation.lead_name && (
-                                                <div style={{fontSize: '0.8rem', color: '#e67e22', display: 'flex', alignItems: 'center', gap: '4px'}}>
+                                                <div style={{ fontSize: '0.8rem', color: '#e67e22', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                                     <User size={12} /> Lead: {match.solicitation.lead_name}
                                                 </div>
                                             )}
                                             {match.solicitation.interested_parties && (
-                                                <div style={{fontSize: '0.8rem', color: '#3498db', display: 'flex', alignItems: 'center', gap: '4px'}}>
+                                                <div style={{ fontSize: '0.8rem', color: '#3498db', display: 'flex', alignItems: 'center', gap: '4px' }}>
                                                     <Users size={12} /> Interested: {match.solicitation.interested_parties}
                                                 </div>
                                             )}
@@ -187,9 +187,9 @@ const PersonalInbox: React.FC = () => {
                                     </td>
                                     <td>
                                         <div style={{
-                                            maxWidth: '400px', 
-                                            whiteSpace: 'nowrap', 
-                                            overflow: 'hidden', 
+                                            maxWidth: '400px',
+                                            whiteSpace: 'nowrap',
+                                            overflow: 'hidden',
                                             textOverflow: 'ellipsis',
                                             color: 'var(--text-secondary)'
                                         }}>
@@ -197,10 +197,10 @@ const PersonalInbox: React.FC = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <a 
-                                            href={match.solicitation.url} 
-                                            target="_blank" 
-                                            rel="noreferrer" 
+                                        <a
+                                            href={match.solicitation.url}
+                                            target="_blank"
+                                            rel="noreferrer"
                                             className="btn-link"
                                             onClick={(e) => e.stopPropagation()}
                                         >
@@ -212,13 +212,13 @@ const PersonalInbox: React.FC = () => {
                                     <tr className="expanded-row">
                                         <td colSpan={6}>
                                             <div className="details-panel">
-                                                <div style={{marginBottom: '1.5rem', padding: '1rem', backgroundColor: '#fdfdfd', borderLeft: '4px solid #3498db'}}>
+                                                <div style={{ marginBottom: '1.5rem', padding: '1rem', backgroundColor: 'var(--bg-card)', borderLeft: '4px solid #3498db' }}>
                                                     <strong>AI Analysis:</strong>
-                                                    <p style={{marginTop: '0.5rem'}}>{match.explanation}</p>
+                                                    <p style={{ marginTop: '0.5rem' }}>{match.explanation}</p>
                                                 </div>
-                                                
+
                                                 {match.solicitation.description && (
-                                                    <div style={{marginBottom: '1rem'}}>
+                                                    <div style={{ marginBottom: '1rem' }}>
                                                         <strong>Description:</strong>
                                                         <p>{match.solicitation.description}</p>
                                                     </div>

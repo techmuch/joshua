@@ -30,16 +30,16 @@ export const LoginButton: React.FC = () => {
     if (user) {
         return (
             <div className="user-menu">
-                <NavLink 
-                    to="/profile" 
+                <NavLink
+                    to="/profile"
                     className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
-                    style={{color: '#34495e', marginRight: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px'}}
+                    style={{ color: 'var(--text-primary)', marginRight: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}
                 >
                     {user.avatar_url ? (
-                        <img 
-                            src={user.avatar_url} 
-                            alt="Avatar" 
-                            style={{width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover'}} 
+                        <img
+                            src={user.avatar_url}
+                            alt="Avatar"
+                            style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover' }}
                         />
                     ) : (
                         <User size={18} />
@@ -62,26 +62,26 @@ export const LoginButton: React.FC = () => {
             {isOpen && (
                 <div style={modalOverlayStyle}>
                     <div style={modalStyle}>
-                        <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '1rem'}}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
                             <h3>Login</h3>
-                            <button onClick={() => setIsOpen(false)} style={{background: 'none', border: 'none', cursor: 'pointer'}}>
+                            <button onClick={() => setIsOpen(false)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                                 <X size={20} />
                             </button>
                         </div>
-                        
-                        <form onSubmit={handleLogin} style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+
+                        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <div>
-                                <label style={{display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: '600'}}>Email Address</label>
-                                <input 
-                                    type="email" 
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: '600' }}>Email Address</label>
+                                <input
+                                    type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     style={{
                                         width: '100%',
-                                        padding: '0.75rem', 
-                                        borderRadius: '6px', 
+                                        padding: '0.75rem',
+                                        borderRadius: '6px',
                                         border: '2px solid var(--border-input)',
-                                        background: 'var(--bg-input)', 
+                                        background: 'var(--bg-input)',
                                         color: 'var(--text-body)',
                                         fontSize: '1rem',
                                         boxSizing: 'border-box'
@@ -90,17 +90,17 @@ export const LoginButton: React.FC = () => {
                                 />
                             </div>
                             <div>
-                                <label style={{display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: '600'}}>Password</label>
-                                <input 
-                                    type="password" 
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: '600' }}>Password</label>
+                                <input
+                                    type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     style={{
                                         width: '100%',
-                                        padding: '0.75rem', 
-                                        borderRadius: '6px', 
+                                        padding: '0.75rem',
+                                        borderRadius: '6px',
                                         border: '2px solid var(--border-input)',
-                                        background: 'var(--bg-input)', 
+                                        background: 'var(--bg-input)',
                                         color: 'var(--text-body)',
                                         fontSize: '1rem',
                                         boxSizing: 'border-box'
@@ -108,22 +108,22 @@ export const LoginButton: React.FC = () => {
                                     required
                                 />
                             </div>
-                            
-                            {error && <div style={{color: 'var(--error-color)', fontSize: '0.9rem', fontWeight: '500', padding: '0.5rem', background: '#fdeded', borderRadius: '4px'}}>{error}</div>}
-                            
-                            <div style={{display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '1rem'}}>
-                                <button 
-                                    type="button" 
+
+                            {error && <div style={{ color: 'var(--error-color)', fontSize: '0.9rem', fontWeight: '500', padding: '0.5rem', background: '#fdeded', borderRadius: '4px' }}>{error}</div>}
+
+                            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '1rem' }}>
+                                <button
+                                    type="button"
                                     onClick={() => setIsOpen(false)}
                                     className="btn-outline"
-                                    style={{justifyContent: 'center'}}
+                                    style={{ justifyContent: 'center' }}
                                 >
                                     Cancel
                                 </button>
-                                <button 
-                                    type="submit" 
-                                    className="btn-primary" 
-                                    style={{justifyContent: 'center'}}
+                                <button
+                                    type="submit"
+                                    className="btn-primary"
+                                    style={{ justifyContent: 'center' }}
                                     disabled={isSubmitting}
                                 >
                                     {isSubmitting ? "Signing in..." : "Sign In"}
