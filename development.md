@@ -1,6 +1,6 @@
 # Developer Documentation
 
-This document provides a comprehensive guide for new developers working on the BD_Bot project.
+This document provides a comprehensive guide for new developers working on the JOSHUA project.
 
 ## 1. Local Development Setup
 
@@ -20,14 +20,14 @@ This document provides a comprehensive guide for new developers working on the B
 2.  **Database:**
     ```bash
     make db-up
-    ./bd_bot config init
+    ./joshua config init
     # Note: On macOS/container, verify DB IP with `container ls` and edit config.yaml
-    ./bd_bot migrate up
+    ./joshua migrate up
     ```
 3.  **Create Admin User:**
     ```bash
-    ./bd_bot user create -e admin@example.com -n "Admin User"
-    ./bd_bot user passwd -e admin@example.com -p secret123
+    ./joshua user create -e admin@example.com -n "Admin User"
+    ./joshua user passwd -e admin@example.com -p secret123
     # Optional: Set role to developer
     # container exec bd_bot-db psql -U user -d bd_bot -c "UPDATE users SET role = 'developer' WHERE email = 'admin@example.com';"
     ```
@@ -39,7 +39,7 @@ This document provides a comprehensive guide for new developers working on the B
 
 ### Live Frontend Development (HMR)
 For rapid UI iteration:
-1.  Start Backend: `make build-go && ./bd_bot serve`
+1.  Start Backend: `make build-go && ./joshua serve`
 2.  Start Frontend: `cd web && npm run dev`
 3.  Access: `http://localhost:5173` (Proxies API calls to backend).
 
@@ -67,6 +67,7 @@ For rapid UI iteration:
     *   `FeedbackApp.tsx`: Feedback form.
     *   `DeveloperApp.tsx`: Requirements editor.
 *   **`context/`**: `AuthContext.tsx` handles session state.
+    *   `ThemeContext.tsx`: Handles WOPR/Light/Dark theming.
 *   **`hooks/`**: `useAnalytics.ts` encapsulates cross-filtering logic.
 
 ## 3. Key Workflows
@@ -78,7 +79,7 @@ The system supports Dual-Mode Auth:
 
 ### Data Pipeline
 1.  **Ingestion:** `make scrape` runs the scraper -> DB.
-2.  **Matching:** `./bd_bot match [user_id]` runs LLM analysis -> `matches` table.
+2.  **Matching:** `./joshua match [user_id]` runs LLM analysis -> `matches` table.
 3.  **Consumption:** User views Inbox -> `PersonalInbox.tsx`.
 
 ## 4. API Reference
@@ -97,12 +98,12 @@ The system supports Dual-Mode Auth:
 
 ## 5. CLI Reference
 
-*   `bd_bot user list [--json]`: Manage users.
-*   `bd_bot org list [--json]`: Manage organizations.
-*   `bd_bot req export/import`: Version requirements.md.
-*   `bd_bot scraper run-now`: Manual scrape.
+*   `joshua user list [--json]`: Manage users.
+*   `joshua org list [--json]`: Manage organizations.
+*   `joshua req export/import`: Version requirements.md.
+*   `joshua scraper run-now`: Manual scrape.
 
 ## 6. Coding Standards
 *   **Go:** `gofmt`, `goimports`. Use `slog` for logging.
 *   **React:** Functional components, Hooks (`useAuth`, `useAnalytics`).
-*   **CSS:** Responsive, full-width layouts. Avoid fixed widths in main containers.
+*   **CSS:** Responsive, full-width layouts. Use CSS variables (`var(--text-primary)`, `var(--bg-body)`) to support the WOPR theme.
