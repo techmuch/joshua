@@ -9,9 +9,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "bd_bot",
-	Short: "BD_Bot is a business development intelligence portal",
-	Long: `BD_Bot is a high-performance tool designed to automate the discovery 
+	Use:   "joshua",
+	Short: "JOSHUA is a business development intelligence portal",
+	Long: `JOSHUA is a high-performance tool designed to automate the discovery 
 and pursuit of government business development opportunities.`,
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		// Initialize configuration

@@ -1,6 +1,6 @@
-# BD_Bot: Business Development Intelligence Portal
+# JOSHUA: Business Development Intelligence Portal
 
-BD_Bot is an automated intelligence platform designed to revolutionize how organizations discover and pursue government business opportunities. It combines high-performance web scraping with local Large Language Models (LLM) to deliver personalized, actionable leads directly to your inbox.
+JOSHUA is an automated intelligence platform designed to revolutionize how organizations discover and pursue government business opportunities. It combines high-performance web scraping with local Large Language Models (LLM) to deliver personalized, actionable leads directly to your inbox.
 
 ## Key Features
 
@@ -40,48 +40,48 @@ make db-up
 ### Step 3: Configuration
 Run the interactive setup wizard to generate `config.yaml`:
 ```bash
-./bd_bot config init
+./joshua config init
 ```
 *   *Tip:* If running on macOS/Container, use `container ls` to find the DB IP address.
 
 ### Step 4: Database Schema
 Apply the latest migrations:
 ```bash
-./bd_bot migrate up
+./joshua migrate up
 ```
 
 ---
 
 ## 2. Administration
 
-BD_Bot includes a powerful CLI for administration.
+JOSHUA includes a powerful CLI for administration.
 
 ### User Management
 ```bash
 # Create/List Users
-./bd_bot user create -e admin@example.com -n "System Admin"
-./bd_bot user list --json
+./joshua user create -e admin@example.com -n "System Admin"
+./joshua user list --json
 
 # Set Password (Standalone Auth)
-./bd_bot user passwd -e admin@example.com -p StrongPassword123!
+./joshua user passwd -e admin@example.com -p StrongPassword123!
 ```
 
 ### Organization Management
 ```bash
 # Manage Organizations
-./bd_bot org list
-./bd_bot org rename --old "Acme Inc" --new "Acme Corp"
-./bd_bot org move-users --from "Acme Inc" --to "Acme Corp"
+./joshua org list
+./joshua org rename --old "Acme Inc" --new "Acme Corp"
+./joshua org move-users --from "Acme Inc" --to "Acme Corp"
 ```
 
 ### System Tools
 ```bash
 # Manual Scrape
-./bd_bot scraper run-now
+./joshua scraper run-now
 
 # Export/Import Requirements (Versioning)
-./bd_bot req export --out requirements_v1.md
-./bd_bot req import --file new_requirements.md --user admin@example.com
+./joshua req export --out requirements_v1.md
+./joshua req import --file new_requirements.md --user admin@example.com
 ```
 
 ---
@@ -89,7 +89,7 @@ BD_Bot includes a powerful CLI for administration.
 ## 3. Usage Guide
 
 ### Getting Started
-1.  Start the server: `./bd_bot serve`
+1.  Start the server: `./joshua serve`
 2.  Navigate to `http://localhost:8080`.
 3.  Click **Login** and enter your credentials.
 
@@ -108,11 +108,11 @@ Upon login, you will see the **Landing Page**, your central hub for accessing:
 
 ## 4. Deployment
 
-BD_Bot is designed as a **Single Binary Deployment**. The React frontend is embedded into the Go binary.
+JOSHUA is designed as a **Single Binary Deployment**. The React frontend is embedded into the Go binary.
 
-1.  **Build:** Run `make build` to generate the `bd_bot` binary.
-2.  **Deploy:** Copy `bd_bot` and `config.yaml` to your server.
-3.  **Run:** Execute `./bd_bot serve`.
+1.  **Build:** Run `make build` to generate the `joshua` binary.
+2.  **Deploy:** Copy `joshua` and `config.yaml` to your server.
+3.  **Run:** Execute `./joshua serve`.
     *   *Production Tip:* Use a systemd service or Docker container to keep it running.
     *   *Env Vars:* Configuration can be overridden with environment variables (see `config.go`).
 

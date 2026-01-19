@@ -1,5 +1,5 @@
 # Variables
-BINARY_NAME=bd_bot
+BINARY_NAME=joshua
 
 # Default target
 all: build
@@ -15,7 +15,7 @@ build-web:
 # Build the Go backend
 build-go:
 	@echo "Building backend..."
-	go build -o $(BINARY_NAME) ./cmd/bd_bot
+	go build -o $(BINARY_NAME) ./cmd/joshua
 
 # Run the application
 run: build
