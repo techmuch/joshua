@@ -82,6 +82,10 @@ JOSHUA includes a powerful CLI for administration.
 # Export/Import Requirements (Versioning)
 ./joshua req export --out requirements_v1.md
 ./joshua req import --file new_requirements.md --user admin@example.com
+
+# Task Management
+./joshua task sync   # Parse requirements.md -> DB
+./joshua task list   # View tasks JSON
 ```
 
 ---

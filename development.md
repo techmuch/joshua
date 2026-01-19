@@ -82,6 +82,11 @@ The system supports Dual-Mode Auth:
 2.  **Matching:** `./joshua match [user_id]` runs LLM analysis -> `matches` table.
 3.  **Consumption:** User views Inbox -> `PersonalInbox.tsx`.
 
+### Task Management (Developer Workflow)
+1.  **Define:** Edit `requirements.md` (locally or via Web UI).
+2.  **Sync:** Run `./joshua task sync` to populate the `tasks` table.
+3.  **Track:** Use the **Developer Tools** web UI to view tasks and flag items (`is_selected`) for active development.
+
 ## 4. API Reference
 
 | Method | Endpoint | Description | Auth |
@@ -95,12 +100,16 @@ The system supports Dual-Mode Auth:
 | `PUT` | `/api/user/profile` | Update Profile | Yes |
 | `POST` | `/api/feedback` | Submit Feedback | Yes |
 | `GET` | `/api/requirements` | Get Requirements | Dev/Admin |
+| `GET` | `/api/tasks` | List synced tasks | Dev/Admin |
+| `POST` | `/api/tasks/:id/select` | Toggle selection | Dev/Admin |
 
 ## 5. CLI Reference
 
 *   `joshua user list [--json]`: Manage users.
 *   `joshua org list [--json]`: Manage organizations.
 *   `joshua req export/import`: Version requirements.md.
+*   `joshua task sync`: Sync tasks from requirements.md to DB.
+*   `joshua task list`: List tasks in JSON.
 *   `joshua scraper run-now`: Manual scrape.
 
 ## 6. Coding Standards
