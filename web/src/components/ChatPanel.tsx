@@ -34,18 +34,67 @@ const ChatPanel: React.FC = () => {
         setIsTyping(true);
 
         try {
-            const res = await fetch('/api/chat', {
+            const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ messages: newMessages }),
             });
 
-            if (!res.ok) throw new Error("Connection lost");
+            if (!response.ok) throw new Error("Connection lost");
+            if (!response.body) throw new Error("No response body");
 
-            const data = await res.json();
-            setMessages(prev => [...prev, { role: 'assistant', content: data.response }]);
+            // Create placeholder for assistant response
+            setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                const lines = chunk.split('\n');
+
+                for (const line of lines) {
+                    if (line.startsWith('data: ')) {
+                        try {
+                            const jsonStr = line.slice(6);
+                            if (!jsonStr.trim()) continue;
+                            
+                            const data = JSON.parse(jsonStr);
+                            
+                            if (data.error) {
+                                throw new Error(data.error);
+                            }
+
+                            if (data.content) {
+                                setMessages(prev => {
+                                    const msgs = [...prev];
+                                    const last = msgs[msgs.length - 1];
+                                    if (last.role === 'assistant') {
+                                        last.content += data.content;
+                                    }
+                                    return msgs;
+                                });
+                            }
+                        } catch (e) {
+                            console.error("Error parsing stream chunk", e);
+                        }
+                    }
+                }
+            }
+
         } catch (err) {
-            setMessages(prev => [...prev, { role: 'assistant', content: "ERROR: UNABLE TO ESTABLISH CONNECTION WITH JOSHUA MAINCORE." }]);
+            setMessages(prev => {
+                // If last message was empty assistant (streaming started but failed), update it. 
+                // Or append error.
+                const last = prev[prev.length - 1];
+                if (last.role === 'assistant' && last.content === '') {
+                    return [...prev.slice(0, -1), { role: 'assistant', content: "ERROR: UNABLE TO ESTABLISH CONNECTION WITH JOSHUA MAINCORE." }];
+                }
+                return [...prev, { role: 'assistant', content: "ERROR: UNABLE TO ESTABLISH CONNECTION WITH JOSHUA MAINCORE." }];
+            });
         } finally {
             setIsTyping(false);
         }
@@ -142,7 +191,7 @@ const ChatPanel: React.FC = () => {
                                 {m.content}
                             </div>
                         ))}
-                        {isTyping && (
+                        {isTyping && messages[messages.length-1].role !== 'assistant' && (
                             <div style={{alignSelf: 'flex-start', color: 'var(--text-primary)', fontSize: '0.8rem'}}>
                                 ANALYZING...
                             </div>

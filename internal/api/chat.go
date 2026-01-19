@@ -3,6 +3,8 @@ package api
 import (
 	"bd_bot/internal/ai"
 	"encoding/json"
+	"fmt"
+	"log/slog"
 	"net/http"
 )
 
@@ -24,6 +26,10 @@ func (h *ChatHandler) Handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// We can't use json.NewDecoder directly on Body if we want to support streaming properly 
+	// because we need to set headers BEFORE reading the body if it takes time? 
+	// No, we read request body first (fast), then start streaming response.
+	
 	var req ChatRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, "Invalid request", http.StatusBadRequest)
@@ -35,13 +41,35 @@ func (h *ChatHandler) Handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response, err := h.chatSvc.Chat(req.Messages)
-	if err != nil {
-		http.Error(w, "LLM error: "+err.Error(), http.StatusInternalServerError)
+	// Set SSE Headers
+	w.Header().Set("Content-Type", "text/event-stream")
+	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Set("Connection", "keep-alive")
+
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		http.Error(w, "Streaming not supported", http.StatusInternalServerError)
 		return
 	}
 
-	json.NewEncoder(w).Encode(map[string]string{
-		"response": response,
+	err := h.chatSvc.ChatStream(req.Messages, func(chunk string) error {
+		// Wrap content in JSON object for frontend convenience
+		// payload: { "content": "..." }
+		// SSE format: data: <payload>\n\n
+		payloadBytes, _ := json.Marshal(map[string]string{"content": chunk})
+		fmt.Fprintf(w, "data: %s\n\n", payloadBytes)
+		flusher.Flush()
+		return nil
 	})
+
+	if err != nil {
+		// Log error, but we can't send a 500 if we already started streaming headers.
+		// In a production app, we might send a special error event.
+		slog.Error("Chat stream failed", "error", err)
+		
+		// Optional: Send error event
+		errPayload, _ := json.Marshal(map[string]string{"error": err.Error()})
+		fmt.Fprintf(w, "data: %s\n\n", errPayload)
+		flusher.Flush()
+	}
 }
