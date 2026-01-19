@@ -1,10 +1,115 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Save, ArrowLeft, History, FileCode } from 'lucide-react';
+import { Save, ArrowLeft, History, FileCode, ListTodo, CheckSquare, Square } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const DeveloperApp: React.FC = () => {
-    const { user } = useAuth();
+interface Task {
+    id: number;
+    description: string;
+    is_completed: boolean;
+    is_selected: boolean;
+    updated_at: string;
+}
+
+const TaskList: React.FC = () => {
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const [showCompleted, setShowCompleted] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    const fetchTasks = async () => {
+        try {
+            const res = await fetch('/api/tasks');
+            if (res.ok) {
+                const data = await res.json();
+                setTasks(data || []);
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchTasks();
+    }, []);
+
+    const toggleSelection = async (task: Task) => {
+        // Optimistic update
+        setTasks(prev => prev.map(t => t.id === task.id ? { ...t, is_selected: !t.is_selected } : t));
+        
+        try {
+            await fetch(`/api/tasks/${task.id}/select`, { method: 'POST' });
+        } catch (err) {
+            // Revert on error
+            setTasks(prev => prev.map(t => t.id === task.id ? { ...t, is_selected: task.is_selected } : t));
+        }
+    };
+
+    const filteredTasks = tasks.filter(t => showCompleted || !t.is_completed);
+
+    if (loading) return <div style={{padding: '2rem', textAlign: 'center'}}>Loading tasks...</div>;
+
+    return (
+        <div className="chart-card" style={{padding: '0', overflow: 'hidden'}}>
+            <div style={{padding: '1rem', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--bg-card)'}}>
+                <h3 style={{margin: 0, color: 'var(--text-primary)'}}>Development Tasks</h3>
+                <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', color: 'var(--text-secondary)', fontSize: '0.9rem'}}>
+                    <input type="checkbox" checked={showCompleted} onChange={() => setShowCompleted(!showCompleted)} />
+                    Show Completed
+                </label>
+            </div>
+            <div className="table-responsive">
+                <table style={{width: '100%', borderCollapse: 'collapse'}}>
+                    <thead>
+                        <tr style={{background: 'var(--bg-body)', color: 'var(--text-secondary)', textAlign: 'left', fontSize: '0.9rem', textTransform: 'uppercase'}}>
+                            <th style={{padding: '1rem', width: '80px', textAlign: 'center'}}>Select</th>
+                            <th style={{padding: '1rem'}}>Task Description</th>
+                            <th style={{padding: '1rem', width: '100px'}}>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filteredTasks.length === 0 ? (
+                            <tr><td colSpan={3} style={{padding: '3rem', textAlign: 'center', color: 'var(--text-secondary)'}}>No tasks found. Run `joshua task sync` from CLI.</td></tr>
+                        ) : (
+                            filteredTasks.map(task => (
+                                <tr key={task.id} style={{borderBottom: '1px solid var(--border-color)'}}>
+                                    <td style={{padding: '1rem', textAlign: 'center'}}>
+                                        <div 
+                                            onClick={() => toggleSelection(task)}
+                                            style={{
+                                                cursor: 'pointer', 
+                                                color: task.is_selected ? 'var(--primary-color)' : 'var(--text-secondary)',
+                                                display: 'flex', justifyContent: 'center'
+                                            }}
+                                            title="Flag for development"
+                                        >
+                                            {task.is_selected ? <CheckSquare size={24} /> : <Square size={24} />}
+                                        </div>
+                                    </td>
+                                    <td style={{padding: '1rem', color: task.is_completed ? 'var(--text-secondary)' : 'var(--text-primary)', textDecoration: task.is_completed ? 'line-through' : 'none'}}>
+                                        {task.description}
+                                    </td>
+                                    <td style={{padding: '1rem'}}>
+                                        <span className="badge" style={{
+                                            background: task.is_completed ? 'var(--success-color)' : 'var(--warning-color)', 
+                                            color: '#fff',
+                                            fontSize: '0.8rem',
+                                            padding: '0.25rem 0.5rem',
+                                            borderRadius: '4px'
+                                        }}>
+                                            {task.is_completed ? 'Done' : 'Pending'}
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+const RequirementsEditor: React.FC = () => {
     const [content, setContent] = useState("");
     const [initialContent, setInitialContent] = useState("");
     const [versionId, setVersionId] = useState<number | null>(null);
@@ -34,8 +139,7 @@ const DeveloperApp: React.FC = () => {
             if (!res.ok) throw new Error("Failed to save requirements");
             
             setStatus({ msg: "Requirements saved as new version!", type: 'success' });
-            // Refresh version info?
-            // fetchLatest...
+            // Refresh logic could go here
         } catch (err) {
             setStatus({ msg: "Error saving requirements.", type: 'error' });
         } finally {
@@ -49,16 +153,9 @@ const DeveloperApp: React.FC = () => {
         }
     };
 
-    if (!user || (user.role !== 'admin' && user.role !== 'developer')) {
-        return <div style={{padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)'}}>Access Denied. Developer role required.</div>;
-    }
-
     return (
-        <div style={{maxWidth: '1200px', margin: '0 auto', padding: '2rem'}}>
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem'}}>
-                <Link to="/" style={{display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none'}}>
-                    <ArrowLeft size={16} /> Back to Hub
-                </Link>
+        <>
+            <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: '1rem'}}>
                 <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
                     {versionId && <span style={{color: 'var(--text-secondary)', fontSize: '0.9rem'}}>Current Version: v{versionId}</span>}
                     <button onClick={handleRevert} className="btn-outline">
@@ -97,6 +194,54 @@ const DeveloperApp: React.FC = () => {
                     spellCheck={false}
                 />
             </div>
+        </>
+    );
+};
+
+const DeveloperApp: React.FC = () => {
+    const { user } = useAuth();
+    const [activeTab, setActiveTab] = useState<'tasks' | 'requirements'>('tasks');
+    
+    if (!user || (user.role !== 'admin' && user.role !== 'developer')) {
+        return <div style={{padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)'}}>Access Denied. Developer role required.</div>;
+    }
+
+    return (
+        <div style={{maxWidth: '1200px', margin: '0 auto', padding: '2rem'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem'}}>
+                <Link to="/" style={{display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none'}}>
+                    <ArrowLeft size={16} /> Back to Hub
+                </Link>
+                
+                <div style={{display: 'flex', gap: '1rem'}}>
+                    <button 
+                        onClick={() => setActiveTab('tasks')}
+                        style={{
+                            background: 'none', border: 'none', cursor: 'pointer',
+                            color: activeTab === 'tasks' ? 'var(--primary-color)' : 'var(--text-secondary)',
+                            fontWeight: activeTab === 'tasks' ? 'bold' : 'normal',
+                            borderBottom: activeTab === 'tasks' ? '2px solid var(--primary-color)' : '2px solid transparent',
+                            padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem'
+                        }}
+                    >
+                        <ListTodo size={18} /> Task List
+                    </button>
+                    <button 
+                        onClick={() => setActiveTab('requirements')}
+                        style={{
+                            background: 'none', border: 'none', cursor: 'pointer',
+                            color: activeTab === 'requirements' ? 'var(--primary-color)' : 'var(--text-secondary)',
+                            fontWeight: activeTab === 'requirements' ? 'bold' : 'normal',
+                            borderBottom: activeTab === 'requirements' ? '2px solid var(--primary-color)' : '2px solid transparent',
+                            padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem'
+                        }}
+                    >
+                        <FileCode size={18} /> Requirements
+                    </button>
+                </div>
+            </div>
+
+            {activeTab === 'tasks' ? <TaskList /> : <RequirementsEditor />}
         </div>
     );
 };

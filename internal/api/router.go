@@ -12,6 +12,7 @@ func NewRouter(
 	matchRepo *repository.MatchRepository,
 	feedbackRepo *repository.FeedbackRepository,
 	reqRepo *repository.RequirementsRepository,
+	taskRepo *repository.TaskRepository,
 	chatSvc *ai.ChatService,
 ) *http.ServeMux {
 	mux := http.NewServeMux()
@@ -22,6 +23,7 @@ func NewRouter(
 	matchHandler := &MatchHandler{repo: matchRepo}
 	feedbackHandler := &FeedbackHandler{repo: feedbackRepo}
 	reqHandler := &RequirementsHandler{repo: reqRepo, userRepo: userRepo}
+	taskHandler := NewTaskHandler(taskRepo)
 	chatHandler := NewChatHandler(chatSvc)
 
 	// Solicitations
@@ -47,6 +49,8 @@ func NewRouter(
 	mux.HandleFunc("POST /api/feedback", AuthMiddleware(feedbackHandler.Create))
 	mux.HandleFunc("GET /api/requirements", AuthMiddleware(reqHandler.GetLatest))
 	mux.HandleFunc("POST /api/requirements", AuthMiddleware(reqHandler.Save))
+	mux.HandleFunc("GET /api/tasks", AuthMiddleware(taskHandler.List))
+	mux.HandleFunc("POST /api/tasks/{id}/select", AuthMiddleware(taskHandler.ToggleSelection))
 	mux.HandleFunc("POST /api/chat", AuthMiddleware(chatHandler.Handle))
 
 	// Serve uploaded files
