@@ -28,6 +28,8 @@ This document provides a comprehensive guide for new developers working on the B
     ```bash
     ./bd_bot user create -e admin@example.com -n "Admin User"
     ./bd_bot user passwd -e admin@example.com -p secret123
+    # Optional: Set role to developer
+    # container exec bd_bot-db psql -U user -d bd_bot -c "UPDATE users SET role = 'developer' WHERE email = 'admin@example.com';"
     ```
 4.  **Run Full Stack:**
     ```bash
@@ -44,19 +46,26 @@ For rapid UI iteration:
 ## 2. Project Architecture
 
 ### Backend (`/internal`)
-*   **`api/`**: REST handlers (`auth.go`, `user.go`, `solicitations.go`).
-*   **`cli/`**: Cobra commands (`root.go`, `user.go`, `match.go`).
+*   **`api/`**: REST handlers.
+    *   `auth.go`: Login, Password, Session.
+    *   `user.go`: Profile, Avatar, Organizations.
+    *   `solicitations.go`: List, Detail, Claims.
+    *   `feedback.go`: Feedback submission.
+    *   `requirements.go`: Requirements versioning.
+*   **`cli/`**: Cobra commands (`root`, `user`, `org`, `req`, `match`, `scraper`).
 *   **`repository/`**: PostgreSQL data access logic.
 *   **`ai/`**: LLM integration logic.
 *   **`scraper/`**: GPR scraping engine.
 
 ### Frontend (`/web/src`)
 *   **`components/`**:
-    *   `UserProfile.tsx`: Unified profile, password, and narrative editor.
-    *   `PersonalInbox.tsx`: AI-matched opportunities with analytics.
-    *   `SolicitationList.tsx`: Global library view.
-    *   `DashboardCharts.tsx`: Reusable Recharts component.
-    *   `LoginButton.tsx`: Auth modal and navigation tab.
+    *   `LandingPage.tsx`: App hub.
+    *   `SolicitationList.tsx`: Library view.
+    *   `PersonalInbox.tsx`: AI matches.
+    *   `SolicitationDetail.tsx`: Detail view + Claims.
+    *   `UserProfile.tsx`: Profile, Org, Password, Narrative.
+    *   `FeedbackApp.tsx`: Feedback form.
+    *   `DeveloperApp.tsx`: Requirements editor.
 *   **`context/`**: `AuthContext.tsx` handles session state.
 *   **`hooks/`**: `useAnalytics.ts` encapsulates cross-filtering logic.
 
@@ -64,47 +73,34 @@ For rapid UI iteration:
 
 ### Authentication
 The system supports Dual-Mode Auth:
-1.  **Standalone (Local):**
-    *   Uses `bcrypt` for password hashing.
-    *   Managed via CLI (`user create`, `user passwd`).
-    *   UI: Modal with Email/Password inputs.
-2.  **SSO (Future):**
-    *   Schema supports `auth_provider` and `external_id`.
-    *   Mock SSO: If no password is set, login can auto-provision (dev mode).
+1.  **Standalone (Local):** `bcrypt` password hashing. Managed via CLI. UI uses a Modal.
+2.  **SSO (Future):** Schema supports `auth_provider`.
 
 ### Data Pipeline
 1.  **Ingestion:** `make scrape` runs the scraper -> DB.
 2.  **Matching:** `./bd_bot match [user_id]` runs LLM analysis -> `matches` table.
-3.  **Consumption:** User views Inbox -> `PersonalInbox.tsx` renders matches + analytics.
+3.  **Consumption:** User views Inbox -> `PersonalInbox.tsx`.
 
 ## 4. API Reference
 
 | Method | Endpoint | Description | Auth |
 |:---|:---|:---|:---|
-| `POST` | `/api/auth/login` | Login (Local or Mock SSO) | No |
+| `POST` | `/api/auth/login` | Login | No |
 | `POST` | `/api/auth/password` | Change Password | Yes |
-| `GET` | `/api/solicitations` | List all opportunities | No |
+| `GET` | `/api/solicitations` | List opportunities | No |
+| `GET` | `/api/solicitations/:id` | Detail View | No |
+| `POST` | `/api/solicitations/:id/claim` | Take Lead/Interest | Yes |
 | `GET` | `/api/matches` | List user matches | Yes |
-| `PUT` | `/api/user/profile` | Update Name/Email/Avatar | Yes |
-| `POST` | `/api/user/avatar` | Upload Profile Picture | Yes |
+| `PUT` | `/api/user/profile` | Update Profile | Yes |
+| `POST` | `/api/feedback` | Submit Feedback | Yes |
+| `GET` | `/api/requirements` | Get Requirements | Dev/Admin |
 
-## 5. Troubleshooting
+## 5. CLI Reference
 
-**Port 8080 already in use:**
-*   Check if `bd_bot` is running: `ps aux | grep bd_bot`
-*   Kill it: `killall bd_bot`
-
-**Database Connection Failed:**
-*   Verify config: `cat config.yaml`
-*   Check container IP: `container ls` or `docker ps`
-*   Ensure `make db-up` was run.
-
-**Frontend "White Screen":**
-*   Check browser console.
-*   Ensure backend is running (proxies rely on it).
-
-**CLI "Duplicate Command":**
-*   Check `internal/cli/user.go` `init()` for duplicate `AddCommand` calls.
+*   `bd_bot user list [--json]`: Manage users.
+*   `bd_bot org list [--json]`: Manage organizations.
+*   `bd_bot req export/import`: Version requirements.md.
+*   `bd_bot scraper run-now`: Manual scrape.
 
 ## 6. Coding Standards
 *   **Go:** `gofmt`, `goimports`. Use `slog` for logging.
