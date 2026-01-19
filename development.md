@@ -109,7 +109,7 @@ The system supports Dual-Mode Auth:
 *   `joshua org list [--json]`: Manage organizations.
 *   `joshua req export/import`: Version requirements.md.
 *   `joshua task sync`: Sync tasks from requirements.md to DB.
-*   `joshua task list`: List tasks in JSON.
+*   `joshua task list [--selected] [--json]`: List tasks (Markdown default).
 *   `joshua scraper run-now`: Manual scrape.
 
 ## 6. Coding Standards

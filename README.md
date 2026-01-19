@@ -85,7 +85,9 @@ JOSHUA includes a powerful CLI for administration.
 
 # Task Management
 ./joshua task sync   # Parse requirements.md -> DB
-./joshua task list   # View tasks JSON
+./joshua task list            # View tasks (Markdown)
+./joshua task list --selected # View selected tasks
+./joshua task list --json     # View tasks (JSON)
 ```
 
 ---
