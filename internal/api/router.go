@@ -22,7 +22,7 @@ func NewRouter(
 	userHandler := &UserHandler{repo: userRepo}
 	matchHandler := &MatchHandler{repo: matchRepo}
 	feedbackHandler := &FeedbackHandler{repo: feedbackRepo}
-	reqHandler := &RequirementsHandler{repo: reqRepo, userRepo: userRepo}
+	reqHandler := &RequirementsHandler{repo: reqRepo, userRepo: userRepo, taskRepo: taskRepo}
 	taskHandler := NewTaskHandler(taskRepo)
 	chatHandler := NewChatHandler(chatSvc)
 

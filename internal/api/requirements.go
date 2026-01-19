@@ -3,12 +3,14 @@ package api
 import (
 	"bd_bot/internal/repository"
 	"encoding/json"
+	"log/slog"
 	"net/http"
 )
 
 type RequirementsHandler struct {
 	repo     *repository.RequirementsRepository
 	userRepo *repository.UserRepository
+	taskRepo *repository.TaskRepository
 }
 
 func (h *RequirementsHandler) GetLatest(w http.ResponseWriter, r *http.Request) {
@@ -70,6 +72,12 @@ func (h *RequirementsHandler) Save(w http.ResponseWriter, r *http.Request) {
 	if err := h.repo.CreateVersion(r.Context(), req.Content, userID); err != nil {
 		http.Error(w, "Failed to save requirements", http.StatusInternalServerError)
 		return
+	}
+
+	// Automatic Task Sync
+	if _, err := h.taskRepo.SyncTasksFromMarkdown(r.Context(), req.Content); err != nil {
+		slog.Error("Failed to auto-sync tasks", "error", err)
+		// We don't fail the request, just log it.
 	}
 
 	w.WriteHeader(http.StatusOK)

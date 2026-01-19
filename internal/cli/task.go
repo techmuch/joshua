@@ -4,21 +4,24 @@ import (
 	"bd_bot/internal/config"
 	"bd_bot/internal/db"
 	"bd_bot/internal/repository"
-	"bufio"
 	"context"
 	"encoding/json"
 	"fmt"
 	"os"
-	"regexp"
-	"strings"
 
 	"github.com/spf13/cobra"
 )
+
+var listSelected bool
+var listJSON bool
 
 func init() {
 	rootCmd.AddCommand(taskCmd)
 	taskCmd.AddCommand(taskSyncCmd)
 	taskCmd.AddCommand(taskListCmd)
+
+	taskListCmd.Flags().BoolVarP(&listSelected, "selected", "s", false, "Show only selected (incomplete) tasks")
+	ttaskListCmd.Flags().BoolVarP(&listJSON, "json", "j", false, "Output in JSON format")
 }
 
 var taskCmd = &cobra.Command{
@@ -40,33 +43,16 @@ var taskSyncCmd = &cobra.Command{
 		repo := repository.NewTaskRepository(database)
 
 		// Read requirements.md
-		file, err := os.Open("requirements.md")
+		content, err := os.ReadFile("requirements.md")
 		if err != nil {
 			fmt.Printf("Error opening requirements.md: %v\n", err)
 			os.Exit(1)
 		}
-		defer file.Close()
 
-		// Regex for tasks: "- [ ] Task" or "- [x] Task"
-		// Matches line starting with * or - (after trim), then space, then [ ] or [x], then space, then content.
-		re := regexp.MustCompile(`^[\*\-]\s+\[([ xX])\]\s+(.*)`)
-
-		scanner := bufio.NewScanner(file)
-		count := 0
-		for scanner.Scan() {
-			line := strings.TrimSpace(scanner.Text())
-			matches := re.FindStringSubmatch(line)
-			if len(matches) == 3 {
-				status := matches[1] // " " or "x" or "X"
-				desc := strings.TrimSpace(matches[2])
-				isCompleted := status == "x" || status == "X"
-
-				if err := repo.SyncUpsert(context.Background(), desc, isCompleted); err != nil {
-					fmt.Printf("Failed to sync task '%s': %v\n", desc, err)
-				} else {
-					count++
-				}
-			}
+		count, err := repo.SyncTasksFromMarkdown(context.Background(), string(content))
+		if err != nil {
+			fmt.Printf("Error syncing tasks: %v\n", err)
+			os.Exit(1)
 		}
 		fmt.Printf("Synced %d tasks.\n", count)
 	},
@@ -74,7 +60,7 @@ var taskSyncCmd = &cobra.Command{
 
 var taskListCmd = &cobra.Command{
 	Use:   "list",
-	Short: "List tasks in JSON format",
+	Short: "List tasks (Markdown default)",
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg, _ := config.LoadConfig()
 		database, err := db.Connect(cfg.DatabaseURL)
@@ -84,14 +70,31 @@ var taskListCmd = &cobra.Command{
 		defer database.Close()
 		repo := repository.NewTaskRepository(database)
 
-		tasks, err := repo.List(context.Background())
+		tasks, err := repo.List(context.Background(), listSelected)
 		if err != nil {
 			fmt.Printf("Error listing tasks: %v\n", err)
 			os.Exit(1)
 		}
 
-		enc := json.NewEncoder(os.Stdout)
-		enc.SetIndent("", "  ")
-		enc.Encode(tasks)
+		if listJSON {
+			enc := json.NewEncoder(os.Stdout)
+			enc.SetIndent("", "  ")
+			enc.Encode(tasks)
+		} else {
+			// Markdown Table
+			fmt.Println("| ID | Sel | Done | Description |")
+			fmt.Println("|---:|:---:|:---:|---|")
+			for _, t := range tasks {
+				sel := " "
+				if t.IsSelected {
+					sel = "x"
+				}
+				comp := " "
+				if t.IsCompleted {
+					comp = "x"
+				}
+				fmt.Printf("| %d | [%s] | [%s] | %s |\n", t.ID, sel, comp, t.Description)
+			}
+		}
 	},
 }
