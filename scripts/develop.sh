@@ -38,7 +38,11 @@ $TASKS
 EOM
 
 # Run Gemini
-echo "$PROMPT_TEXT" | gemini -y -r latest
+echo "Sending prompt to Gemini..."
+if ! echo "$PROMPT_TEXT" | gemini -y -r latest; then
+    echo "Error: Gemini command failed."
+    exit 1
+fi
 
 echo "AI session complete."
 echo "Syncing updates back to system..."
