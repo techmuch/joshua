@@ -7,9 +7,13 @@ interface Message {
     content: string;
 }
 
-const ChatPanel: React.FC = () => {
+interface ChatPanelProps {
+    isOpen: boolean;
+    onToggle: () => void;
+}
+
+const ChatPanel: React.FC<ChatPanelProps> = ({ isOpen, onToggle }) => {
     const { user } = useAuth();
-    const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
     const [isTyping, setIsTyping] = useState(false);
@@ -119,7 +123,7 @@ const ChatPanel: React.FC = () => {
         }}>
             {/* Toggle Handle */}
             <button 
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={onToggle}
                 style={{
                     position: 'absolute',
                     left: '-48px',
@@ -156,7 +160,7 @@ const ChatPanel: React.FC = () => {
                             <Bot size={20} color="var(--text-primary)" />
                             <span style={{fontWeight: 'bold', color: 'var(--text-primary)', letterSpacing: '1px'}}>JOSHUA_CORE</span>
                         </div>
-                        <button onClick={() => setIsOpen(false)} style={{background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer'}}>
+                        <button onClick={onToggle} style={{background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer'}}>
                             <X size={20} />
                         </button>
                     </div>

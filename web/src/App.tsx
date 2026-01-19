@@ -10,12 +10,14 @@ import ChatPanel from './components/ChatPanel'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { LoginButton } from './components/LoginButton'
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Navigate, useLocation } from 'react-router-dom'
 import { LayoutGrid, Inbox } from 'lucide-react'
 
 function AppContent() {
   const { user, isLoading } = useAuth();
   const location = useLocation();
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   if (isLoading) {
     return <div className="loading">Authenticating...</div>;
@@ -27,7 +29,7 @@ function AppContent() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <div className="header-container">
+        <div className="header-container" style={{marginRight: isChatOpen ? '400px' : '0', transition: 'margin-right 0.3s ease-in-out'}}>
           <div className="header-main">
             <NavLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <h1 style={{ fontSize: '1.5rem', margin: 0, color: 'var(--bg-logo-text)', fontFamily: 'var(--font-family, inherit)' }}>JOSHUA</h1>
@@ -58,7 +60,7 @@ function AppContent() {
           </div>
         </div>
       </header>
-      <main>
+      <main style={{marginRight: isChatOpen ? '400px' : '0', transition: 'margin-right 0.3s ease-in-out'}}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/library" element={<SolicitationList />} />
@@ -70,7 +72,7 @@ function AppContent() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
-      <ChatPanel />
+      <ChatPanel isOpen={isChatOpen} onToggle={() => setIsChatOpen(!isChatOpen)} />
     </div>
   );
 }
