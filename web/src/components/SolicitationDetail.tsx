@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import type { Solicitation } from '../types';
 import { useAuth } from '../context/AuthContext';
 import { ArrowLeft, ExternalLink, FileText, User, Star, Flag } from 'lucide-react';
@@ -29,6 +29,17 @@ const SolicitationDetail: React.FC = () => {
     const [solicitation, setSolicitation] = useState<SolicitationDetail | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    
+    const location = useLocation();
+    const backState = location.state as { from?: string } | null;
+    
+    let backLink = "/library";
+    let backText = "Back to Library";
+
+    if (backState?.from === 'inbox') {
+        backLink = "/inbox";
+        backText = "Back to Inbox";
+    }
 
     const fetchDetail = async () => {
         try {
@@ -77,8 +88,8 @@ const SolicitationDetail: React.FC = () => {
     return (
         <div style={{maxWidth: '1000px', margin: '0 auto', paddingBottom: '4rem'}}>
             <div style={{marginBottom: '1rem'}}>
-                <Link to="/" className="btn-link" style={{textDecoration: 'none', color: 'var(--text-secondary)'}}>
-                    <ArrowLeft size={16} /> Back to Library
+                <Link to={backLink} className="btn-link" style={{textDecoration: 'none', color: 'var(--text-secondary)'}}>
+                    <ArrowLeft size={16} /> {backText}
                 </Link>
             </div>
 

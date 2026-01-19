@@ -168,10 +168,15 @@ const PersonalInbox: React.FC = () => {
                                         </span>
                                     </td>
                                     <td>{match.solicitation.agency}</td>
-                                    <td>
-                                        <Link to={`/solicitation/${match.solicitation.source_id}`} style={{ fontWeight: 500, color: 'var(--text-primary)', textDecoration: 'none' }}>
-                                            {match.solicitation.title}
-                                        </Link>
+                                                                        <td>
+                                                                            <Link 
+                                                                                to={`/solicitation/${match.solicitation.source_id}`} 
+                                                                                state={{ from: 'inbox' }}
+                                                                                style={{fontWeight: 500, color: 'var(--text-primary)', textDecoration: 'none'}}
+                                                                            >
+                                                                                {match.solicitation.title}
+                                                                            </Link>
+                                    
                                         <div style={{ display: 'flex', gap: '1rem', marginTop: '4px' }}>
                                             {match.solicitation.lead_name && (
                                                 <div style={{ fontSize: '0.8rem', color: '#e67e22', display: 'flex', alignItems: 'center', gap: '4px' }}>

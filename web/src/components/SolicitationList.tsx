@@ -146,7 +146,11 @@ const SolicitationList: React.FC = () => {
                                     </td>
                                     <td>{sol.agency}</td>
                                     <td>
-                                        <Link to={`/solicitation/${sol.source_id}`} style={{fontWeight: 500, color: 'var(--text-primary)', textDecoration: 'none'}}>
+                                        <Link 
+                                            to={`/solicitation/${sol.source_id}`} 
+                                            state={{ from: 'library' }}
+                                            style={{fontWeight: 500, color: 'var(--text-primary)', textDecoration: 'none'}}
+                                        >
                                             {sol.title}
                                         </Link>
                                         <div style={{display: 'flex', gap: '1rem', marginTop: '4px'}}>
