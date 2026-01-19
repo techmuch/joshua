@@ -1,8 +1,8 @@
-# Requirements: BD_Bot (Business Development Intelligence Portal)
+# Requirements: JOSHUA (Business Development Intelligence Portal)
 
 ## 1. Overview
 
-The BD_Bot is a high-performance, cross-platform portal designed to automate the discovery and pursuit of government business development opportunities. It utilizes a background "bot" to scrape solicitation sites, an internal Large Language Model (LLM) to match opportunities to user expertise, and a collaborative dashboard to facilitate organizational "coalition building" and transparency.
+JOSHUA is a high-performance, cross-platform portal designed to automate the discovery and pursuit of government business development opportunities. It utilizes a background "bot" to scrape solicitation sites, an internal Large Language Model (LLM) to match opportunities to user expertise, and a collaborative dashboard to facilitate organizational "coalition building" and transparency.
 
 ## 2. Application Architecture
 
@@ -41,14 +41,14 @@ The web interface utilizes a hub-and-spoke model, starting from a central Landin
 
 The CLI leverages the Charmbracelet ecosystem for a premium administrative experience.
 
-*   **`bd_bot config init` (Assisted Configuration):**
+*   **`joshua config init` (Assisted Configuration):**
     *   UX Pattern: Standard Forms via `huh`. Includes "Retest Connection" buttons for PostgreSQL and the AI API.
     *   Flexible Validation: Errors do not block progression; users can continue even if a connection is not yet successful.
     *   Silent Mode: `--silent` flag bypasses forms to generate the default `config.yaml`.
-*   **`bd_bot scraper run-now` (Real-time Monitoring):**
+*   **`joshua scraper run-now` (Real-time Monitoring):**
     *   UX Pattern: Dual-view interface with a State-Based status table and a toggleable raw Log tab.
     *   Context: Can be used to manually trigger a run or monitor an already active background process.
-*   **`bd_bot user` (Identity Management):**
+*   **`joshua user` (Identity Management):**
     *   **`list`**: View all users with ID, email, name, role, and last activity date.
     *   **`create`**: Manually provision a new user (useful for admin/testing).
     *   UX Pattern: Tabular output for lists; flag-based input for creation.
@@ -56,7 +56,10 @@ The CLI leverages the Charmbracelet ecosystem for a premium administrative exper
 ### 3.3 Visual & Terminal Design
 
 *   **Styling:** Uses Lip Gloss with "Short Tide" color palettes (professional blues/teals).
-*   **Theming:** The Web Portal supports multiple color schemes (e.g., Default, Dark, High Contrast) via a user-selectable setting.
+*   **Theming:** The Web Portal supports multiple color schemes via a user-selectable setting.
+    *   **WOPR (Default):** A "Phosphor-Modernism" aesthetic with Amber/Green terminals on deep Midnight Ebony backgrounds.
+    *   **Light/Dark:** Standard variants for traditional business use.
+    *   **Forest:** A calming green-based palette.
 *   **Terminal Awareness:** Graceful detection with fallback to ASCII; suggests upgrade if a basic terminal is detected.
 *   **Help System:** Dedicated help key (`?`) in all TUI views for context-sensitive documentation.
 
@@ -111,9 +114,9 @@ Extensive inline documentation for:
 ## 8. Getting Started
 
 1.  Clone the repository.
-2.  Generate configuration: `bd_bot config init`
-3.  Run Migrations: `bd_bot migrate up`
-4.  Start the Portal: `bd_bot serve`
+2.  Generate configuration: `joshua config init`
+3.  Run Migrations: `joshua migrate up`
+4.  Start the Portal: `joshua serve`
 
 ## 9. Developer Documentation
 
@@ -129,8 +132,8 @@ To ensure a structured and manageable implementation, development will follow th
     *   Initialize Go module and project structure (Backend).
     *   Scaffold React frontend with Vite/Next.js and configure `go:embed`.
     *   Set up PostgreSQL container and Go migration framework.
-    *   Implement basic CLI structure (`bd_bot root`, `bd_bot version`).
-    *   Create `bd_bot config init` with basic `huh` forms.
+    *   Implement basic CLI structure (`joshua root`, `joshua version`).
+    *   Create `joshua config init` with basic `huh` forms.
 
 ### Phase 2: Identity & Basic Data Ingestion
 *   **Goal:** Enable user login and start populating the system with data.
@@ -160,26 +163,17 @@ To ensure a structured and manageable implementation, development will follow th
     *   [x] Build "Collaborative Workspace" functionality (integrated into Library/Inbox/Details).
     *   [x] Add Organization Management (CLI & Profile Sync).
     *   [ ] Add Audit Logging for user actions.
-    *   [ ] Develop TUI Monitoring command (`bd_bot scraper run-now`).
+    *   [ ] Develop TUI Monitoring command (`joshua scraper run-now`).
 
 ### Phase 5: Polish & Scale
-
 *   **Goal:** Prepare for production deployment and organizational rollout.
-
 *   **Status:** In Progress.
-
 *   **Tasks:**
-
     *   [ ] Implement full SSO (SAML/OIDC).
-
     *   [ ] Add Email and Slack notifications.
-
     *   [ ] Build Organizational Analytics dashboard.
-
     *   [x] Implement Landing Page & App Hub.
-
     *   [x] Implement Feedback App & Developer Tools.
-
     *   [x] UI/UX Polish (Full-width Web Layout, CLI JSON Output).
-
+    *   [x] Rebranding to JOSHUA and WOPR Theme implementation.
     *   [ ] Finalize CI/CD pipelines and comprehensive unit testing.
