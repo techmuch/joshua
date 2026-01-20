@@ -44,14 +44,16 @@ const UserProfile: React.FC = () => {
                 if (data.length > 0) {
                     const latest = data[0].id;
                     setLatestVersionId(latest);
-                    if (!selectedVersionId || selectedVersionId === latest) {
+                    if (!selectedVersionId) {
                         setSelectedVersionId(latest);
                     }
                 }
+                return data;
             }
         } catch (err) {
             console.error(err);
         }
+        return [];
     };
 
     useEffect(() => {
@@ -183,7 +185,10 @@ const UserProfile: React.FC = () => {
 
             setNarrativeMessage({ text: "Narrative saved successfully!", type: 'success' });
             await refreshUser();
-            await fetchVersions();
+            const data = await fetchVersions();
+            if (data && data.length > 0) {
+                setSelectedVersionId(data[0].id);
+            }
         } catch (err) {
             setNarrativeMessage({ text: "Error saving narrative.", type: 'error' });
         } finally {
