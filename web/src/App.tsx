@@ -7,13 +7,14 @@ import LandingPage from './components/LandingPage'
 import FeedbackApp from './components/FeedbackApp'
 import DeveloperApp from './components/DeveloperApp'
 import IRADApp from './components/IRADApp'
+import StrategyApp from './components/StrategyApp'
 import ChatPanel from './components/ChatPanel'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { LoginButton } from './components/LoginButton'
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Navigate, useLocation } from 'react-router-dom'
-import { LayoutGrid, Inbox, ListTodo, FileCode, Target, Briefcase, ClipboardCheck } from 'lucide-react'
+import { LayoutGrid, Inbox, ListTodo, FileCode, Target, Briefcase, ClipboardCheck, Network } from 'lucide-react'
 
 function AppContent() {
   const { user, isLoading } = useAuth();
@@ -28,6 +29,7 @@ function AppContent() {
   const isBDBot = location.pathname.startsWith('/library') || location.pathname.startsWith('/inbox') || location.pathname.startsWith('/solicitation');
   const isDeveloper = location.pathname.startsWith('/developer');
   const isIRAD = location.pathname.startsWith('/irad');
+  const isStrategy = location.pathname.startsWith('/strategy');
 
   return (
     <div className="app-container" style={{paddingRight: isChatOpen ? '400px' : '0', transition: 'padding-right 0.3s ease-in-out'}}>
@@ -39,6 +41,22 @@ function AppContent() {
             </NavLink>
             
             <nav className="nav-tabs" style={{ marginLeft: '2rem' }}>
+              {user && isStrategy && (
+                <>
+                  <NavLink
+                    to="/strategy/goals"
+                    className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
+                  >
+                    <Target size={16} /> Goals
+                  </NavLink>
+                  <NavLink
+                    to="/strategy/network"
+                    className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
+                  >
+                    <Network size={16} /> Network
+                  </NavLink>
+                </>
+              )}
               {user && isBDBot && (
                 <>
                   <NavLink
@@ -111,6 +129,7 @@ function AppContent() {
           <Route path="/feedback" element={<FeedbackApp />} />
           <Route path="/developer/*" element={<DeveloperApp />} />
           <Route path="/irad/*" element={user ? <IRADApp /> : <Navigate to="/" />} />
+          <Route path="/strategy/*" element={user ? <StrategyApp /> : <Navigate to="/" />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>

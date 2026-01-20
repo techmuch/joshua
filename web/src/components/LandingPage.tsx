@@ -1,12 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LayoutGrid, MessageSquare, Code, LineChart } from 'lucide-react';
+import { LayoutGrid, MessageSquare, Code, LineChart, Target } from 'lucide-react';
 
 const LandingPage: React.FC = () => {
     const { user } = useAuth();
 
     const apps = [
+        {
+            name: "Strategy & Goals",
+            description: "Define organizational objectives and measure progress with Bayesian networks.",
+            icon: <Target size={32} />,
+            link: "/strategy",
+            color: "#e67e22"
+        },
         {
             name: "BD_Bot",
             description: "Government solicitation intelligence and pursuit management.",
