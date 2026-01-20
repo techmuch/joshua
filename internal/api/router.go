@@ -13,6 +13,7 @@ func NewRouter(
 	feedbackRepo *repository.FeedbackRepository,
 	reqRepo *repository.RequirementsRepository,
 	taskRepo *repository.TaskRepository,
+	iradRepo *repository.IRADRepository,
 	chatSvc *ai.ChatService,
 ) *http.ServeMux {
 	mux := http.NewServeMux()
@@ -25,6 +26,7 @@ func NewRouter(
 	reqHandler := &RequirementsHandler{repo: reqRepo, userRepo: userRepo, taskRepo: taskRepo}
 	taskHandler := NewTaskHandler(taskRepo)
 	chatHandler := NewChatHandler(chatSvc)
+	iradHandler := NewIRADHandler(iradRepo, userRepo)
 
 	// Solicitations
 	mux.HandleFunc("GET /api/solicitations", solHandler.List)
@@ -53,6 +55,12 @@ func NewRouter(
 	mux.HandleFunc("GET /api/tasks", AuthMiddleware(taskHandler.List))
 	mux.HandleFunc("POST /api/tasks/{id}/select", AuthMiddleware(taskHandler.ToggleSelection))
 	mux.HandleFunc("POST /api/chat", AuthMiddleware(chatHandler.Handle))
+
+	// IRAD
+	mux.HandleFunc("GET /api/irad/scos", AuthMiddleware(iradHandler.ListSCOs))
+	mux.HandleFunc("POST /api/irad/scos", AuthMiddleware(iradHandler.CreateSCO))
+	mux.HandleFunc("GET /api/irad/projects", AuthMiddleware(iradHandler.ListProjects))
+	mux.HandleFunc("POST /api/irad/projects", AuthMiddleware(iradHandler.CreateProject))
 
 	// Serve uploaded files
 	fs := http.FileServer(http.Dir("uploads"))

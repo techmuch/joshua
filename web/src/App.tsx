@@ -6,13 +6,14 @@ import SolicitationDetail from './components/SolicitationDetail'
 import LandingPage from './components/LandingPage'
 import FeedbackApp from './components/FeedbackApp'
 import DeveloperApp from './components/DeveloperApp'
+import IRADApp from './components/IRADApp'
 import ChatPanel from './components/ChatPanel'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { LoginButton } from './components/LoginButton'
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Navigate, useLocation } from 'react-router-dom'
-import { LayoutGrid, Inbox, ListTodo, FileCode } from 'lucide-react'
+import { LayoutGrid, Inbox, ListTodo, FileCode, Target, Briefcase } from 'lucide-react'
 
 function AppContent() {
   const { user, isLoading } = useAuth();
@@ -23,9 +24,10 @@ function AppContent() {
     return <div className="loading">Authenticating...</div>;
   }
 
-  // Hide BD_Bot nav tabs if not in BD_Bot context (library/inbox/solicitation)
+  // Nav Context Detection
   const isBDBot = location.pathname.startsWith('/library') || location.pathname.startsWith('/inbox') || location.pathname.startsWith('/solicitation');
   const isDeveloper = location.pathname.startsWith('/developer');
+  const isIRAD = location.pathname.startsWith('/irad');
 
   return (
     <div className="app-container" style={{paddingRight: isChatOpen ? '400px' : '0', transition: 'padding-right 0.3s ease-in-out'}}>
@@ -69,6 +71,22 @@ function AppContent() {
                   </NavLink>
                 </>
               )}
+              {user && isIRAD && (
+                <>
+                  <NavLink
+                    to="/irad/strategy"
+                    className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
+                  >
+                    <Target size={16} /> Strategy
+                  </NavLink>
+                  <NavLink
+                    to="/irad/portfolio"
+                    className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
+                  >
+                    <Briefcase size={16} /> Portfolio
+                  </NavLink>
+                </>
+              )}
             </nav>
 
             <div style={{ marginLeft: 'auto' }}>
@@ -86,6 +104,7 @@ function AppContent() {
           <Route path="/profile" element={user ? <UserProfile /> : <Navigate to="/" />} />
           <Route path="/feedback" element={<FeedbackApp />} />
           <Route path="/developer/*" element={<DeveloperApp />} />
+          <Route path="/irad/*" element={user ? <IRADApp /> : <Navigate to="/" />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>

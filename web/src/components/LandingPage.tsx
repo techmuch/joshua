@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LayoutGrid, MessageSquare, Code } from 'lucide-react';
+import { LayoutGrid, MessageSquare, Code, LineChart } from 'lucide-react';
 
 const LandingPage: React.FC = () => {
     const { user } = useAuth();
@@ -13,6 +13,13 @@ const LandingPage: React.FC = () => {
             icon: <LayoutGrid size={32} />,
             link: "/library",
             color: "#3498db"
+        },
+        {
+            name: "IRAD Tracker",
+            description: "Strategic Independent Research and Development management.",
+            icon: <LineChart size={32} />,
+            link: "/irad/portfolio",
+            color: "#9b59b6"
         },
         {
             name: "Feedback",
