@@ -24,7 +24,18 @@ type Claim struct {
 
 type SolicitationDetail struct {
 	scraper.Solicitation
-	Claims []Claim `json:"claims"`
+	Claims   []Claim   `json:"claims"`
+	Comments []Comment `json:"comments"`
+}
+
+type Comment struct {
+	ID             int       `json:"id"`
+	SolicitationID int       `json:"solicitation_id"`
+	UserID         int       `json:"user_id"`
+	Content        string    `json:"content"`
+	CreatedAt      time.Time `json:"created_at"`
+	UserFullName   string    `json:"user_full_name"`
+	UserAvatarURL  string    `json:"user_avatar_url"`
 }
 
 func NewSolicitationRepository(db *sql.DB) *SolicitationRepository {
@@ -219,9 +230,35 @@ func (r *SolicitationRepository) GetByID(ctx context.Context, idStr string) (*So
 		claims = append(claims, c)
 	}
 
+	// 3. Fetch Comments
+	commentsQuery := `
+		SELECT c.id, c.solicitation_id, c.user_id, c.content, c.created_at, u.full_name, u.avatar_url
+		FROM solicitation_comments c
+		JOIN users u ON c.user_id = u.id
+		WHERE c.solicitation_id = $1
+		ORDER BY c.created_at ASC
+	`
+	rows, err = r.db.QueryContext(ctx, commentsQuery, sol.ID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var comments []Comment
+	for rows.Next() {
+		var c Comment
+		var avatar sql.NullString
+		if err := rows.Scan(&c.ID, &c.SolicitationID, &c.UserID, &c.Content, &c.CreatedAt, &c.UserFullName, &avatar); err != nil {
+			return nil, err
+		}
+		c.UserAvatarURL = avatar.String
+		comments = append(comments, c)
+	}
+
 	return &SolicitationDetail{
 		Solicitation: sol,
 		Claims:       claims,
+		Comments:     comments,
 	}, nil
 }
 
@@ -238,6 +275,40 @@ func (r *SolicitationRepository) UpsertClaim(ctx context.Context, userID, solID 
 		ON CONFLICT (user_id, solicitation_id) DO UPDATE SET
 			claim_type = EXCLUDED.claim_type
 	`
-	_, err := r.db.ExecContext(ctx, query, userID, solID, claimType)
-	return err
-}
+		_, err := r.db.ExecContext(ctx, query, userID, solID, claimType)
+		return err
+	}
+	
+	func (r *SolicitationRepository) AddComment(ctx context.Context, solicitationID, userID int, content string) error {
+		query := `INSERT INTO solicitation_comments (solicitation_id, user_id, content, created_at) VALUES (	, $2, $3, NOW())`
+		_, err := r.db.ExecContext(ctx, query, solicitationID, userID, content)
+		return err
+	}
+	
+	func (r *SolicitationRepository) GetComments(ctx context.Context, solicitationID int) ([]Comment, error) {
+		query := `
+			SELECT c.id, c.solicitation_id, c.user_id, c.content, c.created_at, u.full_name, u.avatar_url
+			FROM solicitation_comments c
+			JOIN users u ON c.user_id = u.id
+			WHERE c.solicitation_id = 	
+			ORDER BY c.created_at ASC
+		`
+		rows, err := r.db.QueryContext(ctx, query, solicitationID)
+		if err != nil {
+			return nil, err
+		}
+		defer rows.Close()
+	
+		var comments []Comment
+		for rows.Next() {
+			var c Comment
+			var avatar sql.NullString
+			if err := rows.Scan(&c.ID, &c.SolicitationID, &c.UserID, &c.Content, &c.CreatedAt, &c.UserFullName, &avatar); err != nil {
+				return nil, err
+			}
+			c.UserAvatarURL = avatar.String
+			comments = append(comments, c)
+		}
+		return comments, nil
+	}
+	

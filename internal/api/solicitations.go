@@ -63,10 +63,76 @@ func (h *SolicitationHandler) Claim(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := h.repo.UpsertClaim(r.Context(), userID, sol.ID, req.Type); err != nil {
-		http.Error(w, "Failed to update claim", http.StatusInternalServerError)
-		return
+		if err := h.repo.UpsertClaim(r.Context(), userID, sol.ID, req.Type); err != nil {
+
+			http.Error(w, "Failed to update claim", http.StatusInternalServerError)
+
+			return
+
+		}
+
+	
+
+		w.WriteHeader(http.StatusOK)
+
 	}
 
-	w.WriteHeader(http.StatusOK)
-}
+	
+
+	type AddCommentRequest struct {
+
+		Content string `json:"content"`
+
+	}
+
+	
+
+	func (h *SolicitationHandler) AddComment(w http.ResponseWriter, r *http.Request) {
+
+		idStr := r.PathValue("id")
+
+		
+
+		sol, err := h.repo.GetByID(r.Context(), idStr)
+
+		if err != nil {
+
+			http.Error(w, "Solicitation not found", http.StatusNotFound)
+
+			return
+
+		}
+
+	
+
+		userID := r.Context().Value("user_id").(int)
+
+		
+
+		var req AddCommentRequest
+
+		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+
+			http.Error(w, "Invalid request", http.StatusBadRequest)
+
+			return
+
+		}
+
+	
+
+		if err := h.repo.AddComment(r.Context(), sol.ID, userID, req.Content); err != nil {
+
+			http.Error(w, "Failed to add comment", http.StatusInternalServerError)
+
+			return
+
+		}
+
+	
+
+		w.WriteHeader(http.StatusOK)
+
+	}
+
+	

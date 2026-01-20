@@ -32,6 +32,7 @@ func NewRouter(
 	mux.HandleFunc("GET /api/solicitations", solHandler.List)
 	mux.HandleFunc("GET /api/solicitations/{id}", solHandler.Get)
 	mux.HandleFunc("POST /api/solicitations/{id}/claim", AuthMiddleware(solHandler.Claim))
+	mux.HandleFunc("POST /api/solicitations/{id}/comments", AuthMiddleware(solHandler.AddComment))
 
 	// Matches
 	mux.HandleFunc("GET /api/matches", matchHandler.List)

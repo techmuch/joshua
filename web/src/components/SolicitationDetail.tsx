@@ -19,8 +19,18 @@ interface Claim {
     };
 }
 
+interface Comment {
+    id: number;
+    user_id: number;
+    content: string;
+    created_at: string;
+    user_full_name: string;
+    user_avatar_url: string;
+}
+
 interface SolicitationDetail extends Solicitation {
     claims: Claim[];
+    comments: Comment[];
 }
 
 const SolicitationDetail: React.FC = () => {
@@ -29,6 +39,8 @@ const SolicitationDetail: React.FC = () => {
     const [solicitation, setSolicitation] = useState<SolicitationDetail | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [newComment, setNewComment] = useState("");
+    const [isPosting, setIsPosting] = useState(false);
 
     const location = useLocation();
     const backState = location.state as { from?: string } | null;
@@ -57,6 +69,25 @@ const SolicitationDetail: React.FC = () => {
     useEffect(() => {
         fetchDetail();
     }, [id]);
+
+    const handlePostComment = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!newComment.trim()) return;
+        setIsPosting(true);
+        try {
+            const res = await fetch(`/api/solicitations/${id}/comments`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: newComment }),
+            });
+            if (res.ok) {
+                setNewComment("");
+                fetchDetail();
+            }
+        } finally {
+            setIsPosting(false);
+        }
+    };
 
     const handleClaim = async (type: 'interested' | 'lead' | 'none') => {
         if (!user) return;
@@ -194,6 +225,51 @@ const SolicitationDetail: React.FC = () => {
                             ))}
                         </ul>
                     ) : <p className="text-muted">No documents found.</p>}
+                </div>
+
+                {/* Comments */}
+                <div style={{ padding: '2rem', borderTop: '1px solid var(--border-color)' }}>
+                    <h3 style={{ marginTop: 0, color: 'var(--text-primary)' }}>Comments</h3>
+                    
+                    <div style={{ marginBottom: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        {solicitation.comments?.map(comment => (
+                            <div key={comment.id} style={{ display: 'flex', gap: '1rem' }}>
+                                <div style={{width: 32, height: 32, borderRadius: '50%', background: 'var(--bg-input)', overflow: 'hidden', flexShrink: 0}}>
+                                    {comment.user_avatar_url ? (
+                                        <img src={comment.user_avatar_url} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                                    ) : (
+                                        <div style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                                            <User size={16} />
+                                        </div>
+                                    )}
+                                </div>
+                                <div>
+                                    <div style={{marginBottom: '0.25rem'}}>
+                                        <span style={{fontWeight: 600, marginRight: '0.5rem', color: 'var(--text-primary)'}}>{comment.user_full_name}</span>
+                                        <span style={{fontSize: '0.8rem', color: 'var(--text-secondary)'}}>{new Date(comment.created_at).toLocaleString()}</span>
+                                    </div>
+                                    <div style={{color: 'var(--text-body)', lineHeight: 1.5}}>{comment.content}</div>
+                                </div>
+                            </div>
+                        ))}
+                        {(!solicitation.comments || solicitation.comments.length === 0) && (
+                            <p className="text-muted">No comments yet.</p>
+                        )}
+                    </div>
+
+                    {user && (
+                        <form onSubmit={handlePostComment} style={{ display: 'flex', gap: '1rem' }}>
+                            <textarea 
+                                value={newComment}
+                                onChange={(e) => setNewComment(e.target.value)}
+                                placeholder="Add a comment..."
+                                style={{ flex: 1, padding: '0.75rem', borderRadius: '6px', border: '1px solid var(--border-input)', background: 'var(--bg-input)', minHeight: '80px', color: 'var(--text-body)' }}
+                            />
+                            <button type="submit" className="btn-primary" disabled={isPosting || !newComment.trim()} style={{ height: 'fit-content' }}>
+                                Post
+                            </button>
+                        </form>
+                    )}
                 </div>
             </div>
         </div>
