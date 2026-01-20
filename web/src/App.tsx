@@ -68,7 +68,7 @@ function AppContent() {
           <Route path="/inbox" element={user ? <PersonalInbox /> : <Navigate to="/" />} />
           <Route path="/profile" element={user ? <UserProfile /> : <Navigate to="/" />} />
           <Route path="/feedback" element={<FeedbackApp />} />
-          <Route path="/developer" element={<DeveloperApp />} />
+          <Route path="/developer/*" element={<DeveloperApp />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>

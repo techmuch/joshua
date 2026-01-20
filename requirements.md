@@ -31,8 +31,9 @@ The web interface utilizes a hub-and-spoke model, starting from a central Landin
     *   **Detail View:** Comprehensive solicitation details, team claims, and documents.
 *   **Feedback App (`/feedback`):**
     *   Form to submit bug reports or feature requests for specific apps/views.
-*   **Developer Tools (`/developer`):**
+*   **Developer Tools (`/developer/tasks`, `/developer/requirements`):**
     *   **Requirements Editor:** Markdown editor for the system's `requirements.md`, supporting versioning and rollback.
+    *   There should be a unique URL for each view. 
     *   *Access Control:* Restricted to 'admin' or 'developer' roles.
 *   **User Profile (`/profile`):**
     *   Manage identity (Name, Email, Avatar), Organization, Security (Password), and AI Narrative.
@@ -164,6 +165,7 @@ To ensure a structured and manageable implementation, development will follow th
     *   [x] Add Organization Management (CLI & Profile Sync).
     *   [ ] Add Audit Logging for user actions.
     *   [ ] Develop TUI Monitoring command (`joshua scraper run-now`).
+    *   [x] Update the URL to map directly each view (including `/developer/tasks`, `/developer/requirements`)
 
 ### Phase 5: Polish & Scale
 *   **Goal:** Prepare for production deployment and organizational rollout.

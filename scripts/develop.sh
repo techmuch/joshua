@@ -18,8 +18,7 @@ fi
 echo "Starting AI Development Session..."
 
 # Construct prompt
-# Note: We use a heredoc for the prompt content to handle newlines cleanly
-read -r -d '' PROMPT_TEXT << EOM
+PROMPT_TEXT=$(cat <<EOM
 You are an expert AI developer. Your goal is to implement the following selected tasks for the JOSHUA project.
 
 ### CONTEXT: REQUIREMENTS ###
@@ -36,6 +35,7 @@ $TASKS
    - Example: 'git add . && git commit -m "feat: implement x" && git push origin main'
 4. Do not output any preamble, just perform the actions using tool calls.
 EOM
+)
 
 # Run Gemini
 echo "Sending prompt to Gemini..."

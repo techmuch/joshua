@@ -21,7 +21,7 @@ func init() {
 	taskCmd.AddCommand(taskListCmd)
 
 	taskListCmd.Flags().BoolVarP(&listSelected, "selected", "s", false, "Show only selected (incomplete) tasks")
-	ttaskListCmd.Flags().BoolVarP(&listJSON, "json", "j", false, "Output in JSON format")
+	taskListCmd.Flags().BoolVarP(&listJSON, "json", "j", false, "Output in JSON format")
 }
 
 var taskCmd = &cobra.Command{
