@@ -23,6 +23,13 @@ type User struct {
 	Organization string    `json:"organization_name"`
 }
 
+type NarrativeVersion struct {
+	ID        int       `json:"id"`
+	UserID    int       `json:"user_id"`
+	Content   string    `json:"content"`
+	CreatedAt time.Time `json:"created_at"`
+}
+
 type UserRepository struct {
 	db *sql.DB
 }
@@ -106,9 +113,26 @@ func (r *UserRepository) UpdateLastActive(ctx context.Context, userID int) error
 }
 
 func (r *UserRepository) UpdateNarrative(ctx context.Context, userID int, narrative string) error {
-	query := `UPDATE users SET narrative = $1, updated_at = NOW() WHERE id = $2`
-	_, err := r.db.ExecContext(ctx, query, narrative, userID)
-	return err
+	tx, err := r.db.BeginTx(ctx, nil)
+	if err != nil {
+		return err
+	}
+
+	// Update current
+	_, err = tx.ExecContext(ctx, "UPDATE users SET narrative = $1, updated_at = NOW() WHERE id = $2", narrative, userID)
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	// Insert version
+	_, err = tx.ExecContext(ctx, "INSERT INTO narrative_versions (user_id, content) VALUES ($1, $2)", userID, narrative)
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	return tx.Commit()
 }
 
 func (r *UserRepository) UpdateProfile(ctx context.Context, userID int, email, fullName, avatarURL, orgName string) error {
@@ -123,6 +147,35 @@ func (r *UserRepository) UpdateProfile(ctx context.Context, userID int, email, f
 	query := `UPDATE users SET email = $1, full_name = $2, avatar_url = $3, organization_name = $4, updated_at = NOW() WHERE id = $5`
 	_, err := r.db.ExecContext(ctx, query, email, fullName, avatarURL, orgName, userID)
 	return err
+}
+
+func (r *UserRepository) ListNarrativeVersions(ctx context.Context, userID int) ([]NarrativeVersion, error) {
+	query := `SELECT id, user_id, content, created_at FROM narrative_versions WHERE user_id = $1 ORDER BY id DESC`
+	rows, err := r.db.QueryContext(ctx, query, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var versions []NarrativeVersion
+	for rows.Next() {
+		var v NarrativeVersion
+		if err := rows.Scan(&v.ID, &v.UserID, &v.Content, &v.CreatedAt); err != nil {
+			return nil, err
+		}
+		versions = append(versions, v)
+	}
+	return versions, nil
+}
+
+func (r *UserRepository) GetNarrativeVersion(ctx context.Context, id int, userID int) (*NarrativeVersion, error) {
+	query := `SELECT id, user_id, content, created_at FROM narrative_versions WHERE id = $1 AND user_id = $2`
+	var v NarrativeVersion
+	err := r.db.QueryRowContext(ctx, query, id, userID).Scan(&v.ID, &v.UserID, &v.Content, &v.CreatedAt)
+	if err != nil {
+		return nil, err
+	}
+	return &v, nil
 }
 
 func (r *UserRepository) List(ctx context.Context) ([]User, error) {

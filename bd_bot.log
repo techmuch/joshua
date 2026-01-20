@@ -659,3 +659,544 @@ time=2026-01-19T23:32:47.323-05:00 level=INFO msg="Scraper finished" scraper="Ge
 time=2026-01-19T23:32:47.324-05:00 level=INFO msg="Scraper Engine run complete" total_items=483
 time=2026-01-19T23:32:47.324-05:00 level=INFO msg="Saving results to database..."
 time=2026-01-19T23:32:47.630-05:00 level=INFO msg="Scraper run complete" found=483 saved_or_updated=483
+time=2026-01-20T00:00:13.842-05:00 level=INFO msg="Starting Matching" user=demo@example.com solicitations=526
+time=2026-01-20T00:00:21.781-05:00 level=INFO msg="Match Result" sol="REQUEST FOR QUALIFICATIONS FOR RESIDENTIAL INSPECTORS FOR REHABILITATION ON RESIDENTIAL PROPERTY UND" score=5
+time=2026-01-20T00:00:28.988-05:00 level=INFO msg="Match Result" sol="REQUEST FOR QUALIFICATIONS FOR GENERAL CONTRACTORS TO CONSTRUCT AND/OR PERFORM REPAIRS AND REHAB" score=35
+time=2026-01-20T00:00:35.901-05:00 level=INFO msg="Match Result" sol="REQUEST FOR QUALIFICATIONS FOR ARCHITECTS, STRUCTURAL ENGINEERS, AND SURVEYORS FOR CONSTRUCTION" score=15
+time=2026-01-20T00:00:46.084-05:00 level=INFO msg="Match Result" sol="BL081-24 Purchase of a Swift Water Rescue Boat" score=85
+time=2026-01-20T00:00:54.473-05:00 level=INFO msg="Match Result" sol="GEFA Prequalification of Energy Service Providers" score=85
+time=2026-01-20T00:01:02.825-05:00 level=INFO msg="Match Result" sol="26-003 LAW ENFORCEMENT RENOVATIONS - FLOYD COUNTY" score=85
+time=2026-01-20T00:01:12.360-05:00 level=INFO msg="Match Result" sol="Coffee Schools CMS Cafe" score=65
+time=2026-01-20T00:01:20.569-05:00 level=INFO msg="Match Result" sol="PNA-484-01082026DB US 278 Grade Separation over CSX RR" score=92
+time=2026-01-20T00:01:29.422-05:00 level=INFO msg="Match Result" sol="RFQ-484-030326 Overhead/Subsurface Utility Engineering (SUE) Services Contracts" score=65
+time=2026-01-20T00:01:36.768-05:00 level=INFO msg="Match Result" sol="RFP P50554 Dental, Critical Illness, Life, and Accidental Death & Dismemberment Insurance Coverage" score=35
+time=2026-01-20T00:01:45.788-05:00 level=INFO msg="Match Result" sol="Water Program Support and Outreach Services" score=92
+time=2026-01-20T00:01:53.123-05:00 level=INFO msg="Match Result" sol="Hart County Fieldhouse, turf, and scoreboard" score=75
+time=2026-01-20T00:02:01.768-05:00 level=INFO msg="Match Result" sol="Groceries, Produce, and Beverages" score=75
+time=2026-01-20T00:02:10.649-05:00 level=INFO msg="Match Result" sol="2026 Road Overlay" score=85
+time=2026-01-20T00:02:21.540-05:00 level=INFO msg="Match Result" sol="RFP26-006 Chattahoochee Hills SS4A Safety Action Plan" score=85
+time=2026-01-20T00:02:34.077-05:00 level=INFO msg="Match Result" sol="RFP P50785 Enterprise Content Data Management (ECDM) System Implementation" score=92
+time=2026-01-20T00:02:43.044-05:00 level=INFO msg="Match Result" sol="Quarles 6MG Clearwell No. 1 Tank Concrete Repairs and Coating Project" score=65
+time=2026-01-20T00:02:51.311-05:00 level=INFO msg="Match Result" sol="Camden County Joint Comprehensive  Transportation Plan" score=85
+time=2026-01-20T00:03:00.837-05:00 level=INFO msg="Match Result" sol="Request for Statement of Qualifications from Contractors for the Prequalification of Bidders for Con" score=85
+time=2026-01-20T00:03:08.532-05:00 level=INFO msg="Match Result" sol="RIVERWALK BULKHEAD IMPROVEMENT PROJECT" score=92
+time=2026-01-20T00:03:16.983-05:00 level=INFO msg="Match Result" sol="26-027-LH Automated Parking System and Installation (2/26/26)" score=85
+time=2026-01-20T00:03:25.988-05:00 level=INFO msg="Match Result" sol="Renovations to Interdisciplinary Research Building" score=65
+time=2026-01-20T00:03:35.333-05:00 level=INFO msg="Match Result" sol="#2026-01 CIPP Stormwater Pipe Lining" score=85
+time=2026-01-20T00:03:44.399-05:00 level=INFO msg="Match Result" sol="Water and Sewer System Expansion and Improvements" score=92
+time=2026-01-20T00:03:53.365-05:00 level=INFO msg="Match Result" sol="Cook Elementary School New Walk In Freezer" score=65
+time=2026-01-20T00:04:02.196-05:00 level=INFO msg="Match Result" sol="26-012 Audit Services" score=85
+time=2026-01-20T00:04:11.039-05:00 level=INFO msg="Match Result" sol="Seminole Road MSW Landfill 2026 Gas Collection and Control System (GCCS) Expansion" score=85
+time=2026-01-20T00:04:19.919-05:00 level=INFO msg="Match Result" sol="RFB 26-001 Cassville White Road Bridge Widening Project" score=75
+time=2026-01-20T00:04:28.727-05:00 level=INFO msg="Match Result" sol="Offender Communications Services" score=85
+time=2026-01-20T00:04:37.145-05:00 level=INFO msg="Match Result" sol="26-022 SNP SHOES RFP" score=65
+time=2026-01-20T00:04:46.996-05:00 level=INFO msg="Match Result" sol="RFQ 26-52-001 Arch./Eng. Svcs. related to Grant Apl. FY2026.  If applicable this is a Sec.3 cntr. op" score=85
+time=2026-01-20T00:04:57.158-05:00 level=INFO msg="Match Result" sol="ITB#26-02 SPLOST Milling and Resurfacing of Various Streets in Commission Districts 1-4 for Clayton" score=25
+time=2026-01-20T00:05:06.365-05:00 level=INFO msg="Match Result" sol="2026-CO-1 Newman Wetlands Center Garden Update" score=65
+time=2026-01-20T00:05:13.749-05:00 level=INFO msg="Match Result" sol="RFP 2026-01  Licensed Real Estate Broker Services for the Disposition of Surplus Property" score=15
+time=2026-01-20T00:05:24.162-05:00 level=INFO msg="Match Result" sol="RFQ/P2026-11 Emergency Medical Services (EMS) Provider" score=92
+time=2026-01-20T00:05:34.869-05:00 level=INFO msg="Match Result" sol="RFP for the Construction of the Addition to the Tifton Museum of Arts and Heritage" score=25
+time=2026-01-20T00:05:41.170-05:00 level=INFO msg="Match Result" sol="Bid 26-39-2410 Fire Hoses for Forsyth County Fire Department" score=5
+time=2026-01-20T00:05:50.983-05:00 level=INFO msg="Match Result" sol="26-011 LMIG Paving" score=85
+time=2026-01-20T00:05:59.651-05:00 level=INFO msg="Match Result" sol="Proposal to Serve Kennedy Place Rural Workforce Housing Initiative" score=85
+time=2026-01-20T00:06:08.053-05:00 level=INFO msg="Match Result" sol="PNA-484-12182025DB SR 25 at Darien River Bridge Replacement" score=85
+time=2026-01-20T00:06:14.753-05:00 level=INFO msg="Match Result" sol="MID BROADWELL CULVERT & SIDEWALK CONSTRUCTION" score=25
+time=2026-01-20T00:06:24.820-05:00 level=INFO msg="Match Result" sol="AMR System Conversion" score=85
+time=2026-01-20T00:06:35.176-05:00 level=INFO msg="Match Result" sol="ENG 2025 SAP LMIG: 2025 Resurfacing" score=85
+time=2026-01-20T00:06:44.780-05:00 level=INFO msg="Match Result" sol="City of Pearson, USDA, CFDA # 10-760, Water System Improvements, Phase I" score=85
+time=2026-01-20T00:06:52.813-05:00 level=INFO msg="Match Result" sol="Request for Proposals for Engineering Grant Services" score=85
+time=2026-01-20T00:07:01.361-05:00 level=INFO msg="Match Result" sol="RFB 26-0023 COMPREHENSIVE GENERATOR SERVICES (ANNUAL CONTRACT)" score=85
+time=2026-01-20T00:07:11.106-05:00 level=INFO msg="Match Result" sol="Water Meter Installations" score=75
+time=2026-01-20T00:07:20.976-05:00 level=INFO msg="Match Result" sol="CCSD Warehouse Construction" score=75
+time=2026-01-20T00:07:30.975-05:00 level=INFO msg="Match Result" sol="10-Unit T-Hangar Project" score=92
+time=2026-01-20T00:07:40.407-05:00 level=INFO msg="Match Result" sol="Safety Action Plan (RFP PW 26-02)" score=85
+time=2026-01-20T00:07:48.502-05:00 level=INFO msg="Match Result" sol="Unified Development Ordinance Request for Proposal" score=92
+time=2026-01-20T00:07:59.179-05:00 level=INFO msg="Match Result" sol="Pierce County BOE Additions & Modifications to Pierce Middle and Patterson Elementary Schools" score=75
+time=2026-01-20T00:08:11.042-05:00 level=INFO msg="Match Result" sol="CITB-0001-26, 2026 Street Resurfacing Project" score=85
+time=2026-01-20T00:08:20.037-05:00 level=INFO msg="Match Result" sol="SWE PROJECT # 23-3455  LAND & WATER CONSERVATION FUND GRANT FOR  EASTSIDE PARK REHABILITATION" score=85
+time=2026-01-20T00:08:28.726-05:00 level=INFO msg="Match Result" sol="FY 2026 LMIG PROJECT" score=75
+time=2026-01-20T00:08:39.866-05:00 level=INFO msg="Match Result" sol="- 002-26 Walker Mountain Road Site 2 MSWL Phase 9 Cell Construction" score=85
+time=2026-01-20T00:08:51.096-05:00 level=INFO msg="Match Result" sol="LCHS Envelope Repair Phase 2 RFP2026-12" score=45
+time=2026-01-20T00:09:00.628-05:00 level=INFO msg="Match Result" sol="Highway 49 Water Extension- Phase 3" score=85
+time=2026-01-20T00:09:09.016-05:00 level=INFO msg="Match Result" sol="25ITB0911K-NJH Standby Miscellaneous Construction, Water System Services" score=65
+time=2026-01-20T00:09:16.433-05:00 level=INFO msg="Match Result" sol="Taylors Creek Elementary School Gym Floor Replacement RFP 2026-11" score=35
+time=2026-01-20T00:09:26.729-05:00 level=INFO msg="Match Result" sol="RFQ DESIGN & ENGINEERING SERVICES RUSHING BOONE RD. TIA PROJECT" score=85
+time=2026-01-20T00:09:36.083-05:00 level=INFO msg="Match Result" sol="2026 Groundwater Expansion and Distribution Storage" score=85
+time=2026-01-20T00:09:42.215-05:00 level=INFO msg="Match Result" sol="LCSS Canopy Repairs RFP 2026-10" score=15
+time=2026-01-20T00:09:51.708-05:00 level=INFO msg="Match Result" sol="Highway 49 - Water System Extension ¿ Phases 4 Graham Road" score=85
+time=2026-01-20T00:09:59.831-05:00 level=INFO msg="Match Result" sol="Loganville Toddler Park" score=65
+time=2026-01-20T00:10:08.307-05:00 level=INFO msg="Match Result" sol="26-020 Old Riverside Park Project" score=90
+time=2026-01-20T00:10:17.266-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 85,\n  \"explanation\": \"SEAD’s core competencies in full-stack software engineering, advanced data analytics and AI, and systems modernization align strongly with the City of Cairo's Request for Proposals for Administrative & Related Grant Services. Specifically, their expertise in data analytics and complex system development could be applied to optimizing city operations and potentially managing grant data. The focus on cybersecurity and compliance also addresses a relevant area for grant management. While the focus is on administrative services, SEAD's capabilities extend beyond basic administration and could contribute meaningfully if the grant proposals require sophisticated data analysis or system integration.”\n}\n"
+time=2026-01-20T00:10:17.266-05:00 level=ERROR msg="Match failed" sol_id=667 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:10:27.029-05:00 level=INFO msg="Match Result" sol="Request for Proposals For Engineering Grant Services" score=92
+time=2026-01-20T00:10:35.670-05:00 level=INFO msg="Match Result" sol="FY26 CDBG Grant Administration" score=85
+time=2026-01-20T00:10:45.754-05:00 level=INFO msg="Match Result" sol="FY26 CDBG Engineering Services" score=85
+time=2026-01-20T00:10:55.401-05:00 level=INFO msg="Match Result" sol="Sale City CDBG Request for Proposals for Engineering Services" score=85
+time=2026-01-20T00:11:05.111-05:00 level=INFO msg="Match Result" sol="SB017-26 On Demand Electric Distribution Cable on an Annual Contract" score=85
+time=2026-01-20T00:11:12.253-05:00 level=INFO msg="Match Result" sol="RFP P50583 ¿ Transit Bus Shelters and Advertising" score=45
+time=2026-01-20T00:11:21.232-05:00 level=INFO msg="Match Result" sol="RFP 2026 - 09 Residential Solid Waste Collection & Recycling Services" score=85
+time=2026-01-20T00:11:31.470-05:00 level=INFO msg="Match Result" sol="PNA-484-021726 Drainage Asset Inventory & Inspection Services" score=85
+time=2026-01-20T00:11:40.245-05:00 level=INFO msg="Match Result" sol="Rincon WRF Improvements - CMAR Request" score=92
+time=2026-01-20T00:11:48.952-05:00 level=INFO msg="Match Result" sol="Request for Qualifications for Engineering Services for Pittard Park Expansion Project" score=85
+time=2026-01-20T00:11:55.840-05:00 level=INFO msg="Match Result" sol="RFQ 2026-0009 One (1) Cargo Van with Interior Shelving" score=20
+time=2026-01-20T00:12:00.935-05:00 level=INFO msg="Match Result" sol="RFQ 2026-0006 Two (2) 15 PAX Shuttle Buses" score=20
+time=2026-01-20T00:12:07.453-05:00 level=INFO msg="Match Result" sol="GGC Athletics Baseball and Softball Maintenance" score=45
+time=2026-01-20T00:12:16.106-05:00 level=INFO msg="Match Result" sol="CDBG Grant Writing and Administration" score=65
+time=2026-01-20T00:12:25.790-05:00 level=INFO msg="Match Result" sol="CDBG Engineering Services" score=85
+time=2026-01-20T00:12:35.804-05:00 level=INFO msg="Match Result" sol="Feasibility Study for Full Police Services for the City of Mableton" score=85
+time=2026-01-20T00:12:45.373-05:00 level=INFO msg="Match Result" sol="P26041, FNS Commodity Processing - NOI" score=85
+time=2026-01-20T00:12:54.207-05:00 level=INFO msg="Match Result" sol="4830_Telfair County_803534 Recreation Center RFB - R2" score=90
+time=2026-01-20T00:13:03.159-05:00 level=INFO msg="Match Result" sol="BL002-26, South Scales Road Water Main Replacement" score=85
+time=2026-01-20T00:13:10.949-05:00 level=INFO msg="Match Result" sol="UWG Promotional Products" score=35
+time=2026-01-20T00:13:17.131-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 15,\n  \"explanation\": \"SEAD’s expertise in software engineering, data analytics, and systems modernization doesn't align with the opportunity for multi-function copiers and printers. Their focus is on complex software and data solutions, not hardware procurement or office equipment. While data analytics could potentially be applied to printer usage, the core competencies are completely misaligned.”\n}\n"
+time=2026-01-20T00:13:17.131-05:00 level=ERROR msg="Match failed" sol_id=646 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:13:24.818-05:00 level=INFO msg="Match Result" sol=LLIDA-2026-001 score=75
+time=2026-01-20T00:13:34.004-05:00 level=INFO msg="Match Result" sol=FY26-641-001 score=65
+time=2026-01-20T00:13:40.517-05:00 level=INFO msg="Match Result" sol="26-0009-2 Annual Contract for Boiler Preventative Maintenance & Repair Services (Aquatic Center)" score=5
+time=2026-01-20T00:13:49.491-05:00 level=INFO msg="Match Result" sol="RFI for website platform and design services" score=65
+time=2026-01-20T00:13:58.042-05:00 level=INFO msg="Match Result" sol="Liberty County Public Safety Center Construction Manager At Risk/General Contractor RFQ" score=65
+time=2026-01-20T00:14:06.846-05:00 level=INFO msg="Match Result" sol="Internet Services" score=75
+time=2026-01-20T00:14:15.952-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 85,\n  \"explanation\": \"SEAD's core competencies in full-stack software engineering, data analytics, and systems modernization align strongly with the City of Reynolds' CDBG project, which likely involves data analysis for infrastructure improvements and potentially some system integration. The focus on public infrastructure management (as outlined in SEAD's value proposition) is a direct fit. The emphasis on scalability and compliance (DevSecOps, NIST) is also a positive match. While the exact project details are lacking, SEAD’s broad capabilities provide a good foundation for this type of opportunity.”\n}\n"
+time=2026-01-20T00:14:15.952-05:00 level=ERROR msg="Match failed" sol_id=639 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:14:25.147-05:00 level=INFO msg="Match Result" sol="2026-0003 e-Rate Leased Lit Fiber Solution (Managed WAN)" score=65
+time=2026-01-20T00:14:33.114-05:00 level=INFO msg="Match Result" sol="Professional Engineering Design Services for Winn Road at South Paulding High School Driveway" score=65
+time=2026-01-20T00:14:41.778-05:00 level=INFO msg="Match Result" sol="RFP 2026-0003 Backup Disaster and Recovery (BDR) Solution" score=85
+time=2026-01-20T00:14:49.740-05:00 level=INFO msg="Match Result" sol="BID 26022 CY 2026 Residential Traffic Management Program" score=85
+time=2026-01-20T00:14:57.724-05:00 level=INFO msg="Match Result" sol="Bid # 26-30 Hangar Site Construction" score=45
+time=2026-01-20T00:15:07.989-05:00 level=INFO msg="Match Result" sol="Bid # 26-29 Atlanta Speedway Airport - Hanger Buildings" score=85
+time=2026-01-20T00:15:17.406-05:00 level=INFO msg="Match Result" sol="BID #26-27, Warren Holder Park Ball Field Renovation" score=65
+time=2026-01-20T00:15:25.365-05:00 level=INFO msg="Match Result" sol="BL031-26Purchase of Microsoft and Apple Desktops, Laptops, Tablets, and Peripherals on an Annual Con" score=65
+time=2026-01-20T00:15:34.203-05:00 level=INFO msg="Match Result" sol="THOMAS CROSSROADS ELEMENTARY RENOVATIONS" score=75
+time=2026-01-20T00:15:41.958-05:00 level=INFO msg="Match Result" sol="SR 7 at Atlanta Street Paving Project" score=75
+time=2026-01-20T00:15:51.975-05:00 level=INFO msg="Match Result" sol="North Hill Street Playground" score=65
+time=2026-01-20T00:16:02.422-05:00 level=INFO msg="Match Result" sol="GRADING VETERANS MEMORIAL CEMETERY" score=85
+time=2026-01-20T00:16:10.892-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 85,\n  \"explanation\": \"SEAD’s expertise in data analytics, system modernization (particularly legacy refactoring and open standards), and cloud-native architectures aligns strongly with Camden County’s need for public infrastructure management and potential fleet optimization. While not directly focused on defense, the data analysis and system modernization capabilities are highly relevant. The ‘prototyping & R&D’ focus could also be leveraged for initial construction phase analysis and testing. A slight deduction due to the lack of explicit mention of GIS and geospatial technologies, which often accompany infrastructure projects.”\n}\n"
+time=2026-01-20T00:16:10.892-05:00 level=ERROR msg="Match failed" sol_id=626 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:16:19.102-05:00 level=INFO msg="Match Result" sol="Bid #26-006/City of Griffin North Hill Street Playground" score=65
+time=2026-01-20T00:16:28.103-05:00 level=INFO msg="Match Result" sol="Bank Stabilization at Palmetto & Greenwood Cemeteries" score=65
+time=2026-01-20T00:16:34.012-05:00 level=INFO msg="Match Result" sol="026.5-B Institutional Kitchen Equipment." score=15
+time=2026-01-20T00:16:43.276-05:00 level=INFO msg="Match Result" sol="026.5-A Industrial Arts and Career and Tech Supplies" score=85
+time=2026-01-20T00:16:54.083-05:00 level=INFO msg="Match Result" sol="ITB 2026-002 Stormwater System Repair Projects" score=85
+time=2026-01-20T00:17:06.841-05:00 level=INFO msg="Match Result" sol="Synthetic Turf Replacement at Mud Creek Soccer Complex and Terrell Mill Park" score=65
+time=2026-01-20T00:17:16.741-05:00 level=INFO msg="Match Result" sol="South Cobb Transit Center 30% Design Documents" score=85
+time=2026-01-20T00:17:25.213-05:00 level=INFO msg="Match Result" sol="Professional Design and Construction Adm Srv for Furr Family Park and Bartlett Property" score=35
+time=2026-01-20T00:17:32.645-05:00 level=INFO msg="Match Result" sol="26-033-LH Residential Roof Repairs for Twenty (20) 2-12-26" score=10
+time=2026-01-20T00:17:39.990-05:00 level=INFO msg="Match Result" sol="REQUEST FOR BID - TRAILER MOUNTED SEWER CLEANER" score=25
+time=2026-01-20T00:17:49.002-05:00 level=INFO msg="Match Result" sol="Pinecrest Cemetery Paving" score=35
+time=2026-01-20T00:17:58.371-05:00 level=INFO msg="Match Result" sol="2026-007 Design-Build Cherokee Veterans Amphitheatre Pavilion" score=75
+time=2026-01-20T00:18:06.311-05:00 level=INFO msg="Match Result" sol="Design-Install Playground for Trailblazer" score=45
+time=2026-01-20T00:18:15.609-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 65,\n  \"explanation\": \"SEAD's core competencies in full-stack engineering, data analytics, and systems modernization align reasonably well with a project involving motor graders for Emanuel County. Specifically, the data analytics and systems modernization aspects (optimizing infrastructure, potentially predictive maintenance) are relevant. However, the project's focus on physical equipment and a smaller, local government agency, doesn’t fully leverage SEAD's expertise in mission-critical software for defense or complex national security applications. The scale and specific technical challenges of a motor grader project are likely less demanding than those typically undertaken by SEAD.”\n}\n"
+time=2026-01-20T00:18:15.609-05:00 level=ERROR msg="Match failed" sol_id=612 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:18:24.801-05:00 level=INFO msg="Match Result" sol="SS4A Traffic Safety Plan" score=85
+time=2026-01-20T00:18:33.900-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 65,\n  \"explanation\": \"SEAD's core competencies in full-stack software engineering, data analytics, and systems modernization align reasonably well with a general airport consulting project. However, the specific focus on airport planning (likely involving traffic management, infrastructure, and potentially passenger data analysis) isn't a direct match to their stated mission of mission-critical defense and national security software. The emphasis on legacy refactoring and open standards could be relevant, but requires further clarification regarding the scope of the project. A lower score due to the limited overlap in stated areas of expertise.”\n}\n"
+time=2026-01-20T00:18:33.901-05:00 level=ERROR msg="Match failed" sol_id=610 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:18:42.563-05:00 level=INFO msg="Match Result" sol="AIRPORT CONSULTING SERVICES - City of LaFayette" score=65
+time=2026-01-20T00:18:50.584-05:00 level=INFO msg="Match Result" sol="Simpson MS Renovations, B26061" score=85
+time=2026-01-20T00:18:59.097-05:00 level=INFO msg="Match Result" sol="Clearing, Grubbing & Grassing 301 Joe Tamplin Industrial Blvd" score=75
+time=2026-01-20T00:19:09.298-05:00 level=INFO msg="Match Result" sol="BID #26-28, Warren Holder Park Concrete Improvements" score=85
+time=2026-01-20T00:19:18.507-05:00 level=INFO msg="Match Result" sol="26084-P, Data Center Co-Located Personal Property Valuation" score=85
+time=2026-01-20T00:19:26.185-05:00 level=INFO msg="Match Result" sol="Longview Drive Roadway and Drainage Improvements" score=85
+time=2026-01-20T00:19:35.777-05:00 level=INFO msg="Match Result" sol="TCSG-411, Chattahoochee Technical College CDL Pad" score=85
+time=2026-01-20T00:19:45.774-05:00 level=INFO msg="Match Result" sol="RFP26-022 Hazardous Materials Commodity Flow Study" score=85
+time=2026-01-20T00:19:54.543-05:00 level=INFO msg="Match Result" sol="Pine Street Drainage Improvements (PE24247)" score=85
+time=2026-01-20T00:20:01.545-05:00 level=INFO msg="Match Result" sol="ITB 26-PW04, FY26 Asphalt Reconstruction & Resurfacing" score=35
+time=2026-01-20T00:20:12.250-05:00 level=INFO msg="Match Result" sol="IFB26-025 Old Jesup Rd Drainage Improvement Project" score=85
+time=2026-01-20T00:20:22.402-05:00 level=INFO msg="Match Result" sol="IFB26-024 Historic Courthouse Paver Renovation Project (Re-Bid)" score=85
+time=2026-01-20T00:20:31.630-05:00 level=INFO msg="Match Result" sol="IFB26-023 Fourth Street Drainage Replacement Project" score=65
+time=2026-01-20T00:20:42.372-05:00 level=INFO msg="Match Result" sol="AL ROLLINS PARK RENOVATIONS RFP" score=85
+time=2026-01-20T00:20:48.141-05:00 level=INFO msg="Match Result" sol="26-023 ITB CUSTODIAL SUPPLIES" score=25
+time=2026-01-20T00:20:57.922-05:00 level=INFO msg="Match Result" sol="RFI Item #26-300 Fueling Services" score=85
+time=2026-01-20T00:21:04.853-05:00 level=INFO msg="Match Result" sol="2026 Sidewalk Repairs Southfork and River Crest" score=35
+time=2026-01-20T00:21:11.567-05:00 level=INFO msg="Match Result" sol="26-0004-2 Annual Contract to Provide the Operation of Water Recreation Services for Chatham County" score=35
+time=2026-01-20T00:21:19.401-05:00 level=INFO msg="Match Result" sol="RFP for Downtown Landscape Maintenance" score=35
+time=2026-01-20T00:21:30.213-05:00 level=INFO msg="Match Result" sol="RFP #26-03 W.A. Fountain Elementary/Unidos Dual Language School Replacement" score=85
+time=2026-01-20T00:21:43.192-05:00 level=INFO msg="Match Result" sol="Osborne HS Grandstand Refurbishment, B26067" score=85
+time=2026-01-20T00:21:50.328-05:00 level=INFO msg="Match Result" sol="BID #26-26, Warren Holder Fencing and Netting Pole Installation" score=15
+time=2026-01-20T00:21:57.049-05:00 level=INFO msg="Match Result" sol="BID #26-21, Tree Removal and Vegetation Management Services - Annual Contract" score=5
+time=2026-01-20T00:22:04.962-05:00 level=INFO msg="Match Result" sol="BL032-26 Purchase of Playground Resurfacing Material on an Annual Contract" score=15
+time=2026-01-20T00:22:12.646-05:00 level=INFO msg="Match Result" sol="176-26, Summer 2026 Painting Project" score=10
+time=2026-01-20T00:22:21.490-05:00 level=INFO msg="Match Result" sol="Willie Basby Park Walking Trail & Playground" score=45
+time=2026-01-20T00:22:30.837-05:00 level=INFO msg="Match Result" sol="Senior Center Renovation" score=45
+time=2026-01-20T00:22:42.390-05:00 level=INFO msg="Match Result" sol="GSU - Sports Arena - Replace Chillers" score=85
+time=2026-01-20T00:22:50.778-05:00 level=INFO msg="Match Result" sol="FVSU Boiler Replacement Rebid-Bond, Troup, Peabody" score=65
+time=2026-01-20T00:22:59.259-05:00 level=INFO msg="Match Result" sol="Effingham Facilities Construction Package 2025" score=65
+time=2026-01-20T00:23:09.085-05:00 level=INFO msg="Match Result" sol="Annual Labor - Sewer Lines" score=75
+time=2026-01-20T00:23:18.751-05:00 level=INFO msg="Match Result" sol="26-031 S2186 Mt Paran Rd and Powers Ferry Rd. Sidewalk Improvements" score=45
+time=2026-01-20T00:23:28.166-05:00 level=INFO msg="Match Result" sol="26-028-Pole Restoration Services" score=85
+time=2026-01-20T00:23:38.493-05:00 level=INFO msg="Match Result" sol="CMAR New Georgetown WR Facility & Travis WRF Expansion Project - Event No. 12006" score=92
+time=2026-01-20T00:23:47.213-05:00 level=INFO msg="Match Result" sol="2026-180000-0106-Pest Control Services" score=35
+time=2026-01-20T00:23:55.302-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 90,\n  \"explanation\": \"SEAD's core competencies in full-stack software engineering, advanced data analytics, and systems modernization align extremely well with Pierce County's project requiring improvements to Gilman and Trudie Road. The focus on data-driven decision making (analytics) and building robust, scalable systems (software engineering) directly addresses the project's implied need for infrastructure management and potentially optimization – as noted in SEAD’s State & Local Agency Applications section.”\n}\n"
+time=2026-01-20T00:23:55.303-05:00 level=ERROR msg="Match failed" sol_id=574 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:24:02.066-05:00 level=INFO msg="Match Result" sol="JANITORIAL SERVICES AND OPERATING AGREEMENT" score=5
+time=2026-01-20T00:24:10.521-05:00 level=INFO msg="Match Result" sol="26-0002-3 Annual Contract for Preventative Maintenance of Sump Pump Systems" score=25
+time=2026-01-20T00:24:20.526-05:00 level=INFO msg="Match Result" sol="RFQ: Engineering Services for Road and Drainage Improvements" score=75
+time=2026-01-20T00:24:31.848-05:00 level=INFO msg="Match Result" sol="ENGINEERING AND/OR ARCHITECTURAL GRANT SERVICES - STATE AND FEDERAL PROJECTS FY2026/FY2027/FY2028" score=85
+time=2026-01-20T00:24:45.783-05:00 level=INFO msg="Match Result" sol="ADMINISTRATIVE & RELATED GRANT SERVICES - STATE AND FEDERAL PROJECTS FY2026/FY2027/FY2028" score=75
+time=2026-01-20T00:24:57.162-05:00 level=INFO msg="Match Result" sol="Request for Statement of Qualifications Engineering Services" score=85
+time=2026-01-20T00:25:05.248-05:00 level=INFO msg="Match Result" sol="PTC ITB26-01 FAC Town Green Restroom Renovation" score=35
+time=2026-01-20T00:25:16.975-05:00 level=INFO msg="Match Result" sol="Georgia War Veterans Home Management and Operation" score=85
+time=2026-01-20T00:25:30.739-05:00 level=INFO msg="Match Result" sol="RFP 2026-003 Henderson Park Master Plan" score=85
+time=2026-01-20T00:25:39.748-05:00 level=INFO msg="Match Result" sol="IFB B50646-A - Upgrading Aging Server Equipment" score=92
+time=2026-01-20T00:25:46.983-05:00 level=INFO msg="Match Result" sol="HS Football Lockers" score=15
+time=2026-01-20T00:25:55.173-05:00 level=INFO msg="Match Result" sol="GSU - Irrigation System Installation, Repairs and Maintenance Services" score=45
+time=2026-01-20T00:26:05.502-05:00 level=INFO msg="Match Result" sol="Classroom Technology for the new Rome Middle School" score=75
+time=2026-01-20T00:26:16.335-05:00 level=INFO msg="Match Result" sol="Access Control Study, Recommendation, & Implementation of an Updated Access Card Reader System" score=85
+time=2026-01-20T00:26:22.295-05:00 level=INFO msg="Match Result" sol="2026-180000-0105-Septic Tank and Grease Trap Services" score=5
+time=2026-01-20T00:26:31.912-05:00 level=INFO msg="Match Result" sol="2026-180000-0105-Gymnasium Floor and Recoating" score=65
+time=2026-01-20T00:26:42.550-05:00 level=INFO msg="Match Result" sol="VILLA RICA PARKWAY ROAD IMPROVEMENT PROJECT" score=85
+time=2026-01-20T00:26:50.325-05:00 level=INFO msg="Match Result" sol="Old Alabama Road Drainage Improvements" score=75
+time=2026-01-20T00:26:58.398-05:00 level=INFO msg="Match Result" sol="26-020 ERATE RFP CABLING" score=65
+time=2026-01-20T00:27:07.473-05:00 level=INFO msg="Match Result" sol="KSU Auditorium Seating, Maintenance & Repair" score=65
+time=2026-01-20T00:27:17.085-05:00 level=INFO msg="Match Result" sol="Generator Improvements" score=85
+time=2026-01-20T00:27:27.435-05:00 level=INFO msg="Match Result" sol="RFP- On Call Water, Sewer and Stormwater Emergency and Repair Services" score=75
+time=2026-01-20T00:27:35.987-05:00 level=INFO msg="Match Result" sol="Wilcox County Jail Complex/Sheriff Office Design Professional Services RFP" score=75
+time=2026-01-20T00:27:45.618-05:00 level=INFO msg="Match Result" sol="SO26-A002 DESIGN PROFESSIONAL SERVICES FOR JAIL MODERNIZATION PROJECT" score=85
+time=2026-01-20T00:27:54.857-05:00 level=INFO msg="Match Result" sol="26-016 SNP UNIFORMS" score=65
+time=2026-01-20T00:28:00.893-05:00 level=INFO msg="Match Result" sol="Janitorial Services Region 13" score=5
+time=2026-01-20T00:28:09.925-05:00 level=INFO msg="Match Result" sol="Digital Modernization Advisory & Consultation" score=92
+time=2026-01-20T00:28:20.619-05:00 level=INFO msg="Match Result" sol="Thrasher Park Lighting Enhancements (RFP PW 26-03)" score=85
+time=2026-01-20T00:28:32.835-05:00 level=INFO msg="Match Result" sol="RFP-2605BM District WAN (Wide Area Network) Services" score=75
+time=2026-01-20T00:28:40.942-05:00 level=INFO msg="Match Result" sol="Multifunction Office Machine Lease RFP2026-01" score=45
+time=2026-01-20T00:28:51.386-05:00 level=INFO msg="Match Result" sol="26-08 Houston County Safety Action Plan" score=92
+time=2026-01-20T00:28:59.566-05:00 level=INFO msg="Match Result" sol="2026 Safety Action Program ¿ Thermoplastic Line Striping Project" score=85
+time=2026-01-20T00:29:08.470-05:00 level=INFO msg="Match Result" sol="2026 Resurfacing/LMIG" score=92
+time=2026-01-20T00:29:17.441-05:00 level=INFO msg="Match Result" sol="Pre-Advertisement Notice for Citywide HVAC, Service, Repair and Maintenance" score=65
+time=2026-01-20T00:29:25.284-05:00 level=INFO msg="Match Result" sol="FY2026 ¿ 02 Harris Drive / 126 Harris Drive Sale" score=85
+time=2026-01-20T00:29:35.992-05:00 level=INFO msg="Match Result" sol="Satterfield Park Improvements" score=85
+time=2026-01-20T00:29:44.263-05:00 level=INFO msg="Match Result" sol="Renovations to Cowan Road Elementary School" score=65
+time=2026-01-20T00:29:53.125-05:00 level=INFO msg="Match Result" sol="OCES Activity Area Improvements" score=85
+time=2026-01-20T00:30:01.914-05:00 level=INFO msg="Match Result" sol="Grounds Care and Maintenance" score=45
+time=2026-01-20T00:30:12.729-05:00 level=INFO msg="Match Result" sol="Big Shanty ES Renovations, B26006" score=85
+time=2026-01-20T00:30:22.783-05:00 level=INFO msg="Match Result" sol="BROOKLYN CREEK INTERCEPTOR IMPROVEMENTS PHASE 2" score=85
+time=2026-01-20T00:30:31.267-05:00 level=INFO msg="Match Result" sol="BL141-25, Department of Support Services Office Build Out, Addition, and Site Development Project" score=75
+time=2026-01-20T00:30:40.170-05:00 level=INFO msg="Match Result" sol="BL029-26 Cruse Road at Regency Drive to Oakland Road Intersections Improvement Project" score=85
+time=2026-01-20T00:30:47.551-05:00 level=INFO msg="Match Result" sol="26-002 NOTICE OF REQUEST FOR STATEMENT OF QUALIFICATIONS PROFESSIONAL ON-CALL AIRPORT PLANNING SERVI" score=35
+time=2026-01-20T00:30:56.805-05:00 level=INFO msg="Match Result" sol="172-26   E-Rate Wired and Wireless CAT2 Network Solutions" score=85
+time=2026-01-20T00:31:07.743-05:00 level=INFO msg="Match Result" sol="Woodlawn Dr & Claxton Dairy Rd Roundabout" score=92
+time=2026-01-20T00:31:15.583-05:00 level=INFO msg="Match Result" sol="Walk in Freezer" score=35
+time=2026-01-20T00:31:25.745-05:00 level=INFO msg="Match Result" sol="Senior Homeowner Rehabilitation Program" score=75
+time=2026-01-20T00:31:34.696-05:00 level=INFO msg="Match Result" sol="PROMOTIONAL ASSESSMENT FOR THE POLICE DEPARTMENT" score=85
+time=2026-01-20T00:31:43.520-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 45,\n  \"explanation\": \"While McEachern HS is a public sector project, SEAD's core competencies – full-stack software engineering, data analytics, and systems modernization – don't align well with resurfacing a tennis court. Their expertise leans heavily toward complex systems development and data-driven solutions, not physical infrastructure. The project is likely a straightforward construction or maintenance task, a significant mismatch for SEAD's advanced capabilities. Limited overlap in skills, but a small chance due to potential data collection for court usage analysis.”\n}\n"
+time=2026-01-20T00:31:43.521-05:00 level=ERROR msg="Match failed" sol_id=524 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:31:52.735-05:00 level=INFO msg="Match Result" sol="ITB 26-FD01, Fire Station Cascade Systems" score=92
+time=2026-01-20T00:32:00.785-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 92,\n  \"explanation\": \"SEAD's core competencies in full-stack software engineering, advanced data analytics, and systems modernization align exceptionally well with the opportunity's focus on a Central Crime Lab - likely requiring robust data analysis, secure system development, and potentially legacy system integration. The emphasis on 'CxA' (likely Cybersecurity & Analytics) directly matches SEAD's expertise. The inclusion of federal agency applications fits perfectly with the Georgia State Financing And Investment Commission.”\n}\n"
+time=2026-01-20T00:32:00.786-05:00 level=ERROR msg="Match failed" sol_id=522 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:32:10.186-05:00 level=INFO msg="Match Result" sol="26-001 NOTICE OF REQUEST FOR STATEMENT OF QUALIFICATIONS PROFESSIONAL ON-CALL AIRPORT ENGINEERING SE" score=35
+time=2026-01-20T00:32:22.941-05:00 level=INFO msg="Match Result" sol="2025-29 CCPW F350 w/Service Body" score=85
+time=2026-01-20T00:32:35.898-05:00 level=INFO msg="Match Result" sol="26-029-LH Fire Station Emergency Alert System (2/19/26)" score=85
+time=2026-01-20T00:32:44.322-05:00 level=INFO msg="Match Result" sol="Public Safety Training Facility" score=85
+time=2026-01-20T00:32:51.317-05:00 level=INFO msg="Match Result" sol="Forsyth Finished Water Main - Contract #W4" score=92
+time=2026-01-20T00:33:00.636-05:00 level=INFO msg="Match Result" sol="RFP 26-110, Workers' Compensation Third Party Administrator Services" score=65
+time=2026-01-20T00:33:08.646-05:00 level=INFO msg="Match Result" sol="T32-D7-PavePres-SR 85@285 ramp-183297" score=95
+time=2026-01-20T00:33:18.483-05:00 level=INFO msg="Match Result" sol="T32-D7-Drainage-SR 9 MP 8.8 Fulton-183361" score=95
+time=2026-01-20T00:33:27.162-05:00 level=INFO msg="Match Result" sol="Design-Build RFP  Phase 1 Capital Improvements" score=65
+time=2026-01-20T00:33:32.931-05:00 level=INFO msg="Match Result" sol="RFP #26-25, Ice Machine Repair and Maintenance - Annual Contract" score=5
+time=2026-01-20T00:33:41.626-05:00 level=INFO msg="Match Result" sol="RFP #26-18, Remodel of Current Courts at Warren Holder Park" score=75
+time=2026-01-20T00:33:50.544-05:00 level=INFO msg="Match Result" sol="PORTABLE CLASSROOM RENTAL 2026" score=45
+time=2026-01-20T00:34:00.854-05:00 level=INFO msg="Match Result" sol="Dowell MS Renovations, B26022" score=85
+time=2026-01-20T00:34:07.253-05:00 level=INFO msg="Match Result" sol="IFB B26011, Hillgrove HS Flooring Replacement" score=35
+time=2026-01-20T00:34:16.505-05:00 level=INFO msg="Match Result" sol="Construction Manager At Risk for Water Reclamation Facility expansion" score=65
+time=2026-01-20T00:34:25.547-05:00 level=INFO msg="Match Result" sol="IFB B26010, Lindley MS Flooring Replacement" score=65
+time=2026-01-20T00:34:33.346-05:00 level=INFO msg="Match Result" sol="IFB B26009, Ford ES Flooring Replacement" score=65
+time=2026-01-20T00:34:39.007-05:00 level=INFO msg="Match Result" sol="Removal and Replacement of ceiling tiles and grids at Red Bud Elementary Buildings 2011 & 2030" score=5
+time=2026-01-20T00:34:45.418-05:00 level=INFO msg="Match Result" sol="Removal and  Replacement of Light Fixtures at Red Bud Elementary Building 2011 & 2030" score=10
+time=2026-01-20T00:34:53.960-05:00 level=INFO msg="Match Result" sol="RFP 26017- On-Call Environmental, Geotechnical and Materials Testing Svcs" score=65
+time=2026-01-20T00:35:00.646-05:00 level=INFO msg="Match Result" sol="Painting at Red Bud Elementary Buildings 2011 & 2030" score=15
+time=2026-01-20T00:35:06.697-05:00 level=INFO msg="Match Result" sol="Flooring Installation at Red Bud Elementary Building 2011 & 2030" score=15
+time=2026-01-20T00:35:13.851-05:00 level=INFO msg="Match Result" sol="Epoxy Floor Coating for Red Bud Elementary Buildings 2013 & 2030" score=15
+time=2026-01-20T00:35:22.648-05:00 level=INFO msg="Match Result" sol="Pierce County High School Softball Shade Canopy" score=35
+time=2026-01-20T00:35:31.701-05:00 level=INFO msg="Match Result" sol="T32-D7-VegRemove-I 20 WB MP 34.3-25.4-183288" score=92
+time=2026-01-20T00:35:42.259-05:00 level=INFO msg="Match Result" sol="T32-D7-VegRemov-I 20 EB MP 26.4-34.4-183223" score=95
+time=2026-01-20T00:35:55.617-05:00 level=INFO msg="Match Result" sol="T32-D7-PavePres-I20 access Hillandale-182729" score=92
+time=2026-01-20T00:36:04.989-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 95,\n  \"explanation\": \"SEAD's core competencies – full-stack software engineering, advanced data analytics, and systems modernization – align directly with the Department of Transportation’s needs for public infrastructure management, data-driven decision making, and potential legacy system upgrades. The opportunity's reference to 'South Loop-183208' suggests a specific project likely involving data analytics and system optimization, a perfect fit for SEAD’s capabilities. The mention of 'CCW' further indicates a potential communications and workflow component suitable for their expertise.”\n}\n"
+time=2026-01-20T00:36:04.990-05:00 level=ERROR msg="Match failed" sol_id=494 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:36:16.160-05:00 level=INFO msg="Match Result" sol="RFP - CDBG Engineering Services" score=85
+time=2026-01-20T00:36:26.336-05:00 level=INFO msg="Match Result" sol="Blue Jay, Midland, and Low Ground Road Sewer Extension - 25-ITB-107" score=85
+time=2026-01-20T00:36:34.269-05:00 level=INFO msg="Match Result" sol="RFP #26-24, Fabrication & Installation of Wayfinding Signage" score=35
+time=2026-01-20T00:36:41.717-05:00 level=INFO msg="Match Result" sol="RFP #26-23, On-Call Data Center Technical Advisory Services" score=85
+time=2026-01-20T00:36:49.567-05:00 level=INFO msg="Match Result" sol="Athletic Fields Care and Maintenance" score=45
+time=2026-01-20T00:36:58.317-05:00 level=INFO msg="Match Result" sol="26071-B Justice Center Roof Replacement" score=65
+time=2026-01-20T00:37:08.091-05:00 level=INFO msg="Match Result" sol="177-26  Behavioral Training and On-Going Coaching Services" score=75
+time=2026-01-20T00:37:19.269-05:00 level=INFO msg="Match Result" sol="SB015-26 124/Scenic Hwy @ Longleaf Dr/Maple wood Dr Project" score=85
+time=2026-01-20T00:37:33.094-05:00 level=INFO msg="Match Result" sol="RFQ 484-020326 GEC Post-let Services for I-16 from I-95/Chatham to SR 67/Bulloch" score=85
+time=2026-01-20T00:37:47.660-05:00 level=INFO msg="Match Result" sol="GDC-177/171E CXA" score=95
+time=2026-01-20T00:37:55.703-05:00 level=INFO msg="Match Result" sol="Briarwood Subdivision Phase 1" score=85
+time=2026-01-20T00:38:05.512-05:00 level=INFO msg="Match Result" sol="RFP 26-001 Enterprise Resources Planning (ERP)" score=75
+time=2026-01-20T00:38:15.728-05:00 level=INFO msg="Match Result" sol="Toombs Co. 2025 LMIG - Lawson Rd" score=85
+time=2026-01-20T00:38:25.252-05:00 level=INFO msg="Match Result" sol="Pre-Advertisement Notice-DOA On Call Wrecker Service" score=75
+time=2026-01-20T00:38:32.034-05:00 level=INFO msg="Match Result" sol="Pre-Advertisement Notice for Hydraulic Cylinders Hose Fabrication & Repair Services" score=10
+time=2026-01-20T00:38:40.639-05:00 level=INFO msg="Match Result" sol="GASOU - HVAC Equipment, Parts, & Supplies" score=35
+time=2026-01-20T00:38:48.802-05:00 level=INFO msg="Match Result" sol="Effingham County Animal Shelter Renovation- Construction" score=25
+time=2026-01-20T00:38:58.305-05:00 level=INFO msg="Match Result" sol="Baldwin County Little Fishing Creek Golf Course Construction" score=65
+time=2026-01-20T00:39:07.525-05:00 level=INFO msg="Match Result" sol="RFQ 484-020226 CEI services for I-16 from I-95 Chatham to SR 67 Bulloch" score=92
+time=2026-01-20T00:39:20.794-05:00 level=INFO msg="Match Result" sol="60MW R.I.C.E. Generation Facility" score=85
+time=2026-01-20T00:39:33.726-05:00 level=INFO msg="Match Result" sol="BL023-26 Provision of Maximo Platform Migration Professional Services on a Multi-Year Contract" score=85
+time=2026-01-20T00:39:41.900-05:00 level=INFO msg="Match Result" sol="T32-D4-PavePres-Lowndes SR 31-183066" score=95
+time=2026-01-20T00:39:50.769-05:00 level=INFO msg="Match Result" sol="T32-D4-PavePres-Lanier Co.SR 31- 183056" score=95
+time=2026-01-20T00:40:00.109-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 35,\n  \"explanation\": \"SEAD's expertise in full-stack software engineering, data analytics, and systems modernization appears largely irrelevant to a street sweeper machine. While data analytics could potentially be applied to traffic patterns or waste management optimization, the core capabilities – Agile development, DevSecOps, cloud-native architectures, ML/AI – don't align with the project's nature. The focus on mission-critical systems and government agency applications further diminishes the fit. It’s a very specific, hardware-focused project with minimal potential for SEAD's typical offerings.”\n}\n"
+time=2026-01-20T00:40:00.110-05:00 level=ERROR msg="Match failed" sol_id=470 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:40:10.653-05:00 level=INFO msg="Match Result" sol="RFP Neighborhood Market Study (1/30/26) Macon-Bibb County Land Authority" score=85
+time=2026-01-20T00:40:21.841-05:00 level=INFO msg="Match Result" sol="Pre-Advertisement Notice-ATLANTA DRINKING WATER RENEWAL AND REPLACEMENT" score=85
+time=2026-01-20T00:40:34.851-05:00 level=INFO msg="Match Result" sol="Pre-Advertisement Notice- NEMA Switch Replacement" score=75
+time=2026-01-20T00:40:42.034-05:00 level=INFO msg="Match Result" sol="Pre-Advertisement Notice for DPW-Repair Services for Heavy Landscaping Equipment" score=35
+time=2026-01-20T00:40:49.121-05:00 level=INFO msg="Match Result" sol="Fire Department Station 2 Renovations" score=35
+time=2026-01-20T00:40:59.344-05:00 level=INFO msg="Match Result" sol="Audit Services" score=65
+time=2026-01-20T00:41:09.793-05:00 level=INFO msg="Match Result" sol="Network Switching & Wireless Infrastructure" score=85
+time=2026-01-20T00:41:18.960-05:00 level=INFO msg="Match Result" sol="Gigabit Wide Area Fiber Network" score=85
+time=2026-01-20T00:41:28.707-05:00 level=INFO msg="Match Result" sol="AIM-Construction Mgmt 2026" score=85
+time=2026-01-20T00:41:38.772-05:00 level=INFO msg="Match Result" sol="RFP #26-20, On-Paving - Annual Contract" score=85
+time=2026-01-20T00:41:47.490-05:00 level=INFO msg="Match Result" sol="Early Intervention System Modernization (EISM)" score=92
+time=2026-01-20T00:41:55.782-05:00 level=INFO msg="Match Result" sol="Band Tower for Kell HS, B26068" score=75
+time=2026-01-20T00:42:04.445-05:00 level=INFO msg="Match Result" sol="2603 Wireless Access Points and Ethernet" score=85
+time=2026-01-20T00:42:14.205-05:00 level=INFO msg="Match Result" sol="2602 Uninterruptible Power Supplies" score=65
+time=2026-01-20T00:42:24.446-05:00 level=INFO msg="Match Result" sol="2601 Dedicated Internet Access" score=75
+time=2026-01-20T00:42:30.529-05:00 level=INFO msg="Match Result" sol="Unbound Covers for Braille Books" score=35
+time=2026-01-20T00:42:40.025-05:00 level=INFO msg="Match Result" sol="Ulmer Park Restrooms RPF 25-006" score=75
+time=2026-01-20T00:42:51.175-05:00 level=INFO msg="Match Result" sol="TCSS Sports Lighting" score=75
+time=2026-01-20T00:42:59.926-05:00 level=INFO msg="Match Result" sol="Statewide Traffic Incident Management Svcs (T32)" score=92
+time=2026-01-20T00:43:10.050-05:00 level=INFO msg="Match Result" sol="Right of Way Acquisition Services PI 0008387 (T32)" score=65
+time=2026-01-20T00:43:21.172-05:00 level=INFO msg="Match Result" sol="RFP - Adaptive Reuse of the former St Marys Submarine Museum" score=85
+time=2026-01-20T00:43:32.507-05:00 level=INFO msg="Match Result" sol="Map Printing Svcs-GA State Highway &Transportation" score=85
+time=2026-01-20T00:43:44.195-05:00 level=INFO msg="Match Result" sol="IFB/CS/EXE/2511-1260076/Clean Heavy Duty Vehicle Infrastructure" score=92
+time=2026-01-20T00:43:56.872-05:00 level=INFO msg="Match Result" sol="Elevator Modernization Project" score=92
+time=2026-01-20T00:44:04.794-05:00 level=INFO msg="Match Result" sol="Camden County Human Resources Benefits Administration" score=85
+time=2026-01-20T00:44:14.000-05:00 level=INFO msg="Match Result" sol="Brooks County RFP for Sanitation" score=65
+time=2026-01-20T00:44:24.574-05:00 level=INFO msg="Match Result" sol="681- One (1) UAV/Drone for Prescribed Burns" score=85
+time=2026-01-20T00:44:36.149-05:00 level=INFO msg="Match Result" sol="26-024 Cnstrctn Eng and Inspection (CEI) Srvcs for Path 400 Trail Extension PI No.00021223(Phase II)" score=75
+time=2026-01-20T00:44:47.465-05:00 level=INFO msg="Match Result" sol="26-0003-2 Purchase of KnowBe4 Security Awareness Training & Phishing Prevention Subscription" score=85
+time=2026-01-20T00:44:53.905-05:00 level=INFO msg="Match Result" sol="25-0166-4. Annual Contract. Provide Commercial Moving Services (Elections/Voter Registration)" score=15
+time=2026-01-20T00:45:02.964-05:00 level=INFO msg="Match Result" sol="FY 2026 Right of Way Reclamation Contract I (re-bid)" score=75
+time=2026-01-20T00:45:08.365-05:00 level=INFO msg="Match Result" sol="Pre-Advertisement Notice Citywide Plumbing" score=25
+time=2026-01-20T00:45:19.140-05:00 level=INFO msg="Match Result" sol="Hay Field Management" score=65
+time=2026-01-20T00:45:29.412-05:00 level=INFO msg="Match Result" sol="City of Dublin Water Works Building Renovation" score=75
+time=2026-01-20T00:45:37.737-05:00 level=INFO msg="Match Result" sol="Security Risk Assessments" score=92
+time=2026-01-20T00:45:46.789-05:00 level=INFO msg="Match Result" sol="Memorial Drive Corridor Branding Sign Fabrication & Gateway Feature Implementation (One-Time Buy)" score=25
+time=2026-01-20T00:45:54.716-05:00 level=INFO msg="Match Result" sol="Fence Replacement" score=65
+time=2026-01-20T00:46:00.734-05:00 level=INFO msg="Match Result" sol="BL024-26  Provision of Wood Floor Refinishing on a Multi-Year Contract" score=5
+time=2026-01-20T00:46:07.597-05:00 level=INFO msg="Match Result" sol="RFQ #492-25 Real Estate Brokerage Services" score=5
+time=2026-01-20T00:46:16.156-05:00 level=INFO msg="Match Result" sol="HAP GRAPHIC DESIGN PROJECT" score=35
+time=2026-01-20T00:46:26.104-05:00 level=INFO msg="Match Result" sol="Request for Proposal-HVAC Controls" score=85
+time=2026-01-20T00:46:36.409-05:00 level=INFO msg="Match Result" sol="Renovation & Modification for St Marys City Hall" score=75
+time=2026-01-20T00:46:47.877-05:00 level=INFO msg="Match Result" sol="RFP 26-32-1514 Transportation Program Management and CEI Services As Needed" score=85
+time=2026-01-20T00:46:57.364-05:00 level=INFO msg="Match Result" sol="PNA-484-030226 Construction Engineering and Inspection (CEI) Services for District 1 - Gainesville" score=65
+time=2026-01-20T00:47:08.268-05:00 level=INFO msg="Match Result" sol="New SCWRF CMAR" score=85
+time=2026-01-20T00:47:17.577-05:00 level=INFO msg="Match Result" sol="NESBIT FERRY ROAD & COLONY CLUB DRIVE INTERSECTION IMPROVEMENTS" score=85
+time=2026-01-20T00:47:27.568-05:00 level=INFO msg="Match Result" sol="ITB #26-11 CHEVY SILVERADO 5500 CLASS 5 4x4 DIESEL TRUCK WITH CRANE BODY" score=65
+time=2026-01-20T00:47:38.919-05:00 level=INFO msg="Match Result" sol="FY 2023 CDBG Water System Improvements" score=85
+time=2026-01-20T00:47:49.672-05:00 level=INFO msg="Match Result" sol="Architectural & Engineering Services for Various County Projects" score=85
+time=2026-01-20T00:47:58.162-05:00 level=INFO msg="Match Result" sol="Advertisement For Bid" score=85
+time=2026-01-20T00:48:08.295-05:00 level=INFO msg="Match Result" sol="954 NORTH MAIN STREET ROOF REPLACEMENT PROJECT" score=25
+time=2026-01-20T00:48:22.864-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 85,\n  \"explanation\": \"SEAD's expertise in full-stack software engineering, data analytics, and systems modernization aligns very well with the 'Ridling Field Renovation - Phase 2' project. Specifically, the focus on data analytics and potentially modernizing existing infrastructure (even if it's a field renovation – the project likely involves data collection, analysis for optimization, and potentially systems integration) is a strong match. The 'Commerce, City Of' agency also aligns with typical government clients GTRI often serves. The opportunity is slightly lower-scoring due to the specific nature of a field renovation – the technical depth required may be less than a typical software development project, but SEAD's capabilities can certainly contribute significantly.”\n}\n"
+time=2026-01-20T00:48:22.865-05:00 level=ERROR msg="Match failed" sol_id=418 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:48:39.008-05:00 level=INFO msg="Match Result" sol="26-005 Atlanta Street & Mitchell Street Drainage Project" score=85
+time=2026-01-20T00:48:47.981-05:00 level=INFO msg="Match Result" sol="UPPER YARD PAVING BID" score=35
+time=2026-01-20T00:48:59.473-05:00 level=INFO msg="Match Result" sol="Sanitary Sewer System Improvements" score=85
+time=2026-01-20T00:49:06.807-05:00 level=INFO msg="Match Result" sol="RFP #26-0129 - FIRE ALARM INSPECTION SERVICE (DISTRICTWIDE)" score=25
+time=2026-01-20T00:49:20.312-05:00 level=INFO msg="Match Result" sol="2018 CDBG-MIT Highland Neighborhood" score=85
+time=2026-01-20T00:49:31.749-05:00 level=INFO msg="Match Result" sol="THE COLLECTIVE OFF ROME DEVELOPMENT INFRASTRUCTURE WORK" score=85
+time=2026-01-20T00:49:39.455-05:00 level=INFO msg="Match Result" sol="RFB for METAL POLE BARNS AT UPPER YARD" score=15
+time=2026-01-20T00:49:47.977-05:00 level=INFO msg="Match Result" sol="Professional Engineering Services for Hickory Flat Highway Gateway Concept Transportation Improvemen" score=92
+time=2026-01-20T00:49:57.244-05:00 level=INFO msg="Match Result" sol="2026-005 Cherokee County Fire & EMS - Five Stations Renovation" score=85
+time=2026-01-20T00:50:06.161-05:00 level=INFO msg="Match Result" sol="T32-MitigationWetlandCredit- PI0014482-182881" score=95
+time=2026-01-20T00:50:15.412-05:00 level=INFO msg="Match Result" sol="T32-D6-PCC A3 Carroll I-20 EX 19 EB-182887" score=95
+time=2026-01-20T00:50:24.156-05:00 level=INFO msg="Match Result" sol="T32-D5-Sign- Chatham-183405" score=95
+time=2026-01-20T00:50:32.871-05:00 level=INFO msg="Match Result" sol=T32-D5-PCC-Chatham/Effingham-182806 score=95
+time=2026-01-20T00:50:40.980-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 95,\n  \"explanation\": \"SEAD's core competencies in full-stack software engineering, advanced data analytics, and systems modernization align perfectly with the Department of Transportation's (DOT) needs for public infrastructure management, data-driven transportation optimization, and potentially cybersecurity. The mention of 'Big Data' and ‘real-time insights’ directly maps to DOT’s desire for smart transportation solutions. The agency’s focus is a key area of GTRI SEAD’s strategic value proposition.”\n}\n"
+time=2026-01-20T00:50:40.980-05:00 level=ERROR msg="Match failed" sol_id=403 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T00:50:48.622-05:00 level=INFO msg="Match Result" sol=T32-D5-Drainage-Chatham-182811 score=92
+time=2026-01-20T00:50:56.183-05:00 level=INFO msg="Match Result" sol="SB016-26 Purchase of Gas Pipe and Materials" score=65
+time=2026-01-20T00:51:04.410-05:00 level=INFO msg="Match Result" sol="RFP - 2026-2027 Atlanta Regional Household Travel Survey" score=95
+time=2026-01-20T00:51:13.120-05:00 level=INFO msg="Match Result" sol="RFP Item #26-139 Old Government House Mold Remediation Project" score=65
+time=2026-01-20T00:51:21.259-05:00 level=INFO msg="Match Result" sol="City of Adairsville Hall Sewer Rehabilitation" score=85
+time=2026-01-20T00:51:25.960-05:00 level=INFO msg="Match Result" sol="2026-RFP-201 Administration Building Janitorial Cleaning Services" score=5
+time=2026-01-20T00:51:36.745-05:00 level=INFO msg="Match Result" sol="2025 Stormwater Structure Maintenance" score=85
+time=2026-01-20T00:51:45.934-05:00 level=INFO msg="Match Result" sol=T32-MitigationStream/WetlandCredit-PI002016-182880 score=92
+time=2026-01-20T00:51:54.753-05:00 level=INFO msg="Match Result" sol="RFP 25-0171-5. PORT SECURITY GRANT PROGRAM (PSGP) GRANT MANAGEMENT SERVICES" score=92
+time=2026-01-20T00:52:03.093-05:00 level=INFO msg="Match Result" sol="688 - Wildlife Trapping" score=65
+time=2026-01-20T00:52:09.863-05:00 level=INFO msg="Match Result" sol="BL105-25 Provision of Pressure Washing Services on an Annual Contract" score=5
+time=2026-01-20T00:52:18.247-05:00 level=INFO msg="Match Result" sol="RFQ 2026-01 Kayak and Paddle Board Rental Services" score=25
+time=2026-01-20T00:52:27.641-05:00 level=INFO msg="Match Result" sol="FY26 City of Douglas Wastewater Treatment Plant Clarifier Drive Removal, Rebuild, and Reinstallation" score=75
+time=2026-01-20T00:52:37.478-05:00 level=INFO msg="Match Result" sol="SB014-26 West Pike Street Sidewalk Infill Project" score=45
+time=2026-01-20T00:52:46.693-05:00 level=INFO msg="Match Result" sol="RFQ-484-012726 Regional Safety Design Services" score=75
+time=2026-01-20T00:52:54.268-05:00 level=INFO msg="Match Result" sol="RFP Scoreboard Replacement for East Jackson & Jackson County High Schools" score=75
+time=2026-01-20T00:53:04.500-05:00 level=INFO msg="Match Result" sol="PNA-484-022626 Roundabouts and Alternative Intersections/Interchanges Support Services" score=92
+time=2026-01-20T00:53:14.876-05:00 level=INFO msg="Match Result" sol="KSU BR-90-2601-DP Bailey School of Music & Textiles Chastain Pointe Renovations" score=65
+time=2026-01-20T00:53:23.180-05:00 level=INFO msg="Match Result" sol="GCSU BR-65-2601-DB Baseball/Softball Complex Upgrades" score=75
+time=2026-01-20T00:53:31.012-05:00 level=INFO msg="Match Result" sol="DCSD26-008 HVAC Modifications and Reroof at Fairplay Middle School" score=25
+time=2026-01-20T00:53:41.192-05:00 level=INFO msg="Match Result" sol="Clarence E. Morgan- Phase II" score=85
+time=2026-01-20T00:53:47.723-05:00 level=INFO msg="Match Result" sol="26-0012-3 Purchase and Installation of Meyer Plow on Two (2) Ford F-150" score=5
+time=2026-01-20T00:53:56.674-05:00 level=INFO msg="Match Result" sol="RFQ #26-0127 - BOE OFFICE INTERIOR MODIFICATIONS" score=35
+time=2026-01-20T00:54:07.257-05:00 level=INFO msg="Match Result" sol="2024-2025 LMIG FDR Resurfacing Project" score=85
+time=2026-01-20T00:54:17.776-05:00 level=INFO msg="Match Result" sol="25RFP1529784B-RT  Community Housing Development Organization (CHDO)" score=35
+time=2026-01-20T00:54:26.476-05:00 level=INFO msg="Match Result" sol="Jackson County Infrastructure Construction Project Management" score=85
+time=2026-01-20T00:54:37.491-05:00 level=INFO msg="Match Result" sol="2025-149-RFP Congregate and Shelf Stable Meal Services for Seniors (Three (3) Year Multiyear)" score=75
+time=2026-01-20T00:54:51.532-05:00 level=INFO msg="Match Result" sol="Bagged Concrete Products (T50)" score=65
+time=2026-01-20T00:54:59.343-05:00 level=INFO msg="Match Result" sol="26-027 Comprehensive Plan Update 2027-2047" score=92
+time=2026-01-20T00:55:07.506-05:00 level=INFO msg="Match Result" sol="Uniforms and Related Items" score=65
+time=2026-01-20T00:55:16.709-05:00 level=INFO msg="Match Result" sol="RFQ 2026-0002 Four (4) Pickup Trucks" score=35
+time=2026-01-20T00:55:22.012-05:00 level=INFO msg="Match Result" sol="RFQ 2026-0001 Three (3) Mid-Size Sports Utility Vehicles (SUVs)" score=10
+time=2026-01-20T00:55:31.755-05:00 level=INFO msg="Match Result" sol="RFP 26-0021 A&E Services for the Renovation & Expansion of the METRA Transfer Center" score=65
+time=2026-01-20T00:55:41.023-05:00 level=INFO msg="Match Result" sol="BID 2026-04 - POLICE INTERCEPTOR: QTY: FOUR (4)" score=85
+time=2026-01-20T00:55:51.414-05:00 level=INFO msg="Match Result" sol="RP007-26 Provision of Comprehensive Adolescent Treatment Services on a Multi-Year Contract" score=85
+time=2026-01-20T00:56:01.161-05:00 level=INFO msg="Match Result" sol="Soup/Gravy Bases" score=35
+time=2026-01-20T00:56:11.839-05:00 level=INFO msg="Match Result" sol="RFP 2025-012: Progressive Design-Build Services for Paradise Park Phase II" score=85
+time=2026-01-20T00:56:23.048-05:00 level=INFO msg="Match Result" sol="Firework Show" score=75
+time=2026-01-20T00:56:30.493-05:00 level=INFO msg="Match Result" sol="DCSD SN26-001 Purchase and Installation of Cooler-Freezer at Chapel Hill Middle School" score=35
+time=2026-01-20T00:56:41.376-05:00 level=INFO msg="Match Result" sol="Administrative & Related Grant Services" score=75
+time=2026-01-20T00:56:53.226-05:00 level=INFO msg="Match Result" sol="RFP #2025-006 - PJHS Addition/Modification" score=75
+time=2026-01-20T00:57:00.818-05:00 level=INFO msg="Match Result" sol="Event Equipment and Furniture Rental" score=35
+time=2026-01-20T00:57:05.580-05:00 level=INFO msg="Match Result" sol="GAINESVILLE CSC JANITORIAL SERVICES" score=1
+time=2026-01-20T00:57:12.901-05:00 level=INFO msg="Match Result" sol="2026-100100-1211-Document Shredding Services" score=5
+time=2026-01-20T00:57:22.012-05:00 level=INFO msg="Match Result" sol="RFP-2601AM Purchase of School Nutrition Program Food Items and Distribution Services" score=65
+time=2026-01-20T00:57:31.720-05:00 level=INFO msg="Match Result" sol="Pre-Advertisement Notice - Color Video Pipeline & Sewer Cleaning Equipment, Maintenance and Software" score=75
+time=2026-01-20T00:57:40.908-05:00 level=INFO msg="Match Result" sol=T32-D3-PavPres-HarrisSR85-182772 score=95
+time=2026-01-20T00:57:51.591-05:00 level=INFO msg="Match Result" sol="REQUEST FOR PROPOSALS ENGINEERING AND/OR ARCHITECTURAL SERVICES" score=85
+time=2026-01-20T00:58:04.059-05:00 level=INFO msg="Match Result" sol="REQUEST FOR PROPOSALS ADMINISTRATIVE & RELATED GRANT SERVICES" score=85
+time=2026-01-20T00:58:19.024-05:00 level=INFO msg="Match Result" sol="BID 26020 CY 2026 PAVEMENT MAINTENANCE PROJECT" score=75
+time=2026-01-20T00:58:30.892-05:00 level=INFO msg="Match Result" sol="Sanjo Street Widening, Paving, Drainage, and Sidewalk Improvements Project" score=85
+time=2026-01-20T00:58:42.189-05:00 level=INFO msg="Match Result" sol="Reel Grinder for Brazell'e Creek Golf Course" score=65
+time=2026-01-20T00:58:52.124-05:00 level=INFO msg="Match Result" sol="RFP #25-183 Design/Build Services for Spivey Trail Drainage Improvement Project" score=75
+time=2026-01-20T00:59:03.195-05:00 level=INFO msg="Match Result" sol="P25-18 UPS Replacement" score=85
+time=2026-01-20T00:59:09.824-05:00 level=INFO msg="Match Result" sol="CONSTRUCTION SERVICES FOR THE EASTSIDE PUBLIC LIBRARY" score=35
+time=2026-01-20T00:59:18.927-05:00 level=INFO msg="Match Result" sol="2026-180000-1120-Henry County Schools Intercom & Fire Alarm Replacement" score=65
+time=2026-01-20T00:59:27.573-05:00 level=INFO msg="Match Result" sol="Men's Health Services" score=85
+time=2026-01-20T00:59:35.703-05:00 level=INFO msg="Match Result" sol="IFB #493-25 Labor and Materials to Repair Veterans Memorial Park Pavilion" score=35
+time=2026-01-20T00:59:46.711-05:00 level=INFO msg="Match Result" sol="TCSG-402, Southeastern Technical College Career Classroom Expansion" score=85
+time=2026-01-20T00:59:56.993-05:00 level=INFO msg="Match Result" sol="Sanitary Sewer System Rehabilitation Year 1 (2025-2026)" score=85
+time=2026-01-20T01:00:06.572-05:00 level=INFO msg="Match Result" sol="RFQ 26-002 Request for Qualifications Developer for Roosevelt Collection Affordable Housing Project" score=65
+time=2026-01-20T01:00:14.174-05:00 level=INFO msg="Match Result" sol="RFP 26-29 Data Cabling for Jacob G. Smith Elementary School" score=15
+time=2026-01-20T01:00:22.850-05:00 level=INFO msg="Match Result" sol="MILLEDGEVILLE LAMAR HAM WATER TREATMENT PLANT RENOVATION" score=85
+time=2026-01-20T01:00:32.942-05:00 level=INFO msg="Match Result" sol="ITB #26-09 FIRE APPARATUS-1,000 GAL/1,250 GPM PUMPER" score=85
+time=2026-01-20T01:00:40.808-05:00 level=INFO msg="Match Result" sol="Home Delivered Meals for the Senior Services Division" score=45
+time=2026-01-20T01:00:51.810-05:00 level=INFO msg="Match Result" sol=Chemicals score=65
+time=2026-01-20T01:00:58.455-05:00 level=INFO msg="Match Result" sol="Bid 26-08 School Nutrition Program - Cleaning Products (Annual Contract)" score=25
+time=2026-01-20T01:01:07.236-05:00 level=INFO msg="Match Result" sol="Ballfield Lighting Replacement - Timber Trail Park" score=75
+time=2026-01-20T01:01:14.609-05:00 level=INFO msg="Match Result" sol="Arnall Middle School Renovations" score=35
+time=2026-01-20T01:01:23.085-05:00 level=INFO msg="Match Result" sol="26-022 Construction Manager At Risk for Fire Stations No.1 and No. 4" score=45
+time=2026-01-20T01:01:32.988-05:00 level=INFO msg="Match Result" sol="2025-28 CCPW Equipment" score=85
+time=2026-01-20T01:01:43.336-05:00 level=INFO msg="Match Result" sol="2025039-RFP1414 County Fleet Vehicle Provider" score=85
+time=2026-01-20T01:01:51.152-05:00 level=INFO msg="Match Result" sol="Lanier County Recreation Complex 2025 (Concrete Work)" score=30
+time=2026-01-20T01:02:00.451-05:00 level=INFO msg="Match Result" sol="RFP 26-28 ERATE 2026-2027 Network Equipment Lifecycle Replacement" score=65
+time=2026-01-20T01:02:09.523-05:00 level=INFO msg="Match Result" sol="Lanier County Recreation Complex 2025 (Fencing)" score=45
+time=2026-01-20T01:02:21.623-05:00 level=INFO msg="Match Result" sol="TIA-12: Orr Road Resurfacing" score=75
+time=2026-01-20T01:02:36.952-05:00 level=INFO msg="Match Result" sol="School Nutrition Serving Line SL-2026 RFP" score=85
+time=2026-01-20T01:02:45.585-05:00 level=INFO msg="Match Result" sol="Bid 26-14 Fire Alarm Monitoring, Testing, Inspection and Repair Services (Annual Contract)" score=35
+time=2026-01-20T01:02:54.473-05:00 level=INFO msg="Match Result" sol="T32-D6-PPC A3 Carroll I-20 Ex 11 WB-182884" score=92
+time=2026-01-20T01:03:03.666-05:00 level=INFO msg="Match Result" sol="FY 2026 CDBG ENGINEERING = STATEMENT OF QUALIFICATIONS" score=75
+time=2026-01-20T01:03:13.427-05:00 level=INFO msg="Match Result" sol="FY 2026 CDBG ADMINISTRATION - STATEMENT OF QUALIFICATIONS" score=85
+time=2026-01-20T01:03:25.407-05:00 level=INFO msg="Match Result" sol="P25-17 Managed Internal Broadband Services" score=85
+time=2026-01-20T01:03:35.403-05:00 level=INFO msg="Match Result" sol="Coffee Schools Data Center Power" score=65
+time=2026-01-20T01:03:45.424-05:00 level=INFO msg="Match Result" sol="26-128 Jones Alley Improvements Project" score=85
+time=2026-01-20T01:03:57.416-05:00 level=INFO msg="Match Result" sol="2025-154CMS for Snapfinger Advanced Wastewater Treatment Facility Expansion, Phase 3A, 3C, and 3D" score=85
+time=2026-01-20T01:04:09.354-05:00 level=INFO msg="Match Result" sol="BL026-26, Purchase of Firefighter Helmets and Replacement Parts on an Annual Contract" score=25
+time=2026-01-20T01:04:19.050-05:00 level=INFO msg="Match Result" sol="TSPLOST ASPHALT LEVELING AND RESURFACING VARIOUS COUNTY ROADS" score=85
+time=2026-01-20T01:04:28.531-05:00 level=INFO msg="Match Result" sol="RFB 26-0022 PI 0017691 Resurfacing of Eight (8) Streets" score=35
+time=2026-01-20T01:04:39.311-05:00 level=INFO msg="Match Result" sol="RFP P50732 Kensington Station Phase One Transit Oriented Development Project" score=85
+time=2026-01-20T01:04:50.283-05:00 level=INFO msg="Match Result" sol="RFP 2026-01 Walker County Employee Health Clinic" score=85
+time=2026-01-20T01:05:01.213-05:00 level=INFO msg="Match Result" sol="RFP #26-10 BUTTS COUNTY ANIMAL SERVICES CARE & CONTROL FACILITY" score=85
+time=2026-01-20T01:05:10.778-05:00 level=INFO msg="Match Result" sol="R-4742 Design Build Services for Simpson-Peavy Park Construction & Renovation" score=65
+time=2026-01-20T01:05:20.506-05:00 level=INFO msg="Match Result" sol="LOCL-320-003-MP Master Planning Services - Gwinnett Technical College" score=85
+time=2026-01-20T01:05:31.326-05:00 level=INFO msg="Match Result" sol="LMIG ASPHALT LEVELING AND RESURFACING VARIOUS COUNTY ROADS" score=75
+time=2026-01-20T01:05:41.577-05:00 level=INFO msg="Match Result" sol="IFB50791 Cisco Flex Enterprise Maintenance Agreement" score=85
+time=2026-01-20T01:05:49.389-05:00 level=INFO msg="Match Result" sol="DNR-462-492-88309, Stephen C. Foster Cabin Replacement" score=85
+time=2026-01-20T01:06:00.027-05:00 level=INFO msg="Match Result" sol="Baconton Charter: Sports Facility" score=75
+time=2026-01-20T01:06:08.936-05:00 level=INFO msg="Match Result" sol="FY 2025 LMIG AND FY 2025 LRA PROJECT" score=75
+time=2026-01-20T01:06:15.816-05:00 level=INFO msg="Match Result" sol="RFP #26-0121 - BIDS FROM GENERAL CONTRACTORS, MECHANICAL CONTRACTORS, HVAC & ROOFING SUBCONTRACTORS" score=10
+time=2026-01-20T01:06:25.263-05:00 level=INFO msg="Match Result" sol="Bid Item #26-138 Augusta Infrastructure Road Repair Hurricane Helene Storm Damage" score=90
+time=2026-01-20T01:06:35.089-05:00 level=INFO msg="Match Result" sol="226-0121-01 EMORY CHAMBERS ROAD" score=65
+time=2026-01-20T01:06:42.953-05:00 level=INFO msg="Match Result" sol="W.E. Honey Park Bathroom Project" score=15
+time=2026-01-20T01:06:52.467-05:00 level=INFO msg="Match Result" sol="Thunderbolt Town Hall Roof Repair" score=65
+time=2026-01-20T01:07:01.336-05:00 level=INFO msg="Match Result" sol="RFP 25-0168-5" score=92
+time=2026-01-20T01:07:12.647-05:00 level=INFO msg="Match Result" sol="25-0169-2 Third-Party Inspection Services for the MAPSF Building" score=65
+time=2026-01-20T01:07:21.170-05:00 level=INFO msg="Match Result" sol="Roof Replacement for GICC Building" score=45
+time=2026-01-20T01:07:30.593-05:00 level=INFO msg="Match Result" sol="Memorial Park Improvements" score=85
+time=2026-01-20T01:07:39.767-05:00 level=INFO msg="Match Result" sol="26088-A: Traffic Signal Battery Backup" score=85
+time=2026-01-20T01:07:49.625-05:00 level=INFO msg="Match Result" sol="BL008-26, Royal Woods Parkway Sewer Relocation" score=85
+time=2026-01-20T01:08:02.709-05:00 level=INFO msg="Match Result" sol="BL004-26 - Middle Yellow River Interceptor Phase 2" score=85
+time=2026-01-20T01:08:16.833-05:00 level=INFO msg="Match Result" sol="ITB - St Marys FY 2025 LMIG Project" score=92
+time=2026-01-20T01:08:27.908-05:00 level=INFO msg="Match Result" sol="139-26 Internet/Catalog Ordering for Educational Supplies" score=65
+time=2026-01-20T01:08:35.385-05:00 level=INFO msg="Match Result" sol="Two 2026 Sport Utility Vehicles 4x4" score=25
+time=2026-01-20T01:08:43.967-05:00 level=INFO msg="Match Result" sol="Thomasville Municipal Auditorium Design" score=65
+time=2026-01-20T01:08:54.858-05:00 level=INFO msg="Match Result" sol="SB013-26 Raised Intersections for Crogan Street at Perry Street and Clayton Street at Pike Street" score=85
+time=2026-01-20T01:09:03.095-05:00 level=INFO msg="Match Result" sol="Renovation of Fire Station #3" score=65
+time=2026-01-20T01:09:13.643-05:00 level=INFO msg="Match Result" sol="Refuse and Waste Disposal Services RFP" score=75
+time=2026-01-20T01:09:23.971-05:00 level=INFO msg="Match Result" sol=Potash score=75
+time=2026-01-20T01:09:34.829-05:00 level=INFO msg="Match Result" sol="Leg Quarters" score=65
+time=2026-01-20T01:09:43.909-05:00 level=INFO msg="Match Result" sol="ITB-48400-RWPROPMGMT000631, Walton PI 0016387" score=92
+time=2026-01-20T01:09:53.223-05:00 level=INFO msg="Match Result" sol="ITB-12-001 Raysville Fire Station" score=85
+time=2026-01-20T01:10:04.445-05:00 level=INFO msg="Match Result" sol="IFB B50784 ¿ Uninterruptible Power Supply (UPS) Data Center Rehabilitation ¿ Candler Park" score=75
+time=2026-01-20T01:10:15.862-05:00 level=INFO msg="Match Result" sol="DOT-135-CM District Office / Materials Testing Laboratory - Construction Management" score=85
+time=2026-01-20T01:10:24.771-05:00 level=INFO msg="Match Result" sol="72- OR  84-passenger School Bus" score=75
+time=2026-01-20T01:10:32.780-05:00 level=INFO msg="Match Result" sol="26-0008-3 Purchase of A 2026 Chevrolet Tahoe PPV for CCFD" score=15
+time=2026-01-20T01:10:42.116-05:00 level=INFO msg="Match Result" sol="26-0007-3 Purchase of Several Vehicles for CCFD" score=65
+time=2026-01-20T01:10:49.266-05:00 level=INFO msg="Match Result" sol="26-0006-3 Purchase of Two (2) New 2026 Ford Super Duty F-250 XLT (Rebid)" score=5
+time=2026-01-20T01:10:59.102-05:00 level=INFO msg="Match Result" sol="2026 Request for Proposals Engineering Grant Services" score=92
+time=2026-01-20T01:11:08.858-05:00 level=INFO msg="Match Result" sol="2026 RFP for Administrative and Related Grant Services" score=85
+time=2026-01-20T01:11:19.577-05:00 level=INFO msg="Match Result" sol="THE DALTON ACADEMY METALS LAB" score=65
+time=2026-01-20T01:11:27.186-05:00 level=INFO msg="Match Result" sol="RFQ FEE AND PRELIMINARY CONSTRUCTION FOR CMR- STERLING ELEMENTARY REROOFING" score=15
+time=2026-01-20T01:11:39.893-05:00 level=INFO msg="Match Result" sol="PERIMETER WILDLIFE FENCING PROJECT - CAMILLA-MITCHELL COUNTY AIRPORT" score=85
+time=2026-01-20T01:11:53.516-05:00 level=INFO msg="Match Result" sol="Highway 49 -Phase 4" score=85
+time=2026-01-20T01:12:04.198-05:00 level=INFO msg="Match Result" sol="Bid Item 26-130 Augusta Reservoir Dams Improvement Project" score=85
+time=2026-01-20T01:12:12.564-05:00 level=INFO msg="Match Result" sol="ACE Main Parking Expansion" score=30
+time=2026-01-20T01:12:21.838-05:00 level=INFO msg="Match Result" sol="016-PUR-2026 Category 1 Network Electronics" score=65
+time=2026-01-20T01:12:30.890-05:00 level=INFO msg="Match Result" sol="Georgia Breakbulk Logistics Park" score=85
+time=2026-01-20T01:12:40.528-05:00 level=INFO msg="Match Result" sol="B-2612LM On-Demand Fire Alarm, Fire Sprinkler & Fire Extinguisher Services" score=65
+time=2026-01-20T01:12:50.964-05:00 level=INFO msg="Match Result" sol="25-26 (1) Brand New 2026 or Newer Dodge Ram 5500 Crew Cab DRW 4X4 Chassis or Comparable with install" score=65
+time=2026-01-20T01:13:04.830-05:00 level=INFO msg="Match Result" sol="2026-006 East Cherokee Drive at Macedonia Elementary School, Project 82130" score=85
+time=2026-01-20T01:13:15.914-05:00 level=INFO msg="Match Result" sol="Pre-Advertisement Notice - DPW- AFRD Vehicle Repairs" score=85
+time=2026-01-20T01:13:24.584-05:00 level=INFO msg="Match Result" sol="FY2026 CDBG Engineering Services Sewage Improvements" score=75
+time=2026-01-20T01:13:30.120-05:00 level=INFO msg="Match Result" sol="HE-35 35LBS HARD MOUNT COMMERCIAL WASHER 200G OR EQUAL" score=5
+time=2026-01-20T01:13:39.954-05:00 level=INFO msg="Match Result" sol="City of Cornelia Request for Proposals Administrative and Related Grant Services" score=85
+time=2026-01-20T01:13:45.175-05:00 level=INFO msg="Match Result" sol="RFP 2025-03 OPPORTUNITY TO PURCHASE & RENOVATE HISTORIC RESIDENTIAL PROPERTY IN OLD TOWN LILBURN" score=15
+time=2026-01-20T01:13:54.838-05:00 level=INFO msg="Match Result" sol="City of Cornelia Request for Proposals Engineering Services" score=85
+time=2026-01-20T01:14:02.537-05:00 level=INFO msg="Match Result" sol="RENOVATIONS & MODIFICATIONS TO: LONG CANE MIDDLE SCHOOL" score=75
+time=2026-01-20T01:14:14.119-05:00 level=INFO msg="Match Result" sol="Irwin County- Storm Generated Debris Removal on State Route 158, Daffodil Road, and Satilla Road" score=85
+time=2026-01-20T01:14:27.000-05:00 level=INFO msg="Match Result" sol="26-023 Solar Panel RFP" score=65
+time=2026-01-20T01:14:36.658-05:00 level=INFO msg="Match Result" sol="RFI on Antibullying Programs and Services" score=75
+time=2026-01-20T01:14:45.704-05:00 level=INFO msg="Match Result" sol="RFQ for Master Planning Services for the South Commons District" score=65
+time=2026-01-20T01:14:55.495-05:00 level=INFO msg="Match Result" sol="RFP 26-0010 MUSCOGEE COUNTY BOARD OF ELECTIONS & REGISTRATION VOTING EQUIPMENT DELIVERY SERVICES" score=85
+time=2026-01-20T01:15:02.686-05:00 level=INFO msg="Match Result" sol="33 Pryor Street Parking Deck Rehabilitation" score=65
+time=2026-01-20T01:15:13.011-05:00 level=INFO msg="Match Result" sol="2026 Wireless Upgrade RFP" score=92
+time=2026-01-20T01:15:23.423-05:00 level=INFO msg="Match Result" sol="UGA Hotels & Housing" score=45
+time=2026-01-20T01:15:35.062-05:00 level=INFO msg="Match Result" sol="Coffee WAPSwitch Lic FY26" score=65
+time=2026-01-20T01:15:45.807-05:00 level=INFO msg="Match Result" sol="Coffee WAN FY26" score=65
+time=2026-01-20T01:15:55.272-05:00 level=INFO msg="Match Result" sol="Coffee Schools Networking Gateway FY26" score=65
+time=2026-01-20T01:16:03.331-05:00 level=INFO msg="Match Result" sol="Coffee Networking Equipment FY26" score=35
+time=2026-01-20T01:16:12.737-05:00 level=INFO msg="Match Result" sol="BL016-26, Library Administration Headquarters Renovation Project" score=85
+time=2026-01-20T01:16:23.814-05:00 level=INFO msg="Match Result" sol="Video Wall Management System-(Neoti Direct View Wall & VuWall Video)" score=85
+time=2026-01-20T01:16:32.479-05:00 level=INFO msg="Match Result" sol="UPPER ER SANITARY SEWER IMPROVEMENTS-PHASE 2 RFB-26-52921" score=65
+time=2026-01-20T01:16:43.982-05:00 level=INFO msg="Match Result" sol="Sexual Assualt Nurse Examiners" score=85
+time=2026-01-20T01:16:54.784-05:00 level=INFO msg="Match Result" sol="Second Sports Team Tenant - Akins Ford Arena" score=65
+time=2026-01-20T01:17:03.287-05:00 level=INFO msg="Match Result" sol="RFQ-121825A Lighting Engineering and Design Services" score=65
+time=2026-01-20T01:17:12.607-05:00 level=INFO msg="Match Result" sol="RFP 26-719 Central Office Operational Assessment" score=85
+time=2026-01-20T01:17:21.078-05:00 level=INFO msg="Match Result" sol="Purchase of One (1) Brush Chipper - 25-REQ-078" score=25
+time=2026-01-20T01:17:29.073-05:00 level=INFO msg="Match Result" sol="Confectioner Sugar" score=25
+time=2026-01-20T01:17:38.991-05:00 level=INFO msg="Match Result" sol="CAMPUS ANNEX CONNECTIVITY AND SECURITY RFP2026-08" score=75
+time=2026-01-20T01:17:48.485-05:00 level=INFO msg="Match Result" sol="Sewage System Improvements / Land Application System Improvements" score=85
+time=2026-01-20T01:17:57.328-05:00 level=INFO msg="Match Result" sol="Purchase, Delivery, and Installation of New Miniwiz miniTrashpresso" score=92
+time=2026-01-20T01:18:06.571-05:00 level=INFO msg="Match Result" sol="Network Equipment and Maintenance" score=65
+time=2026-01-20T01:18:16.856-05:00 level=INFO msg="Match Result" sol="Gulledge Road at Creekview Way Improvement Project" score=85
+time=2026-01-20T01:18:24.523-05:00 level=INFO msg="Match Result" sol="FY 2026 Countywide Mowing and Shoulder Maintenance Project" score=25
+time=2026-01-20T01:18:35.440-05:00 level=INFO msg="Match Result" sol="Bid Specifications for Generator Project" score=85
+time=2026-01-20T01:18:44.266-05:00 level=INFO msg="Match Result" sol="Document Destruction Services for Fayette County Public Schools" score=35
+time=2026-01-20T01:18:54.334-05:00 level=INFO msg="Match Result" sol=T32-D3-PavePres-TalbotSR208-182591 score=95
+time=2026-01-20T01:19:04.208-05:00 level=INFO msg="Match Result" sol="T32-D3-PavPres-HarrisSR18&354- 182665" score=95
+time=2026-01-20T01:19:13.822-05:00 level=INFO msg="Match Result" sol="T32-D3-DrainRehab-Bibb I-75- 182415" score=92
+time=2026-01-20T01:19:23.702-05:00 level=INFO msg="Match Result" sol="Water System Improvements - Phase II, Part C" score=92
+time=2026-01-20T01:19:34.336-05:00 level=INFO msg="Match Result" sol="UGA Dining Services Mobile Plate and Dish Dispenser" score=65
+time=2026-01-20T01:19:44.615-05:00 level=INFO msg="Match Result" sol="RFPQ 26011 J.G. BEACHAM WATER TREATMENT LAGOON CLEANOUT" score=75
+time=2026-01-20T01:19:54.758-05:00 level=INFO msg="Match Result" sol="BL017-26 Beaver Ruin Road Operational Improvement Project" score=85
+time=2026-01-20T01:20:03.848-05:00 level=INFO msg="Match Result" sol="ITB 48400-RWPROPMGMT000630 Ware PI 0013539" score=92
+time=2026-01-20T01:20:11.250-05:00 level=INFO msg="Match Result" sol="Grounds Maintenance Services For Hall County Parks" score=25
+time=2026-01-20T01:20:20.142-05:00 level=INFO msg="Match Result" sol="Civil Design of South Hall Park" score=65
+time=2026-01-20T01:20:29.601-05:00 level=INFO msg="Match Result" sol="Architectural Design Services for South Hall Active Life Center" score=85
+time=2026-01-20T01:20:38.525-05:00 level=INFO msg="Match Result" sol="26-019 RFP ERATE INTERNET ACCESS" score=75
+time=2026-01-20T01:20:49.548-05:00 level=ERROR msg="Failed to parse LLM JSON" content="{\n  \"score\": 85,\n  \"explanation\": \"SEAD's core competencies in full-stack software engineering, data analytics, and systems modernization align strongly with the 'Groundwater Wells 4 & 5' project. Specifically, the data engineering and decision support systems components of their capabilities – designing data lakes, building dashboards, and potentially utilizing machine learning for analysis – directly relate to the project's likely data-intensive nature. The emphasis on cybersecurity also fits well given potential considerations for water resource management. While the project description is limited, the skillset demonstrated by SEAD is well-suited to address the needs described. Minor deduction due to lack of detail about the exact project requirements.”\n}\n"
+time=2026-01-20T01:20:49.549-05:00 level=ERROR msg="Match failed" sol_id=8 error="failed to parse match result: invalid character '\\n' in string literal"
+time=2026-01-20T01:20:57.515-05:00 level=INFO msg="Match Result" sol="2025-05 Remodeling of Red Clay Theater" score=75
+time=2026-01-20T01:21:08.177-05:00 level=INFO msg="Match Result" sol="PK26-01 Bunten Road Park Improvement Project" score=85
+time=2026-01-20T01:21:18.420-05:00 level=INFO msg="Match Result" sol="EMS/911 Design Build Project" score=85
+time=2026-01-20T01:21:27.439-05:00 level=INFO msg="Match Result" sol="2025-04 Elevator Modernization" score=92
+time=2026-01-20T01:21:39.750-05:00 level=INFO msg="Match Result" sol="Water Distribution ¿ 2025 Meter Replacement" score=85
+time=2026-01-20T01:21:54.776-05:00 level=INFO msg="Match Result" sol="RFP 26-109, North Park Lighting Project" score=85
+time=2026-01-20T01:22:05.373-05:00 level=INFO msg="Match Result" sol="2025 Generator Installation" score=85

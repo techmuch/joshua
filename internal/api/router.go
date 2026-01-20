@@ -44,6 +44,8 @@ func NewRouter(
 	mux.HandleFunc("POST /api/auth/password", AuthMiddleware(authHandler.ChangePassword))
 	
 	mux.HandleFunc("PUT /api/user/narrative", AuthMiddleware(userHandler.UpdateNarrative))
+	mux.HandleFunc("GET /api/user/narrative/versions", AuthMiddleware(userHandler.ListNarrativeVersions))
+	mux.HandleFunc("GET /api/user/narrative/version", AuthMiddleware(userHandler.GetNarrativeVersion))
 	mux.HandleFunc("PUT /api/user/profile", AuthMiddleware(userHandler.UpdateProfile))
 	mux.HandleFunc("POST /api/user/avatar", AuthMiddleware(userHandler.UploadAvatar))
 	mux.HandleFunc("GET /api/organizations", AuthMiddleware(userHandler.ListOrganizations))

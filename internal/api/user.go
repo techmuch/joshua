@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"time"
 )
 
@@ -38,6 +39,40 @@ func (h *UserHandler) UpdateNarrative(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
+}
+
+func (h *UserHandler) ListNarrativeVersions(w http.ResponseWriter, r *http.Request) {
+	userID := r.Context().Value("user_id").(int)
+	versions, err := h.repo.ListNarrativeVersions(r.Context(), userID)
+	if err != nil {
+		http.Error(w, "Failed to list narrative versions", http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(versions)
+}
+
+func (h *UserHandler) GetNarrativeVersion(w http.ResponseWriter, r *http.Request) {
+	userID := r.Context().Value("user_id").(int)
+	versionIDStr := r.URL.Query().Get("version")
+	if versionIDStr == "" {
+		http.Error(w, "version ID required", http.StatusBadRequest)
+		return
+	}
+
+	versionID, err := strconv.Atoi(versionIDStr)
+	if err != nil {
+		http.Error(w, "invalid version ID", http.StatusBadRequest)
+		return
+	}
+
+	version, err := h.repo.GetNarrativeVersion(r.Context(), versionID, userID)
+	if err != nil {
+		http.Error(w, "version not found", http.StatusNotFound)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(version)
 }
 
 type UpdateProfileRequest struct {

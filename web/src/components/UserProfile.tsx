@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import { User, Lock, Save, Camera, FileText, Palette } from 'lucide-react';
+import { User, Lock, Save, Camera, FileText, Palette, History } from 'lucide-react';
+import Editor from '@monaco-editor/react';
 
 const UserProfile: React.FC = () => {
     const { user, refreshUser } = useAuth();
@@ -26,10 +27,32 @@ const UserProfile: React.FC = () => {
     
     // Narrative State
     const [narrative, setNarrative] = useState(user?.narrative || "");
+    const [versions, setVersions] = useState<any[]>([]);
+    const [selectedVersionId, setSelectedVersionId] = useState<number | null>(null);
+    const [latestVersionId, setLatestVersionId] = useState<number | null>(null);
     const [narrativeSaving, setNarrativeSaving] = useState(false);
     const [narrativeMessage, setNarrativeMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const fetchVersions = async () => {
+        try {
+            const res = await fetch('/api/user/narrative/versions');
+            if (res.ok) {
+                const data = await res.json();
+                setVersions(data);
+                if (data.length > 0) {
+                    const latest = data[0].id;
+                    setLatestVersionId(latest);
+                    if (!selectedVersionId || selectedVersionId === latest) {
+                        setSelectedVersionId(latest);
+                    }
+                }
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     useEffect(() => {
         if (user) {
@@ -38,6 +61,7 @@ const UserProfile: React.FC = () => {
             setOrgName(user.organization_name || "");
             setAvatarPreview(user.avatar_url || null);
             setNarrative(user.narrative || "");
+            fetchVersions();
         }
         
         // Fetch orgs
@@ -46,6 +70,16 @@ const UserProfile: React.FC = () => {
             .then(data => setOrgSuggestions(data || []))
             .catch(console.error);
     }, [user]);
+
+    useEffect(() => {
+        if (!selectedVersionId || selectedVersionId === latestVersionId) return;
+        fetch(`/api/user/narrative/version?version=${selectedVersionId}`)
+            .then(res => res.json())
+            .then(data => {
+                setNarrative(data.content || "");
+            })
+            .catch(err => console.error("Failed to load version", err));
+    }, [selectedVersionId]);
 
     if (!user) return <div>Please login to view profile.</div>;
 
@@ -149,10 +183,17 @@ const UserProfile: React.FC = () => {
 
             setNarrativeMessage({ text: "Narrative saved successfully!", type: 'success' });
             await refreshUser();
+            await fetchVersions();
         } catch (err) {
             setNarrativeMessage({ text: "Error saving narrative.", type: 'error' });
         } finally {
             setNarrativeSaving(false);
+        }
+    };
+
+    const handleRevert = () => {
+        if (confirm(`Revert to version v${selectedVersionId}? This will create a new version.`)) {
+            handleNarrativeSave();
         }
     };
 
@@ -365,24 +406,75 @@ const UserProfile: React.FC = () => {
                     The AI will use this narrative to find the best matching opportunities for you.
                 </p>
                 
-                <textarea
-                    value={narrative}
-                    onChange={(e) => setNarrative(e.target.value)}
-                    className="narrative-textarea"
-                    placeholder="e.g., We are a specialized IT consulting firm focused on cloud migration and cybersecurity..."
-                    style={{height: '400px'}} 
-                />
+                <div style={{ display: 'flex', gap: '1rem', height: '500px' }}>
+                    {/* Sidebar */}
+                    <div style={{ width: '200px', borderRight: '1px solid var(--border-color)', paddingRight: '1rem', overflowY: 'auto' }}>
+                        <div style={{ fontWeight: 'bold', marginBottom: '1rem', color: 'var(--text-primary)', fontSize: '0.9rem' }}>Version History</div>
+                        {versions.map(v => (
+                            <div 
+                                key={v.id}
+                                onClick={() => setSelectedVersionId(v.id)}
+                                style={{
+                                    padding: '0.5rem', 
+                                    cursor: 'pointer',
+                                    borderRadius: '4px',
+                                    marginBottom: '0.5rem',
+                                    background: selectedVersionId === v.id ? 'var(--primary-light)' : 'transparent',
+                                    border: selectedVersionId === v.id ? '1px solid var(--primary-color)' : '1px solid transparent',
+                                    color: selectedVersionId === v.id ? 'var(--primary-color)' : 'var(--text-secondary)'
+                                }}
+                            >
+                                <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>v{v.id}</div>
+                                <div style={{ fontSize: '0.7rem', opacity: 0.8 }}>{new Date(v.created_at).toLocaleDateString()}</div>
+                            </div>
+                        ))}
+                    </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginTop: '1rem' }}>
-                    <button 
-                        onClick={handleNarrativeSave} 
-                        className="btn-primary" 
-                        disabled={narrativeSaving}
-                        style={{width: 'auto'}}
-                    >
-                        <Save size={18} /> {narrativeSaving ? "Saving..." : "Save Narrative"}
-                    </button>
-                    
+                    {/* Main Area */}
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                        <div style={{ padding: '0.5rem 1rem', background: 'var(--bg-body)', border: '1px solid var(--border-color)', borderBottom: 'none', borderRadius: '4px 4px 0 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                                {selectedVersionId !== latestVersionId ? `READ ONLY (v${selectedVersionId})` : 'EDITING CURRENT VERSION'}
+                            </div>
+                            <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                <button 
+                                    onClick={handleRevert} 
+                                    className="btn-outline" 
+                                    disabled={selectedVersionId === latestVersionId || narrativeSaving}
+                                    style={{ fontSize: '0.75rem', padding: '2px 8px' }}
+                                >
+                                    <History size={12} /> Revert
+                                </button>
+                                <button 
+                                    onClick={handleNarrativeSave} 
+                                    className="btn-primary" 
+                                    disabled={selectedVersionId !== latestVersionId || narrativeSaving}
+                                    style={{ fontSize: '0.75rem', padding: '2px 8px' }}
+                                >
+                                    <Save size={12} /> {narrativeSaving ? "Saving..." : "Save"}
+                                </button>
+                            </div>
+                        </div>
+                        <div style={{ flex: 1, border: '1px solid var(--border-color)' }}>
+                            <Editor
+                                height="100%"
+                                defaultLanguage="markdown"
+                                value={narrative}
+                                onChange={(val) => selectedVersionId === latestVersionId && setNarrative(val || "")}
+                                theme="vs-dark"
+                                options={{
+                                    readOnly: selectedVersionId !== latestVersionId,
+                                    minimap: { enabled: false },
+                                    lineNumbers: "on",
+                                    fontSize: 14,
+                                    wordWrap: "on"
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{ marginTop: '1rem' }}>
                     {narrativeMessage && (
                         <span style={{ 
                             color: narrativeMessage.type === 'success' ? 'var(--success-color)' : 'var(--error-color)',
