@@ -15,12 +15,13 @@ func NewRouter(
 	taskRepo *repository.TaskRepository,
 	iradRepo *repository.IRADRepository,
 	chatSvc *ai.ChatService,
+	auditRepo *repository.AuditRepository,
 ) *http.ServeMux {
 	mux := http.NewServeMux()
 
-	solHandler := &SolicitationHandler{repo: solRepo}
+	solHandler := &SolicitationHandler{repo: solRepo, auditRepo: auditRepo}
 	authHandler := &AuthHandler{repo: userRepo}
-	userHandler := &UserHandler{repo: userRepo}
+	userHandler := &UserHandler{repo: userRepo, auditRepo: auditRepo}
 	matchHandler := &MatchHandler{repo: matchRepo}
 	feedbackHandler := &FeedbackHandler{repo: feedbackRepo}
 	reqHandler := &RequirementsHandler{repo: reqRepo, userRepo: userRepo, taskRepo: taskRepo}

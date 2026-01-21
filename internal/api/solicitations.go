@@ -7,7 +7,8 @@ import (
 )
 
 type SolicitationHandler struct {
-	repo *repository.SolicitationRepository
+	repo      *repository.SolicitationRepository
+	auditRepo *repository.AuditRepository
 }
 
 func (h *SolicitationHandler) List(w http.ResponseWriter, r *http.Request) {
@@ -63,21 +64,25 @@ func (h *SolicitationHandler) Claim(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-		if err := h.repo.UpsertClaim(r.Context(), userID, sol.ID, req.Type); err != nil {
+			if err := h.repo.UpsertClaim(r.Context(), userID, sol.ID, req.Type); err != nil {
 
-			http.Error(w, "Failed to update claim", http.StatusInternalServerError)
+				http.Error(w, "Failed to update claim", http.StatusInternalServerError)
 
-			return
+				return
 
-		}
+			}
 
-	
+		
+
+			h.auditRepo.Log(r.Context(), userID, "claim", "solicitation", sol.ID, map[string]string{"type": req.Type}, r.RemoteAddr)
+
+		
 
 			w.WriteHeader(http.StatusOK)
 
-	
-
 		}
+
+		
 
 	
 
@@ -185,15 +190,99 @@ func (h *SolicitationHandler) Claim(w http.ResponseWriter, r *http.Request) {
 
 	
 
-			if err != nil {
+				if err != nil {
 
 	
 
-				http.Error(w, "Failed to update archive status", http.StatusInternalServerError)
+		
 
 	
 
-				return
+					http.Error(w, "Failed to update archive status", http.StatusInternalServerError)
+
+	
+
+		
+
+	
+
+					return
+
+	
+
+		
+
+	
+
+				}
+
+	
+
+		
+
+	
+
+				
+
+	
+
+		
+
+	
+
+				action := "archive"
+
+	
+
+		
+
+	
+
+				if !req.Archived {
+
+	
+
+		
+
+	
+
+					action = "unarchive"
+
+	
+
+		
+
+	
+
+				}
+
+	
+
+		
+
+	
+
+				h.auditRepo.Log(r.Context(), userID, action, "solicitation", sol.ID, nil, r.RemoteAddr)
+
+	
+
+		
+
+	
+
+			
+
+	
+
+		
+
+	
+
+				w.WriteHeader(http.StatusOK)
+
+	
+
+		
 
 	
 
@@ -201,11 +290,11 @@ func (h *SolicitationHandler) Claim(w http.ResponseWriter, r *http.Request) {
 
 	
 
-			w.WriteHeader(http.StatusOK)
+		
 
 	
 
-		}
+			
 
 	
 
@@ -293,15 +382,67 @@ func (h *SolicitationHandler) Claim(w http.ResponseWriter, r *http.Request) {
 
 	
 
-			if err := h.repo.Share(r.Context(), sol.ID, userID, req.Email, req.Message); err != nil {
+				if err := h.repo.Share(r.Context(), sol.ID, userID, req.Email, req.Message); err != nil {
 
 	
 
-				http.Error(w, "Failed to share solicitation", http.StatusInternalServerError)
+		
 
 	
 
-				return
+					http.Error(w, "Failed to share solicitation", http.StatusInternalServerError)
+
+	
+
+		
+
+	
+
+					return
+
+	
+
+		
+
+	
+
+				}
+
+	
+
+		
+
+	
+
+				
+
+	
+
+		
+
+	
+
+				h.auditRepo.Log(r.Context(), userID, "share", "solicitation", sol.ID, map[string]string{"recipient": req.Email}, r.RemoteAddr)
+
+	
+
+		
+
+	
+
+			
+
+	
+
+		
+
+	
+
+				w.WriteHeader(http.StatusOK)
+
+	
+
+		
 
 	
 
@@ -309,11 +450,11 @@ func (h *SolicitationHandler) Claim(w http.ResponseWriter, r *http.Request) {
 
 	
 
-			w.WriteHeader(http.StatusOK)
+		
 
 	
 
-		}
+			
 
 	
 

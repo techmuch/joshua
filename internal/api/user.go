@@ -13,7 +13,8 @@ import (
 )
 
 type UserHandler struct {
-	repo *repository.UserRepository
+	repo      *repository.UserRepository
+	auditRepo *repository.AuditRepository
 }
 
 type UpdateNarrativeRequest struct {
@@ -112,8 +113,9 @@ func (h *UserHandler) UpdateProfile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	h.auditRepo.Log(r.Context(), userID, "update_profile", "user", userID, nil, r.RemoteAddr)
+
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "Profile updated successfully"}`))
 }
 
 func (h *UserHandler) ListOrganizations(w http.ResponseWriter, r *http.Request) {

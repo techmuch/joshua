@@ -165,7 +165,7 @@ To ensure a structured and manageable implementation, development will follow th
     *   [x] Build "Collaborative Workspace" functionality (integrated into Library/Inbox/Details).
     *   [x] Implement Solicitation Comments.
     *   [x] Add Organization Management (CLI & Profile Sync).
-    *   [ ] Add Audit Logging for user actions.
+    *   [x] Add Audit Logging for user actions.
     *   [ ] Develop TUI Monitoring command (`joshua scraper run-now`).
     *   [x] Update the URL to map directly each view (including `/developer/tasks`, `/developer/requirements`)
 
