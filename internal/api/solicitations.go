@@ -73,9 +73,251 @@ func (h *SolicitationHandler) Claim(w http.ResponseWriter, r *http.Request) {
 
 	
 
-		w.WriteHeader(http.StatusOK)
+			w.WriteHeader(http.StatusOK)
 
-	}
+	
+
+		}
+
+	
+
+		
+
+	
+
+		type ArchiveRequest struct {
+
+	
+
+			Archived bool `json:"archived"`
+
+	
+
+		}
+
+	
+
+		
+
+	
+
+		func (h *SolicitationHandler) Archive(w http.ResponseWriter, r *http.Request) {
+
+	
+
+			idStr := r.PathValue("id")
+
+	
+
+			sol, err := h.repo.GetByID(r.Context(), idStr)
+
+	
+
+			if err != nil {
+
+	
+
+				http.Error(w, "Solicitation not found", http.StatusNotFound)
+
+	
+
+				return
+
+	
+
+			}
+
+	
+
+			
+
+	
+
+			userID := r.Context().Value("user_id").(int)
+
+	
+
+			var req ArchiveRequest
+
+	
+
+			if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+
+	
+
+				http.Error(w, "Invalid request", http.StatusBadRequest)
+
+	
+
+				return
+
+	
+
+			}
+
+	
+
+		
+
+	
+
+			if req.Archived {
+
+	
+
+				err = h.repo.Archive(r.Context(), userID, sol.ID)
+
+	
+
+			} else {
+
+	
+
+				err = h.repo.Unarchive(r.Context(), userID, sol.ID)
+
+	
+
+			}
+
+	
+
+		
+
+	
+
+			if err != nil {
+
+	
+
+				http.Error(w, "Failed to update archive status", http.StatusInternalServerError)
+
+	
+
+				return
+
+	
+
+			}
+
+	
+
+			w.WriteHeader(http.StatusOK)
+
+	
+
+		}
+
+	
+
+		
+
+	
+
+		type ShareRequest struct {
+
+	
+
+			Email   string `json:"email"`
+
+	
+
+			Message string `json:"message"`
+
+	
+
+		}
+
+	
+
+		
+
+	
+
+		func (h *SolicitationHandler) Share(w http.ResponseWriter, r *http.Request) {
+
+	
+
+			idStr := r.PathValue("id")
+
+	
+
+			sol, err := h.repo.GetByID(r.Context(), idStr)
+
+	
+
+			if err != nil {
+
+	
+
+				http.Error(w, "Solicitation not found", http.StatusNotFound)
+
+	
+
+				return
+
+	
+
+			}
+
+	
+
+		
+
+	
+
+			userID := r.Context().Value("user_id").(int)
+
+	
+
+			var req ShareRequest
+
+	
+
+			if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+
+	
+
+				http.Error(w, "Invalid request", http.StatusBadRequest)
+
+	
+
+				return
+
+	
+
+			}
+
+	
+
+		
+
+	
+
+			if err := h.repo.Share(r.Context(), sol.ID, userID, req.Email, req.Message); err != nil {
+
+	
+
+				http.Error(w, "Failed to share solicitation", http.StatusInternalServerError)
+
+	
+
+				return
+
+	
+
+			}
+
+	
+
+			w.WriteHeader(http.StatusOK)
+
+	
+
+		}
+
+	
+
+		
 
 	
 

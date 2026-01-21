@@ -17,9 +17,10 @@ type Claim struct {
 	ID             int       `json:"id"`
 	UserID         int       `json:"user_id"`
 	SolicitationID int       `json:"solicitation_id"`
-	ClaimType      string    `json:"claim_type"` // 'interested' or 'lead'
+	ClaimType      string    `json:"claim_type"`
+	Archived       bool      `json:"archived"`
 	CreatedAt      time.Time `json:"created_at"`
-	User           User      `json:"user"` // Nested user info
+	User           User      `json:"user"`
 }
 
 type SolicitationDetail struct {
@@ -199,7 +200,7 @@ func (r *SolicitationRepository) GetByID(ctx context.Context, idStr string) (*So
 
 	// 2. Fetch Claims
 	claimsQuery := `
-		SELECT c.id, c.user_id, c.solicitation_id, c.claim_type, c.created_at,
+		SELECT c.id, c.user_id, c.solicitation_id, c.claim_type, c.created_at, c.archived,
 		       u.id, u.email, u.full_name, u.role, u.avatar_url, u.organization_name
 		FROM claims c
 		JOIN users u ON c.user_id = u.id
@@ -219,7 +220,7 @@ func (r *SolicitationRepository) GetByID(ctx context.Context, idStr string) (*So
 		var org sql.NullString
 		
 		if err := rows.Scan(
-			&c.ID, &c.UserID, &c.SolicitationID, &c.ClaimType, &c.CreatedAt,
+			&c.ID, &c.UserID, &c.SolicitationID, &c.ClaimType, &c.CreatedAt, &c.Archived,
 			&u.ID, &u.Email, &u.FullName, &u.Role, &avatar, &org,
 		); err != nil {
 			return nil, err
@@ -280,7 +281,7 @@ func (r *SolicitationRepository) UpsertClaim(ctx context.Context, userID, solID 
 	}
 	
 	func (r *SolicitationRepository) AddComment(ctx context.Context, solicitationID, userID int, content string) error {
-		query := `INSERT INTO solicitation_comments (solicitation_id, user_id, content, created_at) VALUES (	, $2, $3, NOW())`
+		query := `INSERT INTO solicitation_comments (solicitation_id, user_id, content, created_at) VALUES ($1, $2, $3, NOW())`
 		_, err := r.db.ExecContext(ctx, query, solicitationID, userID, content)
 		return err
 	}
@@ -290,7 +291,7 @@ func (r *SolicitationRepository) UpsertClaim(ctx context.Context, userID, solID 
 			SELECT c.id, c.solicitation_id, c.user_id, c.content, c.created_at, u.full_name, u.avatar_url
 			FROM solicitation_comments c
 			JOIN users u ON c.user_id = u.id
-			WHERE c.solicitation_id = 	
+			WHERE c.solicitation_id = $1
 			ORDER BY c.created_at ASC
 		`
 		rows, err := r.db.QueryContext(ctx, query, solicitationID)
@@ -310,5 +311,33 @@ func (r *SolicitationRepository) UpsertClaim(ctx context.Context, userID, solID 
 			comments = append(comments, c)
 		}
 		return comments, nil
+	}
+	
+	func (r *SolicitationRepository) Archive(ctx context.Context, userID, solID int) error {
+		query := `
+			INSERT INTO claims (user_id, solicitation_id, archived, created_at)
+			VALUES ($1, $2, TRUE, NOW())
+			ON CONFLICT (user_id, solicitation_id) DO UPDATE SET
+				archived = TRUE
+		`
+		_, err := r.db.ExecContext(ctx, query, userID, solID)
+		return err
+	}
+	
+	func (r *SolicitationRepository) Unarchive(ctx context.Context, userID, solID int) error {
+		query := `
+			INSERT INTO claims (user_id, solicitation_id, archived, created_at)
+			VALUES ($1, $2, FALSE, NOW())
+			ON CONFLICT (user_id, solicitation_id) DO UPDATE SET
+				archived = FALSE
+		`
+		_, err := r.db.ExecContext(ctx, query, userID, solID)
+		return err
+	}
+	
+	func (r *SolicitationRepository) Share(ctx context.Context, solID, senderID int, recipientEmail, message string) error {
+		query := `INSERT INTO shares (solicitation_id, sender_id, recipient_email, message) VALUES ($1, $2, $3, $4)`
+		_, err := r.db.ExecContext(ctx, query, solID, senderID, recipientEmail, message)
+		return err
 	}
 	

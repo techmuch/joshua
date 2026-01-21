@@ -161,7 +161,7 @@ To ensure a structured and manageable implementation, development will follow th
 *   **Status:** In Progress.
 *   **Tasks:**
     *   [x] Implement "Claim" (Take Lead/Interested) workflow.
-    *   [ ] Implement "Share" and "Archive" workflows.
+    *   [x] Implement "Share" and "Archive" workflows.
     *   [x] Build "Collaborative Workspace" functionality (integrated into Library/Inbox/Details).
     *   [x] Implement Solicitation Comments.
     *   [x] Add Organization Management (CLI & Profile Sync).

@@ -39,7 +39,8 @@ func (r *MatchRepository) GetUserInbox(ctx context.Context, userID int) ([]Match
 			(SELECT STRING_AGG(u.full_name, ', ') FROM claims c JOIN users u ON c.user_id = u.id WHERE c.solicitation_id = s.id AND c.claim_type = 'interested')
 		FROM matches m
 		JOIN solicitations s ON m.solicitation_id = s.id
-		WHERE m.user_id = $1 AND m.score > 0
+		LEFT JOIN claims c ON c.solicitation_id = s.id AND c.user_id = m.user_id
+		WHERE m.user_id = $1 AND m.score > 0 AND (c.archived IS NULL OR c.archived = FALSE)
 		ORDER BY m.score DESC
 	`
 	rows, err := r.db.QueryContext(ctx, query, userID)
@@ -125,4 +126,10 @@ func (r *MatchRepository) GetMatchesForUser(ctx context.Context, userID int) (ma
 		matches[sourceID] = m
 	}
 	return matches, nil
+}
+
+func (r *MatchRepository) ClearMatches(ctx context.Context, userID int) error {
+	query := `DELETE FROM matches WHERE user_id = $1`
+	_, err := r.db.ExecContext(ctx, query, userID)
+	return err
 }

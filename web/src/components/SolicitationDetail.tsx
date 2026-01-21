@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import type { Solicitation } from '../types';
 import { useAuth } from '../context/AuthContext';
-import { ArrowLeft, ExternalLink, FileText, User, Star, Flag } from 'lucide-react';
+import { ArrowLeft, ExternalLink, FileText, User, Star, Flag, Share2, Archive, X } from 'lucide-react';
 
 interface Claim {
-    id: number;
-    user_id: number;
-    solicitation_id: number;
-    claim_type: 'interested' | 'lead';
-    created_at: string;
-    user: {
+	id: number;
+	user_id: number;
+	solicitation_id: number;
+	claim_type: 'interested' | 'lead';
+	created_at: string;
+	archived: boolean;
+	user: {
+
         id: number;
         full_name: string;
         email: string;
@@ -41,6 +43,9 @@ const SolicitationDetail: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [newComment, setNewComment] = useState("");
     const [isPosting, setIsPosting] = useState(false);
+    const [shareModalOpen, setShareModalOpen] = useState(false);
+    const [shareEmail, setShareEmail] = useState("");
+    const [shareMessage, setShareMessage] = useState("");
 
     const location = useLocation();
     const backState = location.state as { from?: string } | null;
@@ -89,6 +94,36 @@ const SolicitationDetail: React.FC = () => {
         }
     };
 
+    const handleArchive = async () => {
+        const myClaim = solicitation?.claims?.find(c => c.user_id === user?.id);
+        const isArchived = myClaim?.archived || false;
+        try {
+            const res = await fetch(`/api/solicitations/${id}/archive`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ archived: !isArchived }),
+            });
+            if (res.ok) fetchDetail();
+        } catch (err) { console.error(err); }
+    };
+
+    const handleShare = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const res = await fetch(`/api/solicitations/${id}/share`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: shareEmail, message: shareMessage }),
+            });
+            if (res.ok) {
+                alert("Shared successfully!");
+                setShareModalOpen(false);
+                setShareEmail("");
+                setShareMessage("");
+            }
+        } catch (err) { console.error(err); }
+    };
+
     const handleClaim = async (type: 'interested' | 'lead' | 'none') => {
         if (!user) return;
         try {
@@ -115,6 +150,7 @@ const SolicitationDetail: React.FC = () => {
     const myClaim = claims.find(c => c.user_id === user?.id);
     const isLead = myClaim?.claim_type === 'lead';
     const isInterested = myClaim?.claim_type === 'interested';
+    const isArchived = myClaim?.archived || false;
 
     return (
         <div style={{ maxWidth: '1000px', margin: '0 auto', paddingBottom: '4rem' }}>
@@ -138,9 +174,17 @@ const SolicitationDetail: React.FC = () => {
                                 <span>Source ID: {solicitation.source_id}</span>
                             </div>
                         </div>
-                        <a href={solicitation.url} target="_blank" rel="noreferrer" className="btn-primary">
-                            Original Source <ExternalLink size={16} />
-                        </a>
+                        <div style={{display: 'flex', gap: '0.5rem'}}>
+                            <button onClick={() => setShareModalOpen(true)} className="btn-outline" title="Share">
+                                <Share2 size={16} />
+                            </button>
+                            <button onClick={handleArchive} className="btn-outline" title={isArchived ? "Unarchive" : "Archive"}>
+                                <Archive size={16} color={isArchived ? 'var(--primary-color)' : 'currentColor'} />
+                            </button>
+                            <a href={solicitation.url} target="_blank" rel="noreferrer" className="btn-primary">
+                                Original Source <ExternalLink size={16} />
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -272,6 +316,28 @@ const SolicitationDetail: React.FC = () => {
                     )}
                 </div>
             </div>
+
+            {shareModalOpen && (
+                <div style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000}}>
+                    <div className="chart-card" style={{width: '400px', padding: '2rem'}}>
+                        <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '1rem'}}>
+                            <h3>Share Opportunity</h3>
+                            <button onClick={() => setShareModalOpen(false)} style={{background: 'none', border: 'none', cursor: 'pointer'}}><X size={20}/></button>
+                        </div>
+                        <form onSubmit={handleShare}>
+                            <div style={{marginBottom: '1rem'}}>
+                                <label style={{display: 'block', marginBottom: '0.5rem'}}>Email Address</label>
+                                <input type="email" required value={shareEmail} onChange={e => setShareEmail(e.target.value)} style={{width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid var(--border-input)', background: 'var(--bg-input)', color: 'var(--text-body)'}} />
+                            </div>
+                            <div style={{marginBottom: '1rem'}}>
+                                <label style={{display: 'block', marginBottom: '0.5rem'}}>Message (Optional)</label>
+                                <textarea value={shareMessage} onChange={e => setShareMessage(e.target.value)} style={{width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid var(--border-input)', background: 'var(--bg-input)', color: 'var(--text-body)'}} />
+                            </div>
+                            <button type="submit" className="btn-primary" style={{width: '100%', justifyContent: 'center'}}>Share</button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

@@ -105,6 +105,8 @@ To accelerate development using the internal task list:
 | `GET` | `/api/solicitations/:id` | Detail View | No |
 | `POST` | `/api/solicitations/:id/claim` | Take Lead/Interest | Yes |
 | `POST` | `/api/solicitations/:id/comments` | Add Comment | Yes |
+| `POST` | `/api/solicitations/:id/archive` | Archive | Yes |
+| `POST` | `/api/solicitations/:id/share` | Share | Yes |
 | `GET` | `/api/matches` | List user matches | Yes |
 | `PUT` | `/api/user/profile` | Update Profile (incl. Threshold) | Yes |
 | `POST` | `/api/feedback` | Submit Feedback | Yes |

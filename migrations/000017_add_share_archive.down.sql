@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS shares;
+ALTER TABLE claims DROP COLUMN IF EXISTS archived;
