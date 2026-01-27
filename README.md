@@ -1,6 +1,6 @@
-# JOSHUA: Business Development Intelligence Portal
+# JOSHUA: Lab Management & Business Intelligence Portal
 
-JOSHUA is an automated intelligence platform designed to revolutionize how organizations discover and pursue government business opportunities. It combines high-performance web scraping with local Large Language Models (LLM) to deliver personalized, actionable leads directly to your inbox.
+JOSHUA is an automated platform designed to revolutionize lab management and government business pursuits. It combines high-performance web scraping with local Large Language Models (LLM) to deliver personalized, actionable leads directly to your inbox, alongside comprehensive strategic planning and IRAD tracking tools.
 
 ## Key Features
 

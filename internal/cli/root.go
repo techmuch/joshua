@@ -10,9 +10,9 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "joshua",
-	Short: "JOSHUA is a business development intelligence portal",
-	Long: `JOSHUA is a high-performance tool designed to automate the discovery 
-and pursuit of government business development opportunities.`,
+	Short: "JOSHUA is a lab management and business intelligence portal",
+	Long: `JOSHUA is a high-performance platform for lab management, 
+business development intelligence, and strategic operations.`,
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		// Initialize configuration
 		cfg, err := config.LoadConfig()

@@ -1,8 +1,8 @@
-# Requirements: JOSHUA (Business Development Intelligence Portal)
+# Requirements: JOSHUA (Lab Management & Business Intelligence Portal)
 
 ## 1. Overview
 
-JOSHUA is a high-performance, cross-platform portal designed to automate the discovery and pursuit of government business development opportunities. It utilizes a background "bot" to scrape solicitation sites, an internal Large Language Model (LLM) to match opportunities to user expertise, and a collaborative dashboard to facilitate organizational "coalition building" and transparency.
+JOSHUA is a high-performance, cross-platform portal designed to automate lab management and the pursuit of government business development opportunities. It utilizes a background "bot" to scrape solicitation sites, an internal Large Language Model (LLM) to match opportunities to user expertise, and a collaborative dashboard to facilitate organizational "coalition building" and transparency.
 
 ## 2. Application Architecture
 
