@@ -179,9 +179,11 @@ To ensure a structured and manageable implementation, development will follow th
         *   [x] Implement Landing Page & App Hub.
                 *   [x] Implement Feedback App & Developer Tools.
                     *   [x] Feedback Management CLI (List/Update Status).
-                    *   [x] Developer Task List (Sync from requirements.md).
-            
-                        *   [x] Automatic Task Sync on Save (Web UI trigger).
+                            *   [x] Developer Task List (Sync from requirements.md).
+                            *   [x] Detailed Development Plan View (CLI & UI).
+                                
+                                *   [x] Automatic Task Sync on Save (Web UI trigger).
+                    
                                     *   [x] Upgrade Requirements Editor (Monaco, Version History, Revert).
                                     *   [x] Narrative Versioning & Monaco Editor in User Profile.
                                     *   [x] Direct URL mapping for each view (/tasks, /requirements).

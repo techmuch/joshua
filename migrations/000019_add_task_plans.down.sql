@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS task_comments;
+ALTER TABLE tasks DROP COLUMN IF EXISTS plan_status;
+ALTER TABLE tasks DROP COLUMN IF EXISTS plan;

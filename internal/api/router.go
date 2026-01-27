@@ -59,7 +59,10 @@ func NewRouter(
 	mux.HandleFunc("GET /api/requirements/versions", AuthMiddleware(reqHandler.ListVersions))
 	mux.HandleFunc("POST /api/requirements", AuthMiddleware(reqHandler.Save))
 	mux.HandleFunc("GET /api/tasks", AuthMiddleware(taskHandler.List))
+	mux.HandleFunc("GET /api/tasks/{id}", AuthMiddleware(taskHandler.Get))
 	mux.HandleFunc("POST /api/tasks/{id}/select", AuthMiddleware(taskHandler.ToggleSelection))
+	mux.HandleFunc("PUT /api/tasks/{id}/plan", AuthMiddleware(taskHandler.UpdatePlan))
+	mux.HandleFunc("POST /api/tasks/{id}/comments", AuthMiddleware(taskHandler.AddComment))
 	mux.HandleFunc("POST /api/chat", AuthMiddleware(chatHandler.Handle))
 
 	// IRAD

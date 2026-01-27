@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Save, ArrowLeft, History, FileCode, CheckSquare, Square } from 'lucide-react';
-import { Link, Routes, Route, Navigate } from 'react-router-dom';
+import { Save, ArrowLeft, History, FileCode, CheckSquare, Square, MessageSquare, ThumbsUp, AlertCircle } from 'lucide-react';
+import { Link, Routes, Route, Navigate, useParams, useNavigate } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 
 interface Task {
@@ -10,12 +10,170 @@ interface Task {
     is_completed: boolean;
     is_selected: boolean;
     updated_at: string;
+    plan: string;
+    plan_status: string;
 }
+
+interface Comment {
+    id: number;
+    content: string;
+    created_at: string;
+    user: { full_name: string; avatar_url: string };
+}
+
+const TaskDetailView: React.FC = () => {
+    const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
+    const [task, setTask] = useState<Task | null>(null);
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [plan, setPlan] = useState("");
+    const [planStatus, setPlanStatus] = useState("none");
+    const [loading, setLoading] = useState(true);
+    const [newComment, setNewComment] = useState("");
+    const [isSaving, setIsSaving] = useState(false);
+
+    const fetchDetail = async () => {
+        try {
+            const res = await fetch(`/api/tasks/${id}`);
+            if (res.ok) {
+                const data = await res.json();
+                setTask(data.Task);
+                setComments(data.Comments || []);
+                setPlan(data.Task.plan || "");
+                setPlanStatus(data.Task.plan_status || "none");
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchDetail();
+    }, [id]);
+
+    const handleSavePlan = async (newStatus?: string) => {
+        setIsSaving(true);
+        const statusToSave = newStatus || planStatus;
+        try {
+            const res = await fetch(`/api/tasks/${id}/plan`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ plan, plan_status: statusToSave }),
+            });
+            if (res.ok) {
+                setPlanStatus(statusToSave);
+                alert("Plan saved!");
+            }
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
+    const handlePostComment = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!newComment.trim()) return;
+        try {
+            const res = await fetch(`/api/tasks/${id}/comments`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: newComment }),
+            });
+            if (res.ok) {
+                setNewComment("");
+                fetchDetail();
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    if (loading) return <div>Loading...</div>;
+    if (!task) return <div>Task not found</div>;
+
+    const getStatusColor = (s: string) => {
+        switch (s) {
+            case 'approved': return 'var(--success-color)';
+            case 'review': return 'var(--warning-color)';
+            case 'revision': return 'var(--error-color)';
+            default: return 'var(--text-secondary)';
+        }
+    };
+
+    return (
+        <div style={{ display: 'flex', gap: '1.5rem', height: '80vh' }}>
+            <div className="chart-card" style={{ flex: 2, display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
+                <div style={{ padding: '1rem', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--bg-card)' }}>
+                    <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                            <h3 style={{ margin: 0, color: 'var(--text-primary)' }}>Development Plan</h3>
+                            <span className="badge" style={{ background: getStatusColor(planStatus), color: 'var(--bg-card)' }}>
+                                {planStatus.toUpperCase()}
+                            </span>
+                        </div>
+                        <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Task #{task.id}: {task.description}</div>
+                    </div>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <button onClick={() => handleSavePlan('draft')} className="btn-outline" disabled={isSaving} title="Save as Draft">
+                            <Save size={16} /> Save
+                        </button>
+                        <button onClick={() => handleSavePlan('review')} className="btn-primary" disabled={isSaving} style={{ background: 'var(--warning-color)', color: 'var(--bg-card)' }}>
+                            Submit for Review
+                        </button>
+                        <button onClick={() => handleSavePlan('approved')} className="btn-primary" disabled={isSaving} style={{ background: 'var(--success-color)' }}>
+                            <ThumbsUp size={16} /> Approve
+                        </button>
+                        <button onClick={() => handleSavePlan('revision')} className="btn-primary" disabled={isSaving} style={{ background: 'var(--error-color)' }}>
+                            <AlertCircle size={16} /> Request Revision
+                        </button>
+                    </div>
+                </div>
+                <div style={{ flex: 1 }}>
+                    <Editor
+                        height="100%"
+                        defaultLanguage="markdown"
+                        value={plan}
+                        onChange={(val) => setPlan(val || "")}
+                        theme="vs-dark"
+                        options={{ minimap: { enabled: false }, fontSize: 14, wordWrap: 'on' }}
+                    />
+                </div>
+            </div>
+
+            <div className="chart-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '1rem' }}>
+                <h4 style={{ marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <MessageSquare size={18} /> Discussion
+                </h4>
+                <div style={{ flex: 1, overflowY: 'auto', marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {comments.map(c => (
+                        <div key={c.id} style={{ background: 'var(--bg-body)', padding: '0.75rem', borderRadius: '6px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem', fontSize: '0.8rem' }}>
+                                <span style={{ fontWeight: 600 }}>{c.user.full_name}</span>
+                                <span style={{ color: 'var(--text-secondary)' }}>{new Date(c.created_at).toLocaleString()}</span>
+                            </div>
+                            <div style={{ fontSize: '0.9rem', lineHeight: 1.4 }}>{c.content}</div>
+                        </div>
+                    ))}
+                    {comments.length === 0 && <div style={{ color: 'var(--text-secondary)', textAlign: 'center', marginTop: '2rem' }}>No comments yet.</div>}
+                </div>
+                <form onSubmit={handlePostComment}>
+                    <textarea
+                        value={newComment}
+                        onChange={e => setNewComment(e.target.value)}
+                        placeholder="Add a comment..."
+                        style={{ width: '100%', minHeight: '80px', padding: '0.5rem', borderRadius: '4px', border: '1px solid var(--border-input)', background: 'var(--bg-input)', color: 'var(--text-body)' }}
+                    />
+                    <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '0.5rem' }} disabled={!newComment.trim()}>Post Comment</button>
+                </form>
+            </div>
+        </div>
+    );
+};
 
 const TaskList: React.FC = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [showCompleted, setShowCompleted] = useState(false);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     const fetchTasks = async () => {
         try {
@@ -33,7 +191,8 @@ const TaskList: React.FC = () => {
         fetchTasks();
     }, []);
 
-    const toggleSelection = async (task: Task) => {
+    const toggleSelection = async (e: React.MouseEvent, task: Task) => {
+        e.stopPropagation();
         // Optimistic update
         setTasks(prev => prev.map(t => t.id === task.id ? { ...t, is_selected: !t.is_selected } : t));
 
@@ -64,18 +223,23 @@ const TaskList: React.FC = () => {
                         <tr style={{ background: 'var(--bg-body)', color: 'var(--text-secondary)', textAlign: 'left', fontSize: '0.9rem', textTransform: 'uppercase' }}>
                             <th style={{ padding: '1rem', width: '80px', textAlign: 'center' }}>Select</th>
                             <th style={{ padding: '1rem' }}>Task Description</th>
+                            <th style={{ padding: '1rem', width: '100px' }}>Plan</th>
                             <th style={{ padding: '1rem', width: '100px' }}>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filteredTasks.length === 0 ? (
-                            <tr><td colSpan={3} style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-secondary)' }}>No tasks found. Run `joshua task sync` from CLI.</td></tr>
+                            <tr><td colSpan={4} style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-secondary)' }}>No tasks found. Run `joshua task sync` from CLI.</td></tr>
                         ) : (
                             filteredTasks.map(task => (
-                                <tr key={task.id} style={{ borderBottom: '1px solid var(--border-color)' }}>
+                                <tr key={task.id} 
+                                    style={{ borderBottom: '1px solid var(--border-color)', cursor: 'pointer' }}
+                                    onClick={() => navigate(`${task.id}`)}
+                                    className="task-row"
+                                >
                                     <td style={{ padding: '1rem', textAlign: 'center' }}>
                                         <div
-                                            onClick={() => toggleSelection(task)}
+                                            onClick={(e) => toggleSelection(e, task)}
                                             style={{
                                                 cursor: 'pointer',
                                                 color: task.is_selected ? 'var(--primary-color)' : 'var(--text-secondary)',
@@ -88,6 +252,11 @@ const TaskList: React.FC = () => {
                                     </td>
                                     <td style={{ padding: '1rem', color: task.is_completed ? 'var(--text-secondary)' : 'var(--text-primary)', textDecoration: task.is_completed ? 'line-through' : 'none' }}>
                                         {task.description}
+                                    </td>
+                                    <td style={{ padding: '1rem' }}>
+                                        <span className="badge" style={{ background: task.plan_status === 'approved' ? 'var(--success-color)' : (task.plan_status === 'none' ? 'var(--bg-input)' : 'var(--warning-color)'), color: task.plan_status === 'none' ? 'var(--text-secondary)' : 'white' }}>
+                                            {task.plan_status || 'none'}
+                                        </span>
                                     </td>
                                     <td style={{ padding: '1rem' }}>
                                         <span className="badge" style={{
@@ -298,6 +467,7 @@ const DeveloperApp: React.FC = () => {
 
             <Routes>
                 <Route path="tasks" element={<TaskList />} />
+                <Route path="tasks/:id" element={<TaskDetailView />} />
                 <Route path="requirements" element={<RequirementsEditor />} />
                 <Route path="/" element={<Navigate to="tasks" replace />} />
             </Routes>
