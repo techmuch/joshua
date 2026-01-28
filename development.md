@@ -112,6 +112,9 @@ To accelerate development using the internal task list:
 | `POST` | `/api/feedback` | Submit Feedback | Yes |
 | `GET` | `/api/requirements` | Get Requirements | Dev/Admin |
 | `GET` | `/api/tasks` | List synced tasks | Dev/Admin |
+| `GET` | `/api/tasks/:id` | Get Task Detail | Dev/Admin |
+| `PUT` | `/api/tasks/:id/plan` | Update Task Plan | Dev/Admin |
+| `POST` | `/api/tasks/:id/comments` | Add Task Comment | Dev/Admin |
 | `POST` | `/api/tasks/:id/select` | Toggle selection | Dev/Admin |
 
 ## 5. CLI Reference
@@ -124,6 +127,7 @@ To accelerate development using the internal task list:
 *   `joshua task update --id <ID> --file <JSON>`: Update task plan/status.
 *   `joshua feedback list [--new|--reviewed|--all]`: Manage feedback.
 *   `joshua feedback update --id <ID> --status <STATUS>`: Update feedback status.
+*   `joshua audit`: View audit logs.
 *   `joshua scraper run-now`: Manual scrape.
 
 ## 6. Coding Standards
