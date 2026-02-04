@@ -151,6 +151,34 @@
   color-scheme: light;
 }
 
+[data-theme='gt'] {
+  --bg-body: #f3f4f6;
+  --bg-card: #ffffff;
+  --bg-header: #003057;
+  --bg-input: #ffffff;
+
+  --text-primary: #003057;
+  --text-secondary: #54585a;
+  --text-body: #1f2937;
+  --text-brand: #B3A369;
+
+  --border-color: #e5e7eb;
+  --border-input: #B3A369;
+
+  --primary-color: #003057;
+  --text-on-primary: #B3A369;
+  --primary-light: #B3A36922;
+
+  --slider-track: #d1d5db;
+  --slider-thumb: #B3A369;
+
+  --success-color: #27ae60;
+  --error-color: #e74c3c;
+  --warning-color: #f1c40f;
+
+  color-scheme: light;
+}
+
 body {
   margin: 0;
   padding: 0;
