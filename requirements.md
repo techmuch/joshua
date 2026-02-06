@@ -63,6 +63,7 @@ The CLI leverages the Charmbracelet ecosystem for a premium administrative exper
     *   **Forest:** A calming green-based palette.
     *   **Valentine:** A festive red and pink palette for special occasions.
     *   **Georgia Tech:** Official Tech Gold and Navy Blue colors.
+    *   **Liberty:** A patriotic red, white, and blue palette for Independence Day.
 *   **Terminal Awareness:** Graceful detection with fallback to ASCII; suggests upgrade if a basic terminal is detected.
 *   **Help System:** Dedicated help key (`?`) in all TUI views for context-sensitive documentation.
 
@@ -196,6 +197,7 @@ To ensure a structured and manageable implementation, development will follow th
         *   [ ] Finalize CI/CD pipelines and comprehensive unit testing.
         *   [x] Develop a valentines theme based on reds and pinks
         *   [x] Develop a new theme based on the GT offical colors
+        *   [x] Develop a new theme based on the fourth of July
 
 ### Phase 6: Strategic Growth (IRAD)
 

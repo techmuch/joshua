@@ -179,6 +179,34 @@
   color-scheme: light;
 }
 
+[data-theme='liberty'] {
+  --bg-body: #f0f4f8;
+  --bg-card: #ffffff;
+  --bg-header: #3c3b6e;
+  --bg-input: #ffffff;
+
+  --text-primary: #3c3b6e;
+  --text-secondary: #b22234;
+  --text-body: #1a202c;
+  --text-brand: #ffffff;
+
+  --border-color: #d1d5db;
+  --border-input: #3c3b6e;
+
+  --primary-color: #b22234;
+  --text-on-primary: #ffffff;
+  --primary-light: #e8f0fe;
+
+  --slider-track: #d1d5db;
+  --slider-thumb: #b22234;
+
+  --success-color: #27ae60;
+  --error-color: #e74c3c;
+  --warning-color: #f1c40f;
+
+  color-scheme: light;
+}
+
 body {
   margin: 0;
   padding: 0;

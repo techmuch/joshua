@@ -276,6 +276,7 @@ const UserProfile: React.FC = () => {
                                 <option value="wopr">WOPR (Joshua)</option>
                                 <option value="valentine">Valentine</option>
                                 <option value="gt">Georgia Tech</option>
+                                <option value="liberty">Liberty</option>
                             </select>
                         </div>
 

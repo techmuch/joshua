@@ -67,7 +67,7 @@ For rapid UI iteration:
     *   `FeedbackApp.tsx`: Feedback form.
     *   `DeveloperApp.tsx`: Requirements editor.
 *   **`context/`**: `AuthContext.tsx` handles session state.
-    *   `ThemeContext.tsx`: Handles WOPR/Light/Dark theming.
+    *   `ThemeContext.tsx`: Handles WOPR/Light/Dark/Forest/Valentine/GT/Liberty theming.
 *   **`hooks/`**: `useAnalytics.ts` encapsulates cross-filtering logic.
 
 ## 3. Key Workflows
@@ -133,4 +133,4 @@ To accelerate development using the internal task list:
 ## 6. Coding Standards
 *   **Go:** `gofmt`, `goimports`. Use `slog` for logging.
 *   **React:** Functional components, Hooks (`useAuth`, `useAnalytics`).
-*   **CSS:** Responsive, full-width layouts. Use CSS variables (`var(--text-primary)`, `var(--bg-body)`) to support the WOPR theme.
+*   **CSS:** Responsive, full-width layouts. Use CSS variables (`var(--text-primary)`, `var(--bg-body)`) to support the multiple themes (WOPR, GT, Liberty, etc.).
